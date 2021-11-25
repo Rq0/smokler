@@ -6,16 +6,14 @@ from aws_cdk import (
 )
 from chalice.cdk import Chalice
 
-
 RUNTIME_SOURCE_DIR = os.path.join(
     os.path.dirname(os.path.dirname(__file__)), os.pardir, 'runtime')
 
 
 class ChaliceApp(cdk.Stack):
-
     def __init__(self, scope, id, **kwargs):
         super().__init__(scope, id, **kwargs)
-        self.dynamodb_table = self._create_ddb_table()
+        self._create_ddb_table()
         self.chalice = Chalice(
             self, 'ChaliceApp', source_dir=RUNTIME_SOURCE_DIR,
             stage_config={
@@ -29,7 +27,7 @@ class ChaliceApp(cdk.Stack):
         )
 
     def _create_ddb_table(self):
-        dynamodb_table = dynamodb.Table(
+        self.dynamodb_table = dynamodb.Table(
             self, 'AppTable',
             partition_key=dynamodb.Attribute(
                 name='PK', type=dynamodb.AttributeType.STRING),
@@ -37,6 +35,5 @@ class ChaliceApp(cdk.Stack):
                 name='SK', type=dynamodb.AttributeType.STRING
             ),
             removal_policy=cdk.RemovalPolicy.DESTROY)
-        cdk.CfnOutput(self, 'AppTableName',
-                      value=dynamodb_table.table_name)
-        return dynamodb_table
+        cdk.CfnOutput(
+            self, 'AppTableName', value=self.dynamodb_table.table_name)
