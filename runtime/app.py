@@ -78,7 +78,7 @@ def get_comments():
 
 
 @app.route('/users/{username}', methods=['GET'], authorizer=authorizer)
-def get_user(username):
+def get_user(username: str):
     user_db = dynamodb_table.get_item(
         Key={
             **User(username=username).dynamodb_profile_key

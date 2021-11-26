@@ -23,7 +23,7 @@ class User:
 
     algorithms: str = 'HS256'
 
-    def encode_password(self, password, salt=None):
+    def encode_password(self, password: str, salt: bytes = None):
         if salt:
             self.salt = salt
         self.hashed = hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), salt, self.rounds)
@@ -47,7 +47,7 @@ class User:
 @dataclass
 class JwtAuth:
     @classmethod
-    def get_jwt_token(cls, username, password, record):
+    def get_jwt_token(cls, username: str, password: str, record: dict):
         actual = hashlib.pbkdf2_hmac(
             'sha256',
             password.encode('utf-8'),
@@ -71,7 +71,7 @@ class JwtAuth:
         )
 
     @classmethod
-    def decode_jwt_token(cls, token):
+    def decode_jwt_token(cls, token: str):
         return jwt.decode(token, cls.__get_auth_key(), algorithms=[User.algorithms])
 
     @staticmethod

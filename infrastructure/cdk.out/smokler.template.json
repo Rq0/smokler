@@ -1,0 +1,803 @@
+{
+  "Transform": "AWS::Serverless-2016-10-31",
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Resources": {
+    "AppTable815C50BC": {
+      "Type": "AWS::DynamoDB::Table",
+      "Properties": {
+        "KeySchema": [
+          {
+            "AttributeName": "PK",
+            "KeyType": "HASH"
+          },
+          {
+            "AttributeName": "SK",
+            "KeyType": "RANGE"
+          }
+        ],
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "PK",
+            "AttributeType": "S"
+          },
+          {
+            "AttributeName": "SK",
+            "AttributeType": "S"
+          }
+        ],
+        "ProvisionedThroughput": {
+          "ReadCapacityUnits": 5,
+          "WriteCapacityUnits": 5
+        }
+      },
+      "UpdateReplacePolicy": "Delete",
+      "DeletionPolicy": "Delete",
+      "Metadata": {
+        "aws:cdk:path": "smokler/AppTable/Resource"
+      }
+    },
+    "DefaultRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Sid": "",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              },
+              "Action": "sts:AssumeRole"
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "logs:CreateLogGroup",
+                    "logs:CreateLogStream",
+                    "logs:PutLogEvents"
+                  ],
+                  "Resource": "arn:*:logs:*:*:*"
+                }
+              ]
+            },
+            "PolicyName": "DefaultRolePolicy"
+          }
+        ]
+      }
+    },
+    "Authorizer": {
+      "Type": "AWS::Serverless::Function",
+      "Properties": {
+        "CodeUri": {
+          "Bucket": {
+            "Ref": "AssetParameters0ed07121352eb6fb015a228e916e301af695466b9fe83427fd6ff609e84c026cS3BucketEE9A7A6B"
+          },
+          "Key": {
+            "Fn::Join": [
+              "",
+              [
+                {
+                  "Fn::Select": [
+                    0,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParameters0ed07121352eb6fb015a228e916e301af695466b9fe83427fd6ff609e84c026cS3VersionKeyC5C66733"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Fn::Select": [
+                    1,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParameters0ed07121352eb6fb015a228e916e301af695466b9fe83427fd6ff609e84c026cS3VersionKeyC5C66733"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        "Environment": {
+          "Variables": {
+            "APP_TABLE_NAME": {
+              "Ref": "AppTable815C50BC"
+            }
+          }
+        },
+        "Handler": "app.authorizer",
+        "MemorySize": 128,
+        "Role": {
+          "Fn::GetAtt": [
+            "DefaultRole",
+            "Arn"
+          ]
+        },
+        "Runtime": "python3.8",
+        "Tags": {
+          "aws-chalice": "version=1.26.2:stage=smokler:app=smokler"
+        },
+        "Timeout": 60,
+        "Tracing": "PassThrough"
+      }
+    },
+    "APIHandler": {
+      "Type": "AWS::Serverless::Function",
+      "Properties": {
+        "CodeUri": {
+          "Bucket": {
+            "Ref": "AssetParameters0ed07121352eb6fb015a228e916e301af695466b9fe83427fd6ff609e84c026cS3BucketEE9A7A6B"
+          },
+          "Key": {
+            "Fn::Join": [
+              "",
+              [
+                {
+                  "Fn::Select": [
+                    0,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParameters0ed07121352eb6fb015a228e916e301af695466b9fe83427fd6ff609e84c026cS3VersionKeyC5C66733"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Fn::Select": [
+                    1,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParameters0ed07121352eb6fb015a228e916e301af695466b9fe83427fd6ff609e84c026cS3VersionKeyC5C66733"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        "Environment": {
+          "Variables": {
+            "APP_TABLE_NAME": {
+              "Ref": "AppTable815C50BC"
+            }
+          }
+        },
+        "Handler": "app.app",
+        "MemorySize": 128,
+        "Role": {
+          "Fn::GetAtt": [
+            "DefaultRole",
+            "Arn"
+          ]
+        },
+        "Runtime": "python3.8",
+        "Tags": {
+          "aws-chalice": "version=1.26.2:stage=smokler:app=smokler"
+        },
+        "Timeout": 60,
+        "Tracing": "PassThrough"
+      }
+    },
+    "RestAPI": {
+      "Type": "AWS::Serverless::Api",
+      "Properties": {
+        "StageName": "api",
+        "DefinitionBody": {
+          "swagger": "2.0",
+          "info": {
+            "version": "1.0",
+            "title": "smokler"
+          },
+          "schemes": [
+            "https"
+          ],
+          "paths": {
+            "/register": {
+              "post": {
+                "consumes": [
+                  "application/json"
+                ],
+                "produces": [
+                  "application/json"
+                ],
+                "responses": {
+                  "200": {
+                    "description": "200 response",
+                    "schema": {
+                      "$ref": "#/definitions/Empty"
+                    }
+                  }
+                },
+                "x-amazon-apigateway-integration": {
+                  "responses": {
+                    "default": {
+                      "statusCode": "200"
+                    }
+                  },
+                  "uri": {
+                    "Fn::Sub": "arn:${AWS::Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${APIHandler.Arn}/invocations"
+                  },
+                  "passthroughBehavior": "when_no_match",
+                  "httpMethod": "POST",
+                  "contentHandling": "CONVERT_TO_TEXT",
+                  "type": "aws_proxy"
+                }
+              }
+            },
+            "/login": {
+              "post": {
+                "consumes": [
+                  "application/json"
+                ],
+                "produces": [
+                  "application/json"
+                ],
+                "responses": {
+                  "200": {
+                    "description": "200 response",
+                    "schema": {
+                      "$ref": "#/definitions/Empty"
+                    }
+                  }
+                },
+                "x-amazon-apigateway-integration": {
+                  "responses": {
+                    "default": {
+                      "statusCode": "200"
+                    }
+                  },
+                  "uri": {
+                    "Fn::Sub": "arn:${AWS::Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${APIHandler.Arn}/invocations"
+                  },
+                  "passthroughBehavior": "when_no_match",
+                  "httpMethod": "POST",
+                  "contentHandling": "CONVERT_TO_TEXT",
+                  "type": "aws_proxy"
+                }
+              }
+            },
+            "/comment": {
+              "post": {
+                "consumes": [
+                  "application/json"
+                ],
+                "produces": [
+                  "application/json"
+                ],
+                "responses": {
+                  "200": {
+                    "description": "200 response",
+                    "schema": {
+                      "$ref": "#/definitions/Empty"
+                    }
+                  }
+                },
+                "x-amazon-apigateway-integration": {
+                  "responses": {
+                    "default": {
+                      "statusCode": "200"
+                    }
+                  },
+                  "uri": {
+                    "Fn::Sub": "arn:${AWS::Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${APIHandler.Arn}/invocations"
+                  },
+                  "passthroughBehavior": "when_no_match",
+                  "httpMethod": "POST",
+                  "contentHandling": "CONVERT_TO_TEXT",
+                  "type": "aws_proxy"
+                },
+                "security": [
+                  {
+                    "authorizer": []
+                  }
+                ]
+              },
+              "get": {
+                "consumes": [
+                  "application/json"
+                ],
+                "produces": [
+                  "application/json"
+                ],
+                "responses": {
+                  "200": {
+                    "description": "200 response",
+                    "schema": {
+                      "$ref": "#/definitions/Empty"
+                    }
+                  }
+                },
+                "x-amazon-apigateway-integration": {
+                  "responses": {
+                    "default": {
+                      "statusCode": "200"
+                    }
+                  },
+                  "uri": {
+                    "Fn::Sub": "arn:${AWS::Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${APIHandler.Arn}/invocations"
+                  },
+                  "passthroughBehavior": "when_no_match",
+                  "httpMethod": "POST",
+                  "contentHandling": "CONVERT_TO_TEXT",
+                  "type": "aws_proxy"
+                },
+                "security": [
+                  {
+                    "authorizer": []
+                  }
+                ]
+              }
+            },
+            "/users/{username}": {
+              "get": {
+                "consumes": [
+                  "application/json"
+                ],
+                "produces": [
+                  "application/json"
+                ],
+                "responses": {
+                  "200": {
+                    "description": "200 response",
+                    "schema": {
+                      "$ref": "#/definitions/Empty"
+                    }
+                  }
+                },
+                "x-amazon-apigateway-integration": {
+                  "responses": {
+                    "default": {
+                      "statusCode": "200"
+                    }
+                  },
+                  "uri": {
+                    "Fn::Sub": "arn:${AWS::Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${APIHandler.Arn}/invocations"
+                  },
+                  "passthroughBehavior": "when_no_match",
+                  "httpMethod": "POST",
+                  "contentHandling": "CONVERT_TO_TEXT",
+                  "type": "aws_proxy"
+                },
+                "security": [
+                  {
+                    "authorizer": []
+                  }
+                ],
+                "parameters": [
+                  {
+                    "name": "username",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                  }
+                ]
+              }
+            }
+          },
+          "definitions": {
+            "Empty": {
+              "type": "object",
+              "title": "Empty Schema"
+            }
+          },
+          "x-amazon-apigateway-binary-media-types": [
+            "application/octet-stream",
+            "application/x-tar",
+            "application/zip",
+            "audio/basic",
+            "audio/ogg",
+            "audio/mp4",
+            "audio/mpeg",
+            "audio/wav",
+            "audio/webm",
+            "image/png",
+            "image/jpg",
+            "image/jpeg",
+            "image/gif",
+            "video/ogg",
+            "video/mpeg",
+            "video/webm"
+          ],
+          "securityDefinitions": {
+            "authorizer": {
+              "in": "header",
+              "type": "apiKey",
+              "name": "Authorization",
+              "x-amazon-apigateway-authtype": "custom",
+              "x-amazon-apigateway-authorizer": {
+                "type": "token",
+                "authorizerUri": {
+                  "Fn::Sub": "arn:${AWS::Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${Authorizer.Arn}/invocations"
+                }
+              }
+            }
+          }
+        },
+        "EndpointConfiguration": "EDGE"
+      }
+    },
+    "APIHandlerInvokePermission": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Ref": "APIHandler"
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Sub": [
+            "arn:${AWS::Partition}:execute-api:${AWS::Region}:${AWS::AccountId}:${RestAPIId}/*",
+            {
+              "RestAPIId": {
+                "Ref": "RestAPI"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "AuthorizerInvokePermission": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "Authorizer",
+            "Arn"
+          ]
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Sub": [
+            "arn:${AWS::Partition}:execute-api:${AWS::Region}:${AWS::AccountId}:${RestAPIId}/*",
+            {
+              "RestAPIId": {
+                "Ref": "RestAPI"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "ChaliceAppDefaultRolePolicyCAAAC186": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "dynamodb:BatchGetItem",
+                "dynamodb:GetRecords",
+                "dynamodb:GetShardIterator",
+                "dynamodb:Query",
+                "dynamodb:GetItem",
+                "dynamodb:Scan",
+                "dynamodb:ConditionCheckItem",
+                "dynamodb:BatchWriteItem",
+                "dynamodb:PutItem",
+                "dynamodb:UpdateItem",
+                "dynamodb:DeleteItem"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "AppTable815C50BC",
+                    "Arn"
+                  ]
+                },
+                {
+                  "Ref": "AWS::NoValue"
+                }
+              ]
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "ChaliceAppDefaultRolePolicyCAAAC186",
+        "Roles": [
+          {
+            "Fn::Select": [
+              1,
+              {
+                "Fn::Split": [
+                  "/",
+                  {
+                    "Fn::Select": [
+                      5,
+                      {
+                        "Fn::Split": [
+                          ":",
+                          {
+                            "Fn::GetAtt": [
+                              "DefaultRole",
+                              "Arn"
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "smokler/ChaliceApp/DefaultRole/Policy/Resource"
+      }
+    },
+    "CDKMetadata": {
+      "Type": "AWS::CDK::Metadata",
+      "Properties": {
+        "Analytics": "v2:deflate64:H4sIAAAAAAAA/02OsW7DMAxEvyW7zMTw0rFJgAKdYqT9AVpiUtaWFIgUCsPwv9dSOnTiEXx3xxbaroPD7hV/pLFu3C82JoLlQ9GO5koSc7JkzrdwyfrIas4xiKZs1RxFSDfuzuFegB4TelJKZfnv3CyOlWNYTWlZ3BzQRzfA8onDVJEqViNdgyVVoIZvO5yyHUlPKGQYPSwlO26mPk5s59pb1Wb+O7/lYEtbuR0fvJoJ/eAQCkrJs0h9xU4xu1tMHgvccLBTdlSo96dcTT/rVwz7Dl6gPey+hblJOSh7gutz/gLai3QfPwEAAA=="
+      },
+      "Metadata": {
+        "aws:cdk:path": "smokler/CDKMetadata/Default"
+      },
+      "Condition": "CDKMetadataAvailable"
+    }
+  },
+  "Outputs": {
+    "AppTableName": {
+      "Value": {
+        "Ref": "AppTable815C50BC"
+      }
+    },
+    "RestAPIId": {
+      "Value": {
+        "Ref": "RestAPI"
+      }
+    },
+    "APIHandlerName": {
+      "Value": {
+        "Ref": "APIHandler"
+      }
+    },
+    "APIHandlerArn": {
+      "Value": {
+        "Fn::GetAtt": [
+          "APIHandler",
+          "Arn"
+        ]
+      }
+    },
+    "EndpointURL": {
+      "Value": {
+        "Fn::Sub": "https://${RestAPI}.execute-api.${AWS::Region}.${AWS::URLSuffix}/api/"
+      }
+    }
+  },
+  "Parameters": {
+    "AssetParameters0ed07121352eb6fb015a228e916e301af695466b9fe83427fd6ff609e84c026cS3BucketEE9A7A6B": {
+      "Type": "String",
+      "Description": "S3 bucket for asset \"0ed07121352eb6fb015a228e916e301af695466b9fe83427fd6ff609e84c026c\""
+    },
+    "AssetParameters0ed07121352eb6fb015a228e916e301af695466b9fe83427fd6ff609e84c026cS3VersionKeyC5C66733": {
+      "Type": "String",
+      "Description": "S3 key for asset version \"0ed07121352eb6fb015a228e916e301af695466b9fe83427fd6ff609e84c026c\""
+    },
+    "AssetParameters0ed07121352eb6fb015a228e916e301af695466b9fe83427fd6ff609e84c026cArtifactHash96CC34A5": {
+      "Type": "String",
+      "Description": "Artifact hash for asset \"0ed07121352eb6fb015a228e916e301af695466b9fe83427fd6ff609e84c026c\""
+    }
+  },
+  "Conditions": {
+    "CDKMetadataAvailable": {
+      "Fn::Or": [
+        {
+          "Fn::Or": [
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "af-south-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "ap-east-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "ap-northeast-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "ap-northeast-2"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "ap-south-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "ap-southeast-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "ap-southeast-2"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "ca-central-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "cn-north-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "cn-northwest-1"
+              ]
+            }
+          ]
+        },
+        {
+          "Fn::Or": [
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "eu-central-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "eu-north-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "eu-south-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "eu-west-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "eu-west-2"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "eu-west-3"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "me-south-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "sa-east-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "us-east-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "us-east-2"
+              ]
+            }
+          ]
+        },
+        {
+          "Fn::Or": [
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "us-west-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "us-west-2"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
