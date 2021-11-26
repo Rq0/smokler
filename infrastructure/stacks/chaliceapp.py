@@ -18,7 +18,7 @@ class ChaliceApp(cdk.Stack):
             self, 'ChaliceApp', source_dir=RUNTIME_SOURCE_DIR,
             stage_config={
                 'environment_variables': {
-                    'APP_TABLE_NAME': self.dynamodb_table.table_name
+                    'USER_TABLE_NAME': self.dynamodb_table.table_name
                 }
             }
         )
@@ -28,7 +28,7 @@ class ChaliceApp(cdk.Stack):
 
     def _create_ddb_table(self):
         self.dynamodb_table = dynamodb.Table(
-            self, 'AppTable',
+            self, 'UserTable',
             partition_key=dynamodb.Attribute(
                 name='PK', type=dynamodb.AttributeType.STRING),
             sort_key=dynamodb.Attribute(
@@ -36,4 +36,4 @@ class ChaliceApp(cdk.Stack):
             ),
             removal_policy=cdk.RemovalPolicy.DESTROY)
         cdk.CfnOutput(
-            self, 'AppTableName', value=self.dynamodb_table.table_name)
+            self, 'UserTableName', value=self.dynamodb_table.table_name)

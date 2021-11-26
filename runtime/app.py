@@ -10,7 +10,7 @@ from chalicelib.auth import User, JwtAuth
 
 app = Chalice(app_name='smokler')
 dynamodb = resource('dynamodb')
-dynamodb_table = dynamodb.Table(os.environ.get('APP_TABLE_NAME', ''))
+dynamodb_table = dynamodb.Table(os.environ.get('USER_TABLE_NAME', ''))
 
 
 @app.authorizer()
