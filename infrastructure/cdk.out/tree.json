@@ -79,6 +79,106 @@
               "version": "1.133.0"
             }
           },
+          "user_pool": {
+            "id": "user_pool",
+            "path": "smokler/user_pool",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "smokler/user_pool/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Cognito::UserPool",
+                  "aws:cdk:cloudformation:props": {
+                    "accountRecoverySetting": {
+                      "recoveryMechanisms": [
+                        {
+                          "name": "verified_email",
+                          "priority": 1
+                        }
+                      ]
+                    },
+                    "adminCreateUserConfig": {
+                      "allowAdminCreateUserOnly": false
+                    },
+                    "autoVerifiedAttributes": [
+                      "email"
+                    ],
+                    "emailVerificationMessage": "The verification code to your new account is {####}",
+                    "emailVerificationSubject": "Verify your new account",
+                    "schema": [
+                      {
+                        "name": "email",
+                        "mutable": true,
+                        "required": true
+                      },
+                      {
+                        "name": "family_name",
+                        "mutable": true,
+                        "required": true
+                      },
+                      {
+                        "name": "given_name",
+                        "mutable": true,
+                        "required": true
+                      }
+                    ],
+                    "smsVerificationMessage": "The verification code to your new account is {####}",
+                    "verificationMessageTemplate": {
+                      "defaultEmailOption": "CONFIRM_WITH_CODE",
+                      "emailMessage": "The verification code to your new account is {####}",
+                      "emailSubject": "Verify your new account",
+                      "smsMessage": "The verification code to your new account is {####}"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-cognito.CfnUserPool",
+                  "version": "1.133.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-cognito.UserPool",
+              "version": "1.133.0"
+            }
+          },
+          "identity_pool": {
+            "id": "identity_pool",
+            "path": "smokler/identity_pool",
+            "attributes": {
+              "aws:cdk:cloudformation:type": "AWS::Cognito::IdentityPool",
+              "aws:cdk:cloudformation:props": {
+                "allowUnauthenticatedIdentities": true,
+                "cognitoIdentityProviders": [
+                  {
+                    "clientId": {
+                      "Ref": "userpool8E71A846"
+                    },
+                    "providerName": {
+                      "Fn::Join": [
+                        "",
+                        [
+                          "cognito-idp.",
+                          {
+                            "Ref": "AWS::Region"
+                          },
+                          ".amazonaws.com/",
+                          {
+                            "Ref": "userpool8E71A846"
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                ],
+                "identityPoolName": "smokler-api"
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-cognito.CfnIdentityPool",
+              "version": "1.133.0"
+            }
+          },
           "ChaliceApp": {
             "id": "ChaliceApp",
             "path": "smokler/ChaliceApp",

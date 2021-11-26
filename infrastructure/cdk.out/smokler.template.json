@@ -36,6 +36,88 @@
         "aws:cdk:path": "smokler/UserTable/Resource"
       }
     },
+    "userpool8E71A846": {
+      "Type": "AWS::Cognito::UserPool",
+      "Properties": {
+        "AccountRecoverySetting": {
+          "RecoveryMechanisms": [
+            {
+              "Name": "verified_email",
+              "Priority": 1
+            }
+          ]
+        },
+        "AdminCreateUserConfig": {
+          "AllowAdminCreateUserOnly": false
+        },
+        "AutoVerifiedAttributes": [
+          "email"
+        ],
+        "EmailVerificationMessage": "The verification code to your new account is {####}",
+        "EmailVerificationSubject": "Verify your new account",
+        "Schema": [
+          {
+            "Mutable": true,
+            "Name": "email",
+            "Required": true
+          },
+          {
+            "Mutable": true,
+            "Name": "family_name",
+            "Required": true
+          },
+          {
+            "Mutable": true,
+            "Name": "given_name",
+            "Required": true
+          }
+        ],
+        "SmsVerificationMessage": "The verification code to your new account is {####}",
+        "VerificationMessageTemplate": {
+          "DefaultEmailOption": "CONFIRM_WITH_CODE",
+          "EmailMessage": "The verification code to your new account is {####}",
+          "EmailSubject": "Verify your new account",
+          "SmsMessage": "The verification code to your new account is {####}"
+        }
+      },
+      "UpdateReplacePolicy": "Retain",
+      "DeletionPolicy": "Retain",
+      "Metadata": {
+        "aws:cdk:path": "smokler/user_pool/Resource"
+      }
+    },
+    "identitypool": {
+      "Type": "AWS::Cognito::IdentityPool",
+      "Properties": {
+        "AllowUnauthenticatedIdentities": true,
+        "CognitoIdentityProviders": [
+          {
+            "ClientId": {
+              "Ref": "userpool8E71A846"
+            },
+            "ProviderName": {
+              "Fn::Join": [
+                "",
+                [
+                  "cognito-idp.",
+                  {
+                    "Ref": "AWS::Region"
+                  },
+                  ".amazonaws.com/",
+                  {
+                    "Ref": "userpool8E71A846"
+                  }
+                ]
+              ]
+            }
+          }
+        ],
+        "IdentityPoolName": "smokler-api"
+      },
+      "Metadata": {
+        "aws:cdk:path": "smokler/identity_pool"
+      }
+    },
     "DefaultRole": {
       "Type": "AWS::IAM::Role",
       "Properties": {
@@ -554,7 +636,7 @@
     "CDKMetadata": {
       "Type": "AWS::CDK::Metadata",
       "Properties": {
-        "Analytics": "v2:deflate64:H4sIAAAAAAAA/02OsW7DMAxEvyW7zMTw0rFJgAKdYqT9AVpiUtaWFIgUCsPwv9dSOnTiEXx3xxbaroPD7hV/pLFu3C82JoLlQ9GO5koSc7JkzrdwyfrIas4xiKZs1RxFSDfuzuFegB4TelJKZfnv3CyOlWNYTWlZ3BzQRzfA8onDVJEqViNdgyVVoIZvO5yyHUlPKGQYPSwlO26mPk5s59pb1Wb+O7/lYEtbuR0fvJoJ/eAQCkrJs0h9xU4xu1tMHgvccLBTdlSo96dcTT/rVwz7Dl6gPey+hblJOSh7gutz/gLai3QfPwEAAA=="
+        "Analytics": "v2:deflate64:H4sIAAAAAAAA/02OwW7DIBBEvyV3TGL50mOTSJVyqpW2H4Bh424NbASLKgv53wukh5x2RjOjfb3sh0Eedq/qN3baLPusKYDMH6z0Iq4QKQUN4nzz74nvicWZfOSQNItjjMClN6Ofa2FUQTlgCNU8L8vEICP5TdQv2axeOTKTzJ9qsq3SxCY0zR6ZZP6KEEYiW7NnfTHgGXmtfhNx6FSFiLKxFC9PSS/AJxVBoHIyVxQqP0ayqNeG2VQZ/8dvyesKV7PjHTdhlZuMkrUKwWGMjVxbSuZGwala7tBrmwzU1uUhNzGu/E1+P8gX2R92PxGxC6ngOpDXx/0D70G7Nm4BAAA="
       },
       "Metadata": {
         "aws:cdk:path": "smokler/CDKMetadata/Default"
