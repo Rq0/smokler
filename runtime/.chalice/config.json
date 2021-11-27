@@ -7,7 +7,7 @@
       "lambda_functions": {
         "api_handler": {
           "environment_variables": {
-            "USER_TABLE_NAME": "smokler-UserTableBD4BF69E-O99HBL9B4Q7E"
+            "USER_TABLE_NAME": "smokler-UserTableBD4BF69E"
           }
         }
       }

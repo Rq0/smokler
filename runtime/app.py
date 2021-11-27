@@ -4,7 +4,7 @@ from uuid import uuid4
 from boto3 import resource
 from boto3.dynamodb.conditions import Key
 from botocore.exceptions import ClientError
-from chalice import Chalice, AuthResponse
+from chalice import Chalice, AuthResponse, UnauthorizedError
 
 from chalicelib.auth import User, JwtAuth
 
@@ -50,7 +50,9 @@ def login():
     user = User(username=body["username"])
     user_db = dynamodb_table.get_item(Key={
         **user.dynamodb_profile_key
-    })['Item']
+    }).get('Item')
+    if not user_db:
+        raise UnauthorizedError('Invalid username or password')
     jwt_token = user.get_jwt_token(body['password'], user_db)
     return {'token': jwt_token}
 

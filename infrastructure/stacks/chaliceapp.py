@@ -66,12 +66,12 @@ class ChaliceApp(cdk.Stack):
         self.identity_pool = cognito.CfnIdentityPool(
             self,
             id="identity_pool",
-            identity_pool_name=f"smokler-{self.stage}",
+            identity_pool_name=f"smokler_{self.stage}",
             allow_unauthenticated_identities=True,
             cognito_identity_providers=[
-                cognito.CfnIdentityPool.CognitoIdentityProviderProperty(
-                    client_id=self.user_pool.user_pool_id,
-                    provider_name=f"cognito-idp.{self.region}.amazonaws.com/{self.user_pool.user_pool_id}",
-                )
+                # cognito.CfnIdentityPool.CognitoIdentityProviderProperty(
+                #     client_id=self.user_pool.user_pool_id,
+                #     provider_name=f"cognito-idp.{self.region}.amazonaws.com/{self.user_pool.user_pool_id}",
+                # )
             ],
         )

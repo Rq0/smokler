@@ -26,7 +26,7 @@ class User:
     def encode_password(self, password: str, salt: bytes = None):
         if salt:
             self.salt = salt
-        self.hashed = hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), salt, self.rounds)
+        self.hashed = hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), self.salt, self.rounds)
         self.salt = salt
 
     def get_jwt_token(self, password, record):
@@ -55,7 +55,7 @@ class JwtAuth:
             record['rounds']
         )
         if not hmac.compare_digest(actual, record['hashed'].value):
-            raise UnauthorizedError('Invalid password')
+            raise UnauthorizedError('Invalid username or password')
 
         now = datetime.datetime.utcnow()
         return jwt.encode(

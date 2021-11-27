@@ -149,29 +149,8 @@
               "aws:cdk:cloudformation:type": "AWS::Cognito::IdentityPool",
               "aws:cdk:cloudformation:props": {
                 "allowUnauthenticatedIdentities": true,
-                "cognitoIdentityProviders": [
-                  {
-                    "clientId": {
-                      "Ref": "userpool8E71A846"
-                    },
-                    "providerName": {
-                      "Fn::Join": [
-                        "",
-                        [
-                          "cognito-idp.",
-                          {
-                            "Ref": "AWS::Region"
-                          },
-                          ".amazonaws.com/",
-                          {
-                            "Ref": "userpool8E71A846"
-                          }
-                        ]
-                      ]
-                    }
-                  }
-                ],
-                "identityPoolName": "smokler-api"
+                "cognitoIdentityProviders": [],
+                "identityPoolName": "smokler_api"
               }
             },
             "constructInfo": {
@@ -300,7 +279,7 @@
                       "aws:cdk:cloudformation:props": {
                         "codeUri": {
                           "bucket": {
-                            "Ref": "AssetParametersfa7abffc3d8f6ddf42e09759d9932a333520bfa0efd6bb3db73d2e0b5501a618S3Bucket923B3679"
+                            "Ref": "AssetParametersb20004707af9c21495a2566efdf17ceaee3cc54a368018fbf99c3f4261085b7eS3Bucket0330EE24"
                           },
                           "key": {
                             "Fn::Join": [
@@ -313,7 +292,7 @@
                                       "Fn::Split": [
                                         "||",
                                         {
-                                          "Ref": "AssetParametersfa7abffc3d8f6ddf42e09759d9932a333520bfa0efd6bb3db73d2e0b5501a618S3VersionKeyC9B3BD37"
+                                          "Ref": "AssetParametersb20004707af9c21495a2566efdf17ceaee3cc54a368018fbf99c3f4261085b7eS3VersionKeyA942E9DE"
                                         }
                                       ]
                                     }
@@ -326,7 +305,7 @@
                                       "Fn::Split": [
                                         "||",
                                         {
-                                          "Ref": "AssetParametersfa7abffc3d8f6ddf42e09759d9932a333520bfa0efd6bb3db73d2e0b5501a618S3VersionKeyC9B3BD37"
+                                          "Ref": "AssetParametersb20004707af9c21495a2566efdf17ceaee3cc54a368018fbf99c3f4261085b7eS3VersionKeyA942E9DE"
                                         }
                                       ]
                                     }
@@ -372,7 +351,7 @@
                       "aws:cdk:cloudformation:props": {
                         "codeUri": {
                           "bucket": {
-                            "Ref": "AssetParametersfa7abffc3d8f6ddf42e09759d9932a333520bfa0efd6bb3db73d2e0b5501a618S3Bucket923B3679"
+                            "Ref": "AssetParametersb20004707af9c21495a2566efdf17ceaee3cc54a368018fbf99c3f4261085b7eS3Bucket0330EE24"
                           },
                           "key": {
                             "Fn::Join": [
@@ -385,7 +364,7 @@
                                       "Fn::Split": [
                                         "||",
                                         {
-                                          "Ref": "AssetParametersfa7abffc3d8f6ddf42e09759d9932a333520bfa0efd6bb3db73d2e0b5501a618S3VersionKeyC9B3BD37"
+                                          "Ref": "AssetParametersb20004707af9c21495a2566efdf17ceaee3cc54a368018fbf99c3f4261085b7eS3VersionKeyA942E9DE"
                                         }
                                       ]
                                     }
@@ -398,7 +377,7 @@
                                       "Fn::Split": [
                                         "||",
                                         {
-                                          "Ref": "AssetParametersfa7abffc3d8f6ddf42e09759d9932a333520bfa0efd6bb3db73d2e0b5501a618S3VersionKeyC9B3BD37"
+                                          "Ref": "AssetParametersb20004707af9c21495a2566efdf17ceaee3cc54a368018fbf99c3f4261085b7eS3VersionKeyA942E9DE"
                                         }
                                       ]
                                     }
@@ -901,13 +880,13 @@
             "id": "AssetParameters",
             "path": "smokler/AssetParameters",
             "children": {
-              "fa7abffc3d8f6ddf42e09759d9932a333520bfa0efd6bb3db73d2e0b5501a618": {
-                "id": "fa7abffc3d8f6ddf42e09759d9932a333520bfa0efd6bb3db73d2e0b5501a618",
-                "path": "smokler/AssetParameters/fa7abffc3d8f6ddf42e09759d9932a333520bfa0efd6bb3db73d2e0b5501a618",
+              "b20004707af9c21495a2566efdf17ceaee3cc54a368018fbf99c3f4261085b7e": {
+                "id": "b20004707af9c21495a2566efdf17ceaee3cc54a368018fbf99c3f4261085b7e",
+                "path": "smokler/AssetParameters/b20004707af9c21495a2566efdf17ceaee3cc54a368018fbf99c3f4261085b7e",
                 "children": {
                   "S3Bucket": {
                     "id": "S3Bucket",
-                    "path": "smokler/AssetParameters/fa7abffc3d8f6ddf42e09759d9932a333520bfa0efd6bb3db73d2e0b5501a618/S3Bucket",
+                    "path": "smokler/AssetParameters/b20004707af9c21495a2566efdf17ceaee3cc54a368018fbf99c3f4261085b7e/S3Bucket",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.CfnParameter",
                       "version": "1.133.0"
@@ -915,7 +894,7 @@
                   },
                   "S3VersionKey": {
                     "id": "S3VersionKey",
-                    "path": "smokler/AssetParameters/fa7abffc3d8f6ddf42e09759d9932a333520bfa0efd6bb3db73d2e0b5501a618/S3VersionKey",
+                    "path": "smokler/AssetParameters/b20004707af9c21495a2566efdf17ceaee3cc54a368018fbf99c3f4261085b7e/S3VersionKey",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.CfnParameter",
                       "version": "1.133.0"
@@ -923,7 +902,7 @@
                   },
                   "ArtifactHash": {
                     "id": "ArtifactHash",
-                    "path": "smokler/AssetParameters/fa7abffc3d8f6ddf42e09759d9932a333520bfa0efd6bb3db73d2e0b5501a618/ArtifactHash",
+                    "path": "smokler/AssetParameters/b20004707af9c21495a2566efdf17ceaee3cc54a368018fbf99c3f4261085b7e/ArtifactHash",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.CfnParameter",
                       "version": "1.133.0"
