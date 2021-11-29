@@ -3,7 +3,7 @@ import os
 from aws_cdk import (
     aws_dynamodb as dynamodb,
     core as cdk,
-    aws_cognito as cognito
+    aws_cognito as cognito,
 )
 from chalice.cdk import Chalice
 
@@ -15,17 +15,20 @@ class ChaliceApp(cdk.Stack):
     chalice: Chalice
     dynamodb_table: dynamodb.Table
     user_pool: cognito.UserPool
-    stage = 'api'  # TODO: add ref to configs
 
     def __init__(self, scope, id, **kwargs):
         super().__init__(scope, id, **kwargs)
+        self.app_name = self.node.try_get_context("app_name")
+        self.stage_name = self.node.try_get_context("stage")
         self._create_ddb_table()
         self._add_cognito()
         self.chalice = Chalice(
             self, 'ChaliceApp', source_dir=RUNTIME_SOURCE_DIR,
             stage_config={
                 'environment_variables': {
-                    'USER_TABLE_NAME': self.dynamodb_table.table_name
+                    'USER_TABLE_NAME': self.dynamodb_table.table_name,
+                    'COGNITO_USER_POOL_ARN': self.user_pool.user_pool_arn,
+                    'APP_NAME': self.app_name
                 }
             }
         )
@@ -52,26 +55,72 @@ class ChaliceApp(cdk.Stack):
         """
         # Create the user pool that holds our users
         self.user_pool = cognito.UserPool(
-            self,
-            "user_pool",
-            account_recovery=cognito.AccountRecovery.EMAIL_ONLY,
-            auto_verify=cognito.AutoVerifiedAttrs(email=True),
+            self, "user_pool",
+            user_pool_name=f'{self.app_name}_{self.stage_name}_user_pool',
+            removal_policy=cdk.RemovalPolicy.DESTROY,
             self_sign_up_enabled=True,
+            sign_in_aliases=cognito.SignInAliases(
+                email=True,
+                phone=False,
+                preferred_username=False,
+                username=False,
+            ),
+            auto_verify=cognito.AutoVerifiedAttrs(
+                email=True,
+                phone=False
+            ),
+            password_policy=cognito.PasswordPolicy(
+                min_length=8,
+                require_lowercase=False,
+                require_digits=False,
+                require_uppercase=False,
+                require_symbols=False,
+            ),
+            account_recovery=cognito.AccountRecovery.EMAIL_ONLY,
+            sign_in_case_sensitive=False,
+            email=cognito.UserPoolEmail.with_cognito(self.node.try_get_context("support_email")),
+            device_tracking=cognito.DeviceTracking(
+                challenge_required_on_new_device=False,
+                device_only_remembered_on_user_prompt=True
+            ),
             standard_attributes=cognito.StandardAttributes(
                 email=cognito.StandardAttribute(mutable=True, required=True),
                 given_name=cognito.StandardAttribute(mutable=True, required=True),
                 family_name=cognito.StandardAttribute(mutable=True, required=True)
             )
         )
+        self.user_pool_app_client = cognito.UserPoolClient(
+            self, "user_pool_app_client",
+            user_pool=self.user_pool,
+            o_auth=cognito.OAuthSettings(
+                flows=cognito.OAuthFlows(
+                    client_credentials=False,
+                    authorization_code_grant=False,
+                    implicit_code_grant=True
+                ),
+                scopes=[cognito.OAuthScope.EMAIL, cognito.OAuthScope.OPENID, cognito.OAuthScope.PROFILE]
+            ),
+            supported_identity_providers=[
+                cognito.UserPoolClientIdentityProvider.COGNITO,
+            ],
+        )
         self.identity_pool = cognito.CfnIdentityPool(
             self,
             id="identity_pool",
-            identity_pool_name=f"smokler_{self.stage}",
+            identity_pool_name=f"{self.app_name}_{self.stage_name}_identity_pool",
             allow_unauthenticated_identities=True,
             cognito_identity_providers=[
-                # cognito.CfnIdentityPool.CognitoIdentityProviderProperty(
-                #     client_id=self.user_pool.user_pool_id,
-                #     provider_name=f"cognito-idp.{self.region}.amazonaws.com/{self.user_pool.user_pool_id}",
-                # )
+                cognito.CfnIdentityPool.CognitoIdentityProviderProperty(
+                    client_id=self.user_pool.user_pool_id,
+                    provider_name=provider.provider_name
+                )
+                for provider in self.user_pool.identity_providers
             ],
+        )
+        self.domain = cognito.UserPoolDomain(
+            self, 'cognito_user_pool_domain',
+            user_pool=self.user_pool,
+            cognito_domain=cognito.CognitoDomainOptions(
+                domain_prefix=f'{self.app_name}-{self.stage_name}-user-pool-{self.account}-{self.region}'
+            ),
         )

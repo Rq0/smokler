@@ -53,8 +53,25 @@
         "AutoVerifiedAttributes": [
           "email"
         ],
+        "DeviceConfiguration": {
+          "ChallengeRequiredOnNewDevice": false,
+          "DeviceOnlyRememberedOnUserPrompt": true
+        },
+        "EmailConfiguration": {
+          "EmailSendingAccount": "COGNITO_DEFAULT",
+          "ReplyToEmailAddress": "support@zerobased.ru"
+        },
         "EmailVerificationMessage": "The verification code to your new account is {####}",
         "EmailVerificationSubject": "Verify your new account",
+        "Policies": {
+          "PasswordPolicy": {
+            "MinimumLength": 8,
+            "RequireLowercase": false,
+            "RequireNumbers": false,
+            "RequireSymbols": false,
+            "RequireUppercase": false
+          }
+        },
         "Schema": [
           {
             "Mutable": true,
@@ -73,6 +90,13 @@
           }
         ],
         "SmsVerificationMessage": "The verification code to your new account is {####}",
+        "UsernameAttributes": [
+          "email"
+        ],
+        "UsernameConfiguration": {
+          "CaseSensitive": false
+        },
+        "UserPoolName": "smokler_dev_user_pool",
         "VerificationMessageTemplate": {
           "DefaultEmailOption": "CONFIRM_WITH_CODE",
           "EmailMessage": "The verification code to your new account is {####}",
@@ -80,10 +104,36 @@
           "SmsMessage": "The verification code to your new account is {####}"
         }
       },
-      "UpdateReplacePolicy": "Retain",
-      "DeletionPolicy": "Retain",
+      "UpdateReplacePolicy": "Delete",
+      "DeletionPolicy": "Delete",
       "Metadata": {
         "aws:cdk:path": "smokler/user_pool/Resource"
+      }
+    },
+    "userpoolappclient37756254": {
+      "Type": "AWS::Cognito::UserPoolClient",
+      "Properties": {
+        "UserPoolId": {
+          "Ref": "userpool8E71A846"
+        },
+        "AllowedOAuthFlows": [
+          "implicit"
+        ],
+        "AllowedOAuthFlowsUserPoolClient": true,
+        "AllowedOAuthScopes": [
+          "email",
+          "openid",
+          "profile"
+        ],
+        "CallbackURLs": [
+          "https://example.com"
+        ],
+        "SupportedIdentityProviders": [
+          "COGNITO"
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "smokler/user_pool_app_client/Resource"
       }
     },
     "identitypool": {
@@ -91,10 +141,36 @@
       "Properties": {
         "AllowUnauthenticatedIdentities": true,
         "CognitoIdentityProviders": [],
-        "IdentityPoolName": "smokler_api"
+        "IdentityPoolName": "smokler_dev_identity_pool"
       },
       "Metadata": {
         "aws:cdk:path": "smokler/identity_pool"
+      }
+    },
+    "cognitouserpooldomainCFC4C18A": {
+      "Type": "AWS::Cognito::UserPoolDomain",
+      "Properties": {
+        "Domain": {
+          "Fn::Join": [
+            "",
+            [
+              "smokler-dev-user-pool-",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              "-",
+              {
+                "Ref": "AWS::Region"
+              }
+            ]
+          ]
+        },
+        "UserPoolId": {
+          "Ref": "userpool8E71A846"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "smokler/cognito_user_pool_domain/Resource"
       }
     },
     "DefaultRole": {
@@ -134,76 +210,12 @@
         ]
       }
     },
-    "Authorizer": {
-      "Type": "AWS::Serverless::Function",
-      "Properties": {
-        "CodeUri": {
-          "Bucket": {
-            "Ref": "AssetParametersb20004707af9c21495a2566efdf17ceaee3cc54a368018fbf99c3f4261085b7eS3Bucket0330EE24"
-          },
-          "Key": {
-            "Fn::Join": [
-              "",
-              [
-                {
-                  "Fn::Select": [
-                    0,
-                    {
-                      "Fn::Split": [
-                        "||",
-                        {
-                          "Ref": "AssetParametersb20004707af9c21495a2566efdf17ceaee3cc54a368018fbf99c3f4261085b7eS3VersionKeyA942E9DE"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "Fn::Select": [
-                    1,
-                    {
-                      "Fn::Split": [
-                        "||",
-                        {
-                          "Ref": "AssetParametersb20004707af9c21495a2566efdf17ceaee3cc54a368018fbf99c3f4261085b7eS3VersionKeyA942E9DE"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            ]
-          }
-        },
-        "Environment": {
-          "Variables": {
-            "USER_TABLE_NAME": {
-              "Ref": "UserTableBD4BF69E"
-            }
-          }
-        },
-        "Handler": "app.authorizer",
-        "MemorySize": 128,
-        "Role": {
-          "Fn::GetAtt": [
-            "DefaultRole",
-            "Arn"
-          ]
-        },
-        "Runtime": "python3.8",
-        "Tags": {
-          "aws-chalice": "version=1.26.2:stage=smokler:app=smokler"
-        },
-        "Timeout": 60,
-        "Tracing": "PassThrough"
-      }
-    },
     "APIHandler": {
       "Type": "AWS::Serverless::Function",
       "Properties": {
         "CodeUri": {
           "Bucket": {
-            "Ref": "AssetParametersb20004707af9c21495a2566efdf17ceaee3cc54a368018fbf99c3f4261085b7eS3Bucket0330EE24"
+            "Ref": "AssetParametersdcdd1a5632694db30908cb5d73f9371e606bdd75fcb77252db5e1adedb9b24a0S3Bucket876AD25B"
           },
           "Key": {
             "Fn::Join": [
@@ -216,7 +228,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParametersb20004707af9c21495a2566efdf17ceaee3cc54a368018fbf99c3f4261085b7eS3VersionKeyA942E9DE"
+                          "Ref": "AssetParametersdcdd1a5632694db30908cb5d73f9371e606bdd75fcb77252db5e1adedb9b24a0S3VersionKey72262A06"
                         }
                       ]
                     }
@@ -229,7 +241,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParametersb20004707af9c21495a2566efdf17ceaee3cc54a368018fbf99c3f4261085b7eS3VersionKeyA942E9DE"
+                          "Ref": "AssetParametersdcdd1a5632694db30908cb5d73f9371e606bdd75fcb77252db5e1adedb9b24a0S3VersionKey72262A06"
                         }
                       ]
                     }
@@ -243,7 +255,14 @@
           "Variables": {
             "USER_TABLE_NAME": {
               "Ref": "UserTableBD4BF69E"
-            }
+            },
+            "COGNITO_USER_POOL_ARN": {
+              "Fn::GetAtt": [
+                "userpool8E71A846",
+                "Arn"
+              ]
+            },
+            "APP_NAME": "smokler"
           }
         },
         "Handler": "app.app",
@@ -276,70 +295,6 @@
             "https"
           ],
           "paths": {
-            "/register": {
-              "post": {
-                "consumes": [
-                  "application/json"
-                ],
-                "produces": [
-                  "application/json"
-                ],
-                "responses": {
-                  "200": {
-                    "description": "200 response",
-                    "schema": {
-                      "$ref": "#/definitions/Empty"
-                    }
-                  }
-                },
-                "x-amazon-apigateway-integration": {
-                  "responses": {
-                    "default": {
-                      "statusCode": "200"
-                    }
-                  },
-                  "uri": {
-                    "Fn::Sub": "arn:${AWS::Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${APIHandler.Arn}/invocations"
-                  },
-                  "passthroughBehavior": "when_no_match",
-                  "httpMethod": "POST",
-                  "contentHandling": "CONVERT_TO_TEXT",
-                  "type": "aws_proxy"
-                }
-              }
-            },
-            "/login": {
-              "post": {
-                "consumes": [
-                  "application/json"
-                ],
-                "produces": [
-                  "application/json"
-                ],
-                "responses": {
-                  "200": {
-                    "description": "200 response",
-                    "schema": {
-                      "$ref": "#/definitions/Empty"
-                    }
-                  }
-                },
-                "x-amazon-apigateway-integration": {
-                  "responses": {
-                    "default": {
-                      "statusCode": "200"
-                    }
-                  },
-                  "uri": {
-                    "Fn::Sub": "arn:${AWS::Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${APIHandler.Arn}/invocations"
-                  },
-                  "passthroughBehavior": "when_no_match",
-                  "httpMethod": "POST",
-                  "contentHandling": "CONVERT_TO_TEXT",
-                  "type": "aws_proxy"
-                }
-              }
-            },
             "/comment": {
               "post": {
                 "consumes": [
@@ -372,7 +327,7 @@
                 },
                 "security": [
                   {
-                    "authorizer": []
+                    "CognitoAuthorizer": []
                   }
                 ]
               },
@@ -407,52 +362,7 @@
                 },
                 "security": [
                   {
-                    "authorizer": []
-                  }
-                ]
-              }
-            },
-            "/users/{username}": {
-              "get": {
-                "consumes": [
-                  "application/json"
-                ],
-                "produces": [
-                  "application/json"
-                ],
-                "responses": {
-                  "200": {
-                    "description": "200 response",
-                    "schema": {
-                      "$ref": "#/definitions/Empty"
-                    }
-                  }
-                },
-                "x-amazon-apigateway-integration": {
-                  "responses": {
-                    "default": {
-                      "statusCode": "200"
-                    }
-                  },
-                  "uri": {
-                    "Fn::Sub": "arn:${AWS::Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${APIHandler.Arn}/invocations"
-                  },
-                  "passthroughBehavior": "when_no_match",
-                  "httpMethod": "POST",
-                  "contentHandling": "CONVERT_TO_TEXT",
-                  "type": "aws_proxy"
-                },
-                "security": [
-                  {
-                    "authorizer": []
-                  }
-                ],
-                "parameters": [
-                  {
-                    "name": "username",
-                    "in": "path",
-                    "required": true,
-                    "type": "string"
+                    "CognitoAuthorizer": []
                   }
                 ]
               }
@@ -483,16 +393,21 @@
             "video/webm"
           ],
           "securityDefinitions": {
-            "authorizer": {
+            "CognitoAuthorizer": {
               "in": "header",
               "type": "apiKey",
               "name": "Authorization",
-              "x-amazon-apigateway-authtype": "custom",
+              "x-amazon-apigateway-authtype": "cognito_user_pools",
               "x-amazon-apigateway-authorizer": {
-                "type": "token",
-                "authorizerUri": {
-                  "Fn::Sub": "arn:${AWS::Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${Authorizer.Arn}/invocations"
-                }
+                "type": "cognito_user_pools",
+                "providerARNs": [
+                  {
+                    "Fn::GetAtt": [
+                      "userpool8E71A846",
+                      "Arn"
+                    ]
+                  }
+                ]
               }
             }
           }
@@ -506,29 +421,6 @@
         "Action": "lambda:InvokeFunction",
         "FunctionName": {
           "Ref": "APIHandler"
-        },
-        "Principal": "apigateway.amazonaws.com",
-        "SourceArn": {
-          "Fn::Sub": [
-            "arn:${AWS::Partition}:execute-api:${AWS::Region}:${AWS::AccountId}:${RestAPIId}/*",
-            {
-              "RestAPIId": {
-                "Ref": "RestAPI"
-              }
-            }
-          ]
-        }
-      }
-    },
-    "AuthorizerInvokePermission": {
-      "Type": "AWS::Lambda::Permission",
-      "Properties": {
-        "Action": "lambda:InvokeFunction",
-        "FunctionName": {
-          "Fn::GetAtt": [
-            "Authorizer",
-            "Arn"
-          ]
         },
         "Principal": "apigateway.amazonaws.com",
         "SourceArn": {
@@ -615,7 +507,7 @@
     "CDKMetadata": {
       "Type": "AWS::CDK::Metadata",
       "Properties": {
-        "Analytics": "v2:deflate64:H4sIAAAAAAAA/02OwW7DIBBEvyV3TGL50mOTSJVyqpW2H4Bh424NbASLKgv53wukh5x2RjOjfb3sh0Eedq/qN3baLPusKYDMH6z0Iq4QKQUN4nzz74nvicWZfOSQNItjjMClN6Ofa2FUQTlgCNU8L8vEICP5TdQv2axeOTKTzJ9qsq3SxCY0zR6ZZP6KEEYiW7NnfTHgGXmtfhNx6FSFiLKxFC9PSS/AJxVBoHIyVxQqP0ayqNeG2VQZ/8dvyesKV7PjHTdhlZuMkrUKwWGMjVxbSuZGwala7tBrmwzU1uUhNzGu/E1+P8gX2R92PxGxC6ngOpDXx/0D70G7Nm4BAAA="
+        "Analytics": "v2:deflate64:H4sIAAAAAAAA/1WPzW4CMQyEn4V7NoD20mOBqhKnrmj7ACYx1GwSo8RRtVrtuzdZ+kNPGXtm5HxrvW5bvVo8wmdqjO2Xo+GIenwVML06YOIcDardKbxkuWZROw5JYjaiNimhlNyZwrkGOojgUTDW4b5ZKpaEOEyqXhntEMCzPerxDY5ujsxiUobPgYT1+J4wdsyuer/6R+wcYZB762+zt0WQDP8KT+yBwn3htplUahuoGEnPNGXW22x6lC0kVARejxWGyy87dmSGGXRWpfxtP+dgKl71NlealAN/tKBrFKOnlGZ24zjbE0cPNdxQMC5brKn9TU6qG+SDw7LVD3q9WlwSURNz4fGoD7f3C83K7eywAQAA"
       },
       "Metadata": {
         "aws:cdk:path": "smokler/CDKMetadata/Default"
@@ -654,17 +546,17 @@
     }
   },
   "Parameters": {
-    "AssetParametersb20004707af9c21495a2566efdf17ceaee3cc54a368018fbf99c3f4261085b7eS3Bucket0330EE24": {
+    "AssetParametersdcdd1a5632694db30908cb5d73f9371e606bdd75fcb77252db5e1adedb9b24a0S3Bucket876AD25B": {
       "Type": "String",
-      "Description": "S3 bucket for asset \"b20004707af9c21495a2566efdf17ceaee3cc54a368018fbf99c3f4261085b7e\""
+      "Description": "S3 bucket for asset \"dcdd1a5632694db30908cb5d73f9371e606bdd75fcb77252db5e1adedb9b24a0\""
     },
-    "AssetParametersb20004707af9c21495a2566efdf17ceaee3cc54a368018fbf99c3f4261085b7eS3VersionKeyA942E9DE": {
+    "AssetParametersdcdd1a5632694db30908cb5d73f9371e606bdd75fcb77252db5e1adedb9b24a0S3VersionKey72262A06": {
       "Type": "String",
-      "Description": "S3 key for asset version \"b20004707af9c21495a2566efdf17ceaee3cc54a368018fbf99c3f4261085b7e\""
+      "Description": "S3 key for asset version \"dcdd1a5632694db30908cb5d73f9371e606bdd75fcb77252db5e1adedb9b24a0\""
     },
-    "AssetParametersb20004707af9c21495a2566efdf17ceaee3cc54a368018fbf99c3f4261085b7eArtifactHash30D8BE32": {
+    "AssetParametersdcdd1a5632694db30908cb5d73f9371e606bdd75fcb77252db5e1adedb9b24a0ArtifactHash0BE285EC": {
       "Type": "String",
-      "Description": "Artifact hash for asset \"b20004707af9c21495a2566efdf17ceaee3cc54a368018fbf99c3f4261085b7e\""
+      "Description": "Artifact hash for asset \"dcdd1a5632694db30908cb5d73f9371e606bdd75fcb77252db5e1adedb9b24a0\""
     }
   },
   "Conditions": {
