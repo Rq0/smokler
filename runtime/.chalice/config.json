@@ -7,7 +7,7 @@
         "api_handler": {
           "environment_variables": {
             "APP_NAME": "smokler",
-            "USER_TABLE_NAME": "smokler-UserTableBD4BF69E-65A4A8X2NS5X",
+            "USER_TABLE_NAME": "smokler-UserTableBD4BF69E-A91K7518RPNQ",
             "COGNITO_USER_POOL_ARN": ""
           }
         }

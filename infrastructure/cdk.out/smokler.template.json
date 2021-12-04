@@ -215,7 +215,7 @@
       "Properties": {
         "CodeUri": {
           "Bucket": {
-            "Ref": "AssetParametersdcdd1a5632694db30908cb5d73f9371e606bdd75fcb77252db5e1adedb9b24a0S3Bucket876AD25B"
+            "Ref": "AssetParameters7429e628304ef29fd5ff31a889351c9bb60da9ed3abca9980b0205d9342d9882S3Bucket154D5809"
           },
           "Key": {
             "Fn::Join": [
@@ -228,7 +228,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParametersdcdd1a5632694db30908cb5d73f9371e606bdd75fcb77252db5e1adedb9b24a0S3VersionKey72262A06"
+                          "Ref": "AssetParameters7429e628304ef29fd5ff31a889351c9bb60da9ed3abca9980b0205d9342d9882S3VersionKeyF8FC47BA"
                         }
                       ]
                     }
@@ -241,7 +241,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParametersdcdd1a5632694db30908cb5d73f9371e606bdd75fcb77252db5e1adedb9b24a0S3VersionKey72262A06"
+                          "Ref": "AssetParameters7429e628304ef29fd5ff31a889351c9bb60da9ed3abca9980b0205d9342d9882S3VersionKeyF8FC47BA"
                         }
                       ]
                     }
@@ -332,6 +332,152 @@
                 ]
               },
               "get": {
+                "consumes": [
+                  "application/json"
+                ],
+                "produces": [
+                  "application/json"
+                ],
+                "responses": {
+                  "200": {
+                    "description": "200 response",
+                    "schema": {
+                      "$ref": "#/definitions/Empty"
+                    }
+                  }
+                },
+                "x-amazon-apigateway-integration": {
+                  "responses": {
+                    "default": {
+                      "statusCode": "200"
+                    }
+                  },
+                  "uri": {
+                    "Fn::Sub": "arn:${AWS::Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${APIHandler.Arn}/invocations"
+                  },
+                  "passthroughBehavior": "when_no_match",
+                  "httpMethod": "POST",
+                  "contentHandling": "CONVERT_TO_TEXT",
+                  "type": "aws_proxy"
+                },
+                "security": [
+                  {
+                    "CognitoAuthorizer": []
+                  }
+                ]
+              }
+            },
+            "/event": {
+              "post": {
+                "consumes": [
+                  "application/json"
+                ],
+                "produces": [
+                  "application/json"
+                ],
+                "responses": {
+                  "200": {
+                    "description": "200 response",
+                    "schema": {
+                      "$ref": "#/definitions/Empty"
+                    }
+                  }
+                },
+                "x-amazon-apigateway-integration": {
+                  "responses": {
+                    "default": {
+                      "statusCode": "200"
+                    }
+                  },
+                  "uri": {
+                    "Fn::Sub": "arn:${AWS::Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${APIHandler.Arn}/invocations"
+                  },
+                  "passthroughBehavior": "when_no_match",
+                  "httpMethod": "POST",
+                  "contentHandling": "CONVERT_TO_TEXT",
+                  "type": "aws_proxy"
+                },
+                "security": [
+                  {
+                    "CognitoAuthorizer": []
+                  }
+                ]
+              },
+              "get": {
+                "consumes": [
+                  "application/json"
+                ],
+                "produces": [
+                  "application/json"
+                ],
+                "responses": {
+                  "200": {
+                    "description": "200 response",
+                    "schema": {
+                      "$ref": "#/definitions/Empty"
+                    }
+                  }
+                },
+                "x-amazon-apigateway-integration": {
+                  "responses": {
+                    "default": {
+                      "statusCode": "200"
+                    }
+                  },
+                  "uri": {
+                    "Fn::Sub": "arn:${AWS::Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${APIHandler.Arn}/invocations"
+                  },
+                  "passthroughBehavior": "when_no_match",
+                  "httpMethod": "POST",
+                  "contentHandling": "CONVERT_TO_TEXT",
+                  "type": "aws_proxy"
+                },
+                "security": [
+                  {
+                    "CognitoAuthorizer": []
+                  }
+                ]
+              }
+            },
+            "/me": {
+              "get": {
+                "consumes": [
+                  "application/json"
+                ],
+                "produces": [
+                  "application/json"
+                ],
+                "responses": {
+                  "200": {
+                    "description": "200 response",
+                    "schema": {
+                      "$ref": "#/definitions/Empty"
+                    }
+                  }
+                },
+                "x-amazon-apigateway-integration": {
+                  "responses": {
+                    "default": {
+                      "statusCode": "200"
+                    }
+                  },
+                  "uri": {
+                    "Fn::Sub": "arn:${AWS::Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${APIHandler.Arn}/invocations"
+                  },
+                  "passthroughBehavior": "when_no_match",
+                  "httpMethod": "POST",
+                  "contentHandling": "CONVERT_TO_TEXT",
+                  "type": "aws_proxy"
+                },
+                "security": [
+                  {
+                    "CognitoAuthorizer": []
+                  }
+                ]
+              }
+            },
+            "/settings": {
+              "post": {
                 "consumes": [
                   "application/json"
                 ],
@@ -546,17 +692,17 @@
     }
   },
   "Parameters": {
-    "AssetParametersdcdd1a5632694db30908cb5d73f9371e606bdd75fcb77252db5e1adedb9b24a0S3Bucket876AD25B": {
+    "AssetParameters7429e628304ef29fd5ff31a889351c9bb60da9ed3abca9980b0205d9342d9882S3Bucket154D5809": {
       "Type": "String",
-      "Description": "S3 bucket for asset \"dcdd1a5632694db30908cb5d73f9371e606bdd75fcb77252db5e1adedb9b24a0\""
+      "Description": "S3 bucket for asset \"7429e628304ef29fd5ff31a889351c9bb60da9ed3abca9980b0205d9342d9882\""
     },
-    "AssetParametersdcdd1a5632694db30908cb5d73f9371e606bdd75fcb77252db5e1adedb9b24a0S3VersionKey72262A06": {
+    "AssetParameters7429e628304ef29fd5ff31a889351c9bb60da9ed3abca9980b0205d9342d9882S3VersionKeyF8FC47BA": {
       "Type": "String",
-      "Description": "S3 key for asset version \"dcdd1a5632694db30908cb5d73f9371e606bdd75fcb77252db5e1adedb9b24a0\""
+      "Description": "S3 key for asset version \"7429e628304ef29fd5ff31a889351c9bb60da9ed3abca9980b0205d9342d9882\""
     },
-    "AssetParametersdcdd1a5632694db30908cb5d73f9371e606bdd75fcb77252db5e1adedb9b24a0ArtifactHash0BE285EC": {
+    "AssetParameters7429e628304ef29fd5ff31a889351c9bb60da9ed3abca9980b0205d9342d9882ArtifactHashBC17F105": {
       "Type": "String",
-      "Description": "Artifact hash for asset \"dcdd1a5632694db30908cb5d73f9371e606bdd75fcb77252db5e1adedb9b24a0\""
+      "Description": "Artifact hash for asset \"7429e628304ef29fd5ff31a889351c9bb60da9ed3abca9980b0205d9342d9882\""
     }
   },
   "Conditions": {
