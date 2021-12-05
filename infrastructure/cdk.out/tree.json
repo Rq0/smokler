@@ -385,7 +385,7 @@
                       "aws:cdk:cloudformation:props": {
                         "codeUri": {
                           "bucket": {
-                            "Ref": "AssetParameters7429e628304ef29fd5ff31a889351c9bb60da9ed3abca9980b0205d9342d9882S3Bucket154D5809"
+                            "Ref": "AssetParameters71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0S3BucketAFC5BB1A"
                           },
                           "key": {
                             "Fn::Join": [
@@ -398,7 +398,7 @@
                                       "Fn::Split": [
                                         "||",
                                         {
-                                          "Ref": "AssetParameters7429e628304ef29fd5ff31a889351c9bb60da9ed3abca9980b0205d9342d9882S3VersionKeyF8FC47BA"
+                                          "Ref": "AssetParameters71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0S3VersionKeyD802BFA6"
                                         }
                                       ]
                                     }
@@ -411,7 +411,7 @@
                                       "Fn::Split": [
                                         "||",
                                         {
-                                          "Ref": "AssetParameters7429e628304ef29fd5ff31a889351c9bb60da9ed3abca9980b0205d9342d9882S3VersionKeyF8FC47BA"
+                                          "Ref": "AssetParameters71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0S3VersionKeyD802BFA6"
                                         }
                                       ]
                                     }
@@ -617,8 +617,43 @@
                                 ]
                               }
                             },
-                            "/me": {
+                            "/user": {
                               "get": {
+                                "consumes": [
+                                  "application/json"
+                                ],
+                                "produces": [
+                                  "application/json"
+                                ],
+                                "responses": {
+                                  "200": {
+                                    "description": "200 response",
+                                    "schema": {
+                                      "$ref": "#/definitions/Empty"
+                                    }
+                                  }
+                                },
+                                "x-amazon-apigateway-integration": {
+                                  "responses": {
+                                    "default": {
+                                      "statusCode": "200"
+                                    }
+                                  },
+                                  "uri": {
+                                    "Fn::Sub": "arn:${AWS::Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${APIHandler.Arn}/invocations"
+                                  },
+                                  "passthroughBehavior": "when_no_match",
+                                  "httpMethod": "POST",
+                                  "contentHandling": "CONVERT_TO_TEXT",
+                                  "type": "aws_proxy"
+                                },
+                                "security": [
+                                  {
+                                    "CognitoAuthorizer": []
+                                  }
+                                ]
+                              },
+                              "post": {
                                 "consumes": [
                                   "application/json"
                                 ],
@@ -654,7 +689,7 @@
                                 ]
                               }
                             },
-                            "/settings": {
+                            "/notification_settings": {
                               "post": {
                                 "consumes": [
                                   "application/json"
@@ -932,13 +967,13 @@
             "id": "AssetParameters",
             "path": "smokler/AssetParameters",
             "children": {
-              "7429e628304ef29fd5ff31a889351c9bb60da9ed3abca9980b0205d9342d9882": {
-                "id": "7429e628304ef29fd5ff31a889351c9bb60da9ed3abca9980b0205d9342d9882",
-                "path": "smokler/AssetParameters/7429e628304ef29fd5ff31a889351c9bb60da9ed3abca9980b0205d9342d9882",
+              "71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0": {
+                "id": "71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0",
+                "path": "smokler/AssetParameters/71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0",
                 "children": {
                   "S3Bucket": {
                     "id": "S3Bucket",
-                    "path": "smokler/AssetParameters/7429e628304ef29fd5ff31a889351c9bb60da9ed3abca9980b0205d9342d9882/S3Bucket",
+                    "path": "smokler/AssetParameters/71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0/S3Bucket",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.CfnParameter",
                       "version": "1.133.0"
@@ -946,7 +981,7 @@
                   },
                   "S3VersionKey": {
                     "id": "S3VersionKey",
-                    "path": "smokler/AssetParameters/7429e628304ef29fd5ff31a889351c9bb60da9ed3abca9980b0205d9342d9882/S3VersionKey",
+                    "path": "smokler/AssetParameters/71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0/S3VersionKey",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.CfnParameter",
                       "version": "1.133.0"
@@ -954,7 +989,7 @@
                   },
                   "ArtifactHash": {
                     "id": "ArtifactHash",
-                    "path": "smokler/AssetParameters/7429e628304ef29fd5ff31a889351c9bb60da9ed3abca9980b0205d9342d9882/ArtifactHash",
+                    "path": "smokler/AssetParameters/71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0/ArtifactHash",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.CfnParameter",
                       "version": "1.133.0"

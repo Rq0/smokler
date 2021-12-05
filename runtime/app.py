@@ -1,3 +1,4 @@
+import json
 from datetime import datetime
 from uuid import uuid4
 
@@ -6,7 +7,7 @@ from boto3.dynamodb.conditions import Key
 from chalicelib.dependency.cognito import IUsername
 from chalicelib.dependency.injection import inject
 from chalicelib.dependency.register import DependencyRegister
-from chalicelib.user import User
+from chalicelib.user import User, NotificationSettings, Theme, Course
 
 dependency_register = DependencyRegister()
 
@@ -65,7 +66,7 @@ def get_events(username: IUsername):
     )['Items']
 
 
-@app.route('/me', methods=['GET'], authorizer=authorizer)
+@app.route('/user', methods=['GET'], authorizer=authorizer)
 @inject(username=IUsername)
 def get_me(username: IUsername):
     filter_expression = \
@@ -78,16 +79,49 @@ def get_me(username: IUsername):
     except IndexError:
         return {'success': False, 'error': "User doesn't exists"}
     user = User.deserialize(database_user)
-    return user.json
+    return json.dumps(user.json)
 
 
-@app.route('/settings', methods=['POST'], authorizer=authorizer)
+@app.route('/user', methods=['POST'], authorizer=authorizer)
+@inject(username=IUsername)
+def update_basic_settings(username: IUsername):
+    body = app.current_request.json_body
+    user_table.update_item(
+        Key={
+            'PK': f'User#{username}',
+            'SK': 'Profile',
+        },
+        UpdateExpression="SET username = :username, avatar = :avatar, locale = :locale, theme = :theme,"
+                         " selected_course = :selected_course",
+        ExpressionAttributeValues={
+            ':username': body['username'],
+            ':avatar': body['avatar'],
+            ':locale': body['locale'],
+            ':theme': Theme[body['theme']].value,
+            ':selected_course': Course[body['selected_course']].value,
+        },
+    )
+    return {'success': True}
+
+
+@app.route('/notification_settings', methods=['POST'], authorizer=authorizer)
 @inject(username=IUsername)
 def update_notification_settings(username: IUsername):
     body = app.current_request.json_body
-    user_table.update_item(Item={
-        'PK': f'User#{username}',
-        'SK': f'Settings#{uuid4()}',
-        'type': body['type'],
-        'date': datetime.now()
-    })
+    notification_settings = NotificationSettings(
+        **body['notification_settings']
+    )
+    user_table.update_item(
+        Key={
+            'PK': f'User#{username}',
+            'SK': 'Profile',
+        },
+        UpdateExpression=f"SET #field = :field_value",
+        ExpressionAttributeNames={
+            '#field': 'notification_settings',
+        },
+        ExpressionAttributeValues={
+            ':field_value': notification_settings.__dict__,
+        },
+    )
+    return {'success': True}

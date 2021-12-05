@@ -215,7 +215,7 @@
       "Properties": {
         "CodeUri": {
           "Bucket": {
-            "Ref": "AssetParameters7429e628304ef29fd5ff31a889351c9bb60da9ed3abca9980b0205d9342d9882S3Bucket154D5809"
+            "Ref": "AssetParameters71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0S3BucketAFC5BB1A"
           },
           "Key": {
             "Fn::Join": [
@@ -228,7 +228,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters7429e628304ef29fd5ff31a889351c9bb60da9ed3abca9980b0205d9342d9882S3VersionKeyF8FC47BA"
+                          "Ref": "AssetParameters71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0S3VersionKeyD802BFA6"
                         }
                       ]
                     }
@@ -241,7 +241,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters7429e628304ef29fd5ff31a889351c9bb60da9ed3abca9980b0205d9342d9882S3VersionKeyF8FC47BA"
+                          "Ref": "AssetParameters71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0S3VersionKeyD802BFA6"
                         }
                       ]
                     }
@@ -439,8 +439,43 @@
                 ]
               }
             },
-            "/me": {
+            "/user": {
               "get": {
+                "consumes": [
+                  "application/json"
+                ],
+                "produces": [
+                  "application/json"
+                ],
+                "responses": {
+                  "200": {
+                    "description": "200 response",
+                    "schema": {
+                      "$ref": "#/definitions/Empty"
+                    }
+                  }
+                },
+                "x-amazon-apigateway-integration": {
+                  "responses": {
+                    "default": {
+                      "statusCode": "200"
+                    }
+                  },
+                  "uri": {
+                    "Fn::Sub": "arn:${AWS::Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${APIHandler.Arn}/invocations"
+                  },
+                  "passthroughBehavior": "when_no_match",
+                  "httpMethod": "POST",
+                  "contentHandling": "CONVERT_TO_TEXT",
+                  "type": "aws_proxy"
+                },
+                "security": [
+                  {
+                    "CognitoAuthorizer": []
+                  }
+                ]
+              },
+              "post": {
                 "consumes": [
                   "application/json"
                 ],
@@ -476,7 +511,7 @@
                 ]
               }
             },
-            "/settings": {
+            "/notification_settings": {
               "post": {
                 "consumes": [
                   "application/json"
@@ -692,17 +727,17 @@
     }
   },
   "Parameters": {
-    "AssetParameters7429e628304ef29fd5ff31a889351c9bb60da9ed3abca9980b0205d9342d9882S3Bucket154D5809": {
+    "AssetParameters71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0S3BucketAFC5BB1A": {
       "Type": "String",
-      "Description": "S3 bucket for asset \"7429e628304ef29fd5ff31a889351c9bb60da9ed3abca9980b0205d9342d9882\""
+      "Description": "S3 bucket for asset \"71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0\""
     },
-    "AssetParameters7429e628304ef29fd5ff31a889351c9bb60da9ed3abca9980b0205d9342d9882S3VersionKeyF8FC47BA": {
+    "AssetParameters71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0S3VersionKeyD802BFA6": {
       "Type": "String",
-      "Description": "S3 key for asset version \"7429e628304ef29fd5ff31a889351c9bb60da9ed3abca9980b0205d9342d9882\""
+      "Description": "S3 key for asset version \"71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0\""
     },
-    "AssetParameters7429e628304ef29fd5ff31a889351c9bb60da9ed3abca9980b0205d9342d9882ArtifactHashBC17F105": {
+    "AssetParameters71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0ArtifactHash70FE2814": {
       "Type": "String",
-      "Description": "Artifact hash for asset \"7429e628304ef29fd5ff31a889351c9bb60da9ed3abca9980b0205d9342d9882\""
+      "Description": "Artifact hash for asset \"71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0\""
     }
   },
   "Conditions": {
