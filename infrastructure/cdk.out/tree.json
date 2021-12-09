@@ -16,69 +16,6 @@
         "id": "smokler",
         "path": "smokler",
         "children": {
-          "UserTable": {
-            "id": "UserTable",
-            "path": "smokler/UserTable",
-            "children": {
-              "Resource": {
-                "id": "Resource",
-                "path": "smokler/UserTable/Resource",
-                "attributes": {
-                  "aws:cdk:cloudformation:type": "AWS::DynamoDB::Table",
-                  "aws:cdk:cloudformation:props": {
-                    "keySchema": [
-                      {
-                        "attributeName": "PK",
-                        "keyType": "HASH"
-                      },
-                      {
-                        "attributeName": "SK",
-                        "keyType": "RANGE"
-                      }
-                    ],
-                    "attributeDefinitions": [
-                      {
-                        "attributeName": "PK",
-                        "attributeType": "S"
-                      },
-                      {
-                        "attributeName": "SK",
-                        "attributeType": "S"
-                      }
-                    ],
-                    "provisionedThroughput": {
-                      "readCapacityUnits": 5,
-                      "writeCapacityUnits": 5
-                    }
-                  }
-                },
-                "constructInfo": {
-                  "fqn": "@aws-cdk/aws-dynamodb.CfnTable",
-                  "version": "1.133.0"
-                }
-              },
-              "ScalingRole": {
-                "id": "ScalingRole",
-                "path": "smokler/UserTable/ScalingRole",
-                "constructInfo": {
-                  "fqn": "@aws-cdk/core.Resource",
-                  "version": "1.133.0"
-                }
-              }
-            },
-            "constructInfo": {
-              "fqn": "@aws-cdk/aws-dynamodb.Table",
-              "version": "1.133.0"
-            }
-          },
-          "UserTableName": {
-            "id": "UserTableName",
-            "path": "smokler/UserTableName",
-            "constructInfo": {
-              "fqn": "@aws-cdk/core.CfnOutput",
-              "version": "1.133.0"
-            }
-          },
           "user_pool": {
             "id": "user_pool",
             "path": "smokler/user_pool",
@@ -385,7 +322,7 @@
                       "aws:cdk:cloudformation:props": {
                         "codeUri": {
                           "bucket": {
-                            "Ref": "AssetParameters71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0S3BucketAFC5BB1A"
+                            "Ref": "AssetParametersf20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064S3BucketB3571BDA"
                           },
                           "key": {
                             "Fn::Join": [
@@ -398,7 +335,7 @@
                                       "Fn::Split": [
                                         "||",
                                         {
-                                          "Ref": "AssetParameters71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0S3VersionKeyD802BFA6"
+                                          "Ref": "AssetParametersf20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064S3VersionKey2F5068BF"
                                         }
                                       ]
                                     }
@@ -411,7 +348,7 @@
                                       "Fn::Split": [
                                         "||",
                                         {
-                                          "Ref": "AssetParameters71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0S3VersionKeyD802BFA6"
+                                          "Ref": "AssetParametersf20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064S3VersionKey2F5068BF"
                                         }
                                       ]
                                     }
@@ -423,9 +360,6 @@
                         },
                         "environment": {
                           "variables": {
-                            "USER_TABLE_NAME": {
-                              "Ref": "UserTableBD4BF69E"
-                            },
                             "COGNITO_USER_POOL_ARN": {
                               "Fn::GetAtt": [
                                 "userpool8E71A846",
@@ -725,6 +659,46 @@
                                   }
                                 ]
                               }
+                            },
+                            "/upload/{file_name}": {
+                              "put": {
+                                "consumes": [
+                                  "application/octet-stream"
+                                ],
+                                "produces": [
+                                  "application/json"
+                                ],
+                                "responses": {
+                                  "200": {
+                                    "description": "200 response",
+                                    "schema": {
+                                      "$ref": "#/definitions/Empty"
+                                    }
+                                  }
+                                },
+                                "x-amazon-apigateway-integration": {
+                                  "responses": {
+                                    "default": {
+                                      "statusCode": "200"
+                                    }
+                                  },
+                                  "uri": {
+                                    "Fn::Sub": "arn:${AWS::Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${APIHandler.Arn}/invocations"
+                                  },
+                                  "passthroughBehavior": "when_no_match",
+                                  "httpMethod": "POST",
+                                  "contentHandling": "CONVERT_TO_TEXT",
+                                  "type": "aws_proxy"
+                                },
+                                "parameters": [
+                                  {
+                                    "name": "file_name",
+                                    "in": "path",
+                                    "required": true,
+                                    "type": "string"
+                                  }
+                                ]
+                              }
                             }
                           },
                           "definitions": {
@@ -905,6 +879,39 @@
                                       "Ref": "AWS::NoValue"
                                     }
                                   ]
+                                },
+                                {
+                                  "Action": [
+                                    "s3:GetObject*",
+                                    "s3:GetBucket*",
+                                    "s3:List*",
+                                    "s3:DeleteObject*",
+                                    "s3:PutObject*",
+                                    "s3:Abort*"
+                                  ],
+                                  "Effect": "Allow",
+                                  "Resource": [
+                                    {
+                                      "Fn::GetAtt": [
+                                        "media54CBABFC",
+                                        "Arn"
+                                      ]
+                                    },
+                                    {
+                                      "Fn::Join": [
+                                        "",
+                                        [
+                                          {
+                                            "Fn::GetAtt": [
+                                              "media54CBABFC",
+                                              "Arn"
+                                            ]
+                                          },
+                                          "/*"
+                                        ]
+                                      ]
+                                    }
+                                  ]
                                 }
                               ],
                               "Version": "2012-10-17"
@@ -967,13 +974,13 @@
             "id": "AssetParameters",
             "path": "smokler/AssetParameters",
             "children": {
-              "71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0": {
-                "id": "71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0",
-                "path": "smokler/AssetParameters/71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0",
+              "f20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064": {
+                "id": "f20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064",
+                "path": "smokler/AssetParameters/f20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064",
                 "children": {
                   "S3Bucket": {
                     "id": "S3Bucket",
-                    "path": "smokler/AssetParameters/71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0/S3Bucket",
+                    "path": "smokler/AssetParameters/f20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064/S3Bucket",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.CfnParameter",
                       "version": "1.133.0"
@@ -981,7 +988,7 @@
                   },
                   "S3VersionKey": {
                     "id": "S3VersionKey",
-                    "path": "smokler/AssetParameters/71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0/S3VersionKey",
+                    "path": "smokler/AssetParameters/f20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064/S3VersionKey",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.CfnParameter",
                       "version": "1.133.0"
@@ -989,7 +996,7 @@
                   },
                   "ArtifactHash": {
                     "id": "ArtifactHash",
-                    "path": "smokler/AssetParameters/71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0/ArtifactHash",
+                    "path": "smokler/AssetParameters/f20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064/ArtifactHash",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.CfnParameter",
                       "version": "1.133.0"
@@ -1004,6 +1011,99 @@
             },
             "constructInfo": {
               "fqn": "@aws-cdk/core.Construct",
+              "version": "1.133.0"
+            }
+          },
+          "UserTable": {
+            "id": "UserTable",
+            "path": "smokler/UserTable",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "smokler/UserTable/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::DynamoDB::Table",
+                  "aws:cdk:cloudformation:props": {
+                    "keySchema": [
+                      {
+                        "attributeName": "PK",
+                        "keyType": "HASH"
+                      },
+                      {
+                        "attributeName": "SK",
+                        "keyType": "RANGE"
+                      }
+                    ],
+                    "attributeDefinitions": [
+                      {
+                        "attributeName": "PK",
+                        "attributeType": "S"
+                      },
+                      {
+                        "attributeName": "SK",
+                        "attributeType": "S"
+                      }
+                    ],
+                    "provisionedThroughput": {
+                      "readCapacityUnits": 5,
+                      "writeCapacityUnits": 5
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-dynamodb.CfnTable",
+                  "version": "1.133.0"
+                }
+              },
+              "ScalingRole": {
+                "id": "ScalingRole",
+                "path": "smokler/UserTable/ScalingRole",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.Resource",
+                  "version": "1.133.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-dynamodb.Table",
+              "version": "1.133.0"
+            }
+          },
+          "UserTableName": {
+            "id": "UserTableName",
+            "path": "smokler/UserTableName",
+            "constructInfo": {
+              "fqn": "@aws-cdk/core.CfnOutput",
+              "version": "1.133.0"
+            }
+          },
+          "media": {
+            "id": "media",
+            "path": "smokler/media",
+            "children": {
+              "Notifications": {
+                "id": "Notifications",
+                "path": "smokler/media/Notifications",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.Construct",
+                  "version": "1.133.0"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "smokler/media/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::S3::Bucket",
+                  "aws:cdk:cloudformation:props": {}
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-s3.CfnBucket",
+                  "version": "1.133.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-s3.Bucket",
               "version": "1.133.0"
             }
           },

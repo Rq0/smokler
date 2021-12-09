@@ -125,3 +125,12 @@ def update_notification_settings(username: IUsername):
         },
     )
     return {'success': True}
+
+
+@app.route('/upload/', methods=['PUT'], content_types=['application/octet-stream'], authorizer=authorizer)
+def upload_avatar():
+    with open(f'/tmp/{"filename"}', 'wb') as tmp_file:
+        tmp_file.write(app.current_request.raw_body)
+
+    dependency_register.s3.upload_file(f'/tmp/{"filename"}', dependency_register.media_bucket_name, "filename.jpg")
+    return {'success': True}

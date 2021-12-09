@@ -2,40 +2,6 @@
   "Transform": "AWS::Serverless-2016-10-31",
   "AWSTemplateFormatVersion": "2010-09-09",
   "Resources": {
-    "UserTableBD4BF69E": {
-      "Type": "AWS::DynamoDB::Table",
-      "Properties": {
-        "KeySchema": [
-          {
-            "AttributeName": "PK",
-            "KeyType": "HASH"
-          },
-          {
-            "AttributeName": "SK",
-            "KeyType": "RANGE"
-          }
-        ],
-        "AttributeDefinitions": [
-          {
-            "AttributeName": "PK",
-            "AttributeType": "S"
-          },
-          {
-            "AttributeName": "SK",
-            "AttributeType": "S"
-          }
-        ],
-        "ProvisionedThroughput": {
-          "ReadCapacityUnits": 5,
-          "WriteCapacityUnits": 5
-        }
-      },
-      "UpdateReplacePolicy": "Delete",
-      "DeletionPolicy": "Delete",
-      "Metadata": {
-        "aws:cdk:path": "smokler/UserTable/Resource"
-      }
-    },
     "userpool8E71A846": {
       "Type": "AWS::Cognito::UserPool",
       "Properties": {
@@ -215,7 +181,7 @@
       "Properties": {
         "CodeUri": {
           "Bucket": {
-            "Ref": "AssetParameters71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0S3BucketAFC5BB1A"
+            "Ref": "AssetParametersf20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064S3BucketB3571BDA"
           },
           "Key": {
             "Fn::Join": [
@@ -228,7 +194,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0S3VersionKeyD802BFA6"
+                          "Ref": "AssetParametersf20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064S3VersionKey2F5068BF"
                         }
                       ]
                     }
@@ -241,7 +207,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0S3VersionKeyD802BFA6"
+                          "Ref": "AssetParametersf20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064S3VersionKey2F5068BF"
                         }
                       ]
                     }
@@ -253,16 +219,19 @@
         },
         "Environment": {
           "Variables": {
-            "USER_TABLE_NAME": {
-              "Ref": "UserTableBD4BF69E"
-            },
             "COGNITO_USER_POOL_ARN": {
               "Fn::GetAtt": [
                 "userpool8E71A846",
                 "Arn"
               ]
             },
-            "APP_NAME": "smokler"
+            "APP_NAME": "smokler",
+            "USER_TABLE_NAME": {
+              "Ref": "UserTableBD4BF69E"
+            },
+            "MEDIA_BUCKET_NAME": {
+              "Ref": "media54CBABFC"
+            }
           }
         },
         "Handler": "app.app",
@@ -547,6 +516,46 @@
                   }
                 ]
               }
+            },
+            "/upload/{file_name}": {
+              "put": {
+                "consumes": [
+                  "application/octet-stream"
+                ],
+                "produces": [
+                  "application/json"
+                ],
+                "responses": {
+                  "200": {
+                    "description": "200 response",
+                    "schema": {
+                      "$ref": "#/definitions/Empty"
+                    }
+                  }
+                },
+                "x-amazon-apigateway-integration": {
+                  "responses": {
+                    "default": {
+                      "statusCode": "200"
+                    }
+                  },
+                  "uri": {
+                    "Fn::Sub": "arn:${AWS::Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${APIHandler.Arn}/invocations"
+                  },
+                  "passthroughBehavior": "when_no_match",
+                  "httpMethod": "POST",
+                  "contentHandling": "CONVERT_TO_TEXT",
+                  "type": "aws_proxy"
+                },
+                "parameters": [
+                  {
+                    "name": "file_name",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                  }
+                ]
+              }
             }
           },
           "definitions": {
@@ -647,6 +656,39 @@
                   "Ref": "AWS::NoValue"
                 }
               ]
+            },
+            {
+              "Action": [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject*",
+                "s3:Abort*"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "media54CBABFC",
+                    "Arn"
+                  ]
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "media54CBABFC",
+                          "Arn"
+                        ]
+                      },
+                      "/*"
+                    ]
+                  ]
+                }
+              ]
             }
           ],
           "Version": "2012-10-17"
@@ -685,10 +727,52 @@
         "aws:cdk:path": "smokler/ChaliceApp/DefaultRole/Policy/Resource"
       }
     },
+    "UserTableBD4BF69E": {
+      "Type": "AWS::DynamoDB::Table",
+      "Properties": {
+        "KeySchema": [
+          {
+            "AttributeName": "PK",
+            "KeyType": "HASH"
+          },
+          {
+            "AttributeName": "SK",
+            "KeyType": "RANGE"
+          }
+        ],
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "PK",
+            "AttributeType": "S"
+          },
+          {
+            "AttributeName": "SK",
+            "AttributeType": "S"
+          }
+        ],
+        "ProvisionedThroughput": {
+          "ReadCapacityUnits": 5,
+          "WriteCapacityUnits": 5
+        }
+      },
+      "UpdateReplacePolicy": "Delete",
+      "DeletionPolicy": "Delete",
+      "Metadata": {
+        "aws:cdk:path": "smokler/UserTable/Resource"
+      }
+    },
+    "media54CBABFC": {
+      "Type": "AWS::S3::Bucket",
+      "UpdateReplacePolicy": "Retain",
+      "DeletionPolicy": "Retain",
+      "Metadata": {
+        "aws:cdk:path": "smokler/media/Resource"
+      }
+    },
     "CDKMetadata": {
       "Type": "AWS::CDK::Metadata",
       "Properties": {
-        "Analytics": "v2:deflate64:H4sIAAAAAAAA/1WPzW4CMQyEn4V7NoD20mOBqhKnrmj7ACYx1GwSo8RRtVrtuzdZ+kNPGXtm5HxrvW5bvVo8wmdqjO2Xo+GIenwVML06YOIcDardKbxkuWZROw5JYjaiNimhlNyZwrkGOojgUTDW4b5ZKpaEOEyqXhntEMCzPerxDY5ujsxiUobPgYT1+J4wdsyuer/6R+wcYZB762+zt0WQDP8KT+yBwn3htplUahuoGEnPNGXW22x6lC0kVARejxWGyy87dmSGGXRWpfxtP+dgKl71NlealAN/tKBrFKOnlGZ24zjbE0cPNdxQMC5brKn9TU6qG+SDw7LVD3q9WlwSURNz4fGoD7f3C83K7eywAQAA"
+        "Analytics": "v2:deflate64:H4sIAAAAAAAA/1WQTW7DIBCFz5I9Jom86bKJq0pZ1UrbA2CYpJMAE8GgyrK4e8HuT7rim/eYGR5buW1buVk9qs/YaHNdT5oCyOmVlb6KjnzkkDSLXYzARTyjP4vu5F8S3xKLI0RKQUOVehWUA4ZQi3ujTDHISD6LuqVsOHtkktN7hNAT2Xrpl3+gswie760/5WAKII//Gp7IKfT3DYuSRWwbVd8f5Ryj1HLaJ30F3qsIYsHauFAWqJycagqyIHqyqMc54Uxl3rf9nLyuuaq3u2EWVrnBKFmvQnAYYzXN6JUjM8jpTQ12/pEZchbaUjInCk7VMQ16bZOB2n9YMIt+5A/y61Y+yO1mdYmITUglvAN5XM4vvCXZ+cMBAAA="
       },
       "Metadata": {
         "aws:cdk:path": "smokler/CDKMetadata/Default"
@@ -697,11 +781,6 @@
     }
   },
   "Outputs": {
-    "UserTableName": {
-      "Value": {
-        "Ref": "UserTableBD4BF69E"
-      }
-    },
     "RestAPIId": {
       "Value": {
         "Ref": "RestAPI"
@@ -724,20 +803,25 @@
       "Value": {
         "Fn::Sub": "https://${RestAPI}.execute-api.${AWS::Region}.${AWS::URLSuffix}/api/"
       }
+    },
+    "UserTableName": {
+      "Value": {
+        "Ref": "UserTableBD4BF69E"
+      }
     }
   },
   "Parameters": {
-    "AssetParameters71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0S3BucketAFC5BB1A": {
+    "AssetParametersf20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064S3BucketB3571BDA": {
       "Type": "String",
-      "Description": "S3 bucket for asset \"71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0\""
+      "Description": "S3 bucket for asset \"f20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064\""
     },
-    "AssetParameters71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0S3VersionKeyD802BFA6": {
+    "AssetParametersf20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064S3VersionKey2F5068BF": {
       "Type": "String",
-      "Description": "S3 key for asset version \"71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0\""
+      "Description": "S3 key for asset version \"f20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064\""
     },
-    "AssetParameters71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0ArtifactHash70FE2814": {
+    "AssetParametersf20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064ArtifactHashD0016EB0": {
       "Type": "String",
-      "Description": "Artifact hash for asset \"71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0\""
+      "Description": "Artifact hash for asset \"f20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064\""
     }
   },
   "Conditions": {

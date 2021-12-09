@@ -1,12 +1,14 @@
 import os
 
-from boto3 import resource
+from boto3 import resource, client
 from chalice import Chalice, CognitoUserPoolAuthorizer
 
-from chalicelib.dependency.cognito import CognitoUsername, IUsername, FakeUsername
+from chalicelib.dependency.cognito import CognitoUsername, FakeUsername
 from chalicelib.dependency.injection import _Dependencies
 
 APP_NAME = os.environ.get('APP_NAME', '')
+USER_TABLE_NAME = os.environ.get('USER_TABLE_NAME', '')
+MEDIA_BUCKET_NAME = os.environ.get('MEDIA_BUCKET_NAME', '')
 COGNITO_USER_POOL_ARN = os.environ.get('COGNITO_USER_POOL_ARN', '')
 
 _dependencies = _Dependencies()
@@ -25,6 +27,7 @@ class DependencyRegister:
     def __init__(self):
         self.__add_app()
         self.__add_database()
+        self.__add_storage()
         self.__add_authorizer()
 
     def __getattr__(self, dependency_name):
@@ -36,7 +39,11 @@ class DependencyRegister:
 
     def __add_database(self):
         dynamodb = resource('dynamodb')
-        self.__container['user_table'] = dynamodb.Table(os.environ.get('USER_TABLE_NAME', ''))
+        self.__container['user_table'] = dynamodb.Table(USER_TABLE_NAME)
+
+    def __add_storage(self):
+        self.__container['s3'] = client('s3')
+        self.__container['media_bucket_name'] = MEDIA_BUCKET_NAME
 
     def __add_authorizer(self):
         if COGNITO_USER_POOL_ARN:

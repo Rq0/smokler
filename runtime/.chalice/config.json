@@ -8,6 +8,7 @@
           "environment_variables": {
             "APP_NAME": "smokler",
             "USER_TABLE_NAME": "smokler-UserTableBD4BF69E-A91K7518RPNQ",
+            "MEDIA_BUCKET_NAME": "smokler-media54cbabfc-iv4p52lk5cby",
             "COGNITO_USER_POOL_ARN": ""
           }
         }

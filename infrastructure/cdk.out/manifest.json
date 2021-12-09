@@ -19,60 +19,27 @@
           {
             "type": "aws:cdk:asset",
             "data": {
-              "path": "asset.71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0.zip",
-              "id": "71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0",
+              "path": "asset.f20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064.zip",
+              "id": "f20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064",
               "packaging": "file",
-              "sourceHash": "71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0",
-              "s3BucketParameter": "AssetParameters71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0S3BucketAFC5BB1A",
-              "s3KeyParameter": "AssetParameters71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0S3VersionKeyD802BFA6",
-              "artifactHashParameter": "AssetParameters71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0ArtifactHash70FE2814"
+              "sourceHash": "f20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064",
+              "s3BucketParameter": "AssetParametersf20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064S3BucketB3571BDA",
+              "s3KeyParameter": "AssetParametersf20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064S3VersionKey2F5068BF",
+              "artifactHashParameter": "AssetParametersf20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064ArtifactHashD0016EB0"
             },
             "trace": [
-              "ConstructNode.addMetadata (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/core/lib/construct-compat.js:416:62)",
-              "LegacyStackSynthesizer.doAddFileAsset (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:180:29)",
-              "LegacyStackSynthesizer.addFileAsset (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:86:25)",
-              "LegacyStackSynthesizer.addFileAsset (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:90:43)",
-              "new Asset (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:42:44)",
-              "/tmp/tmpcrea6kjm/lib/program.js:8432:58",
-              "Kernel._wrapSandboxCode (/tmp/tmpcrea6kjm/lib/program.js:8860:24)",
-              "Kernel._create (/tmp/tmpcrea6kjm/lib/program.js:8432:34)",
-              "Kernel.create (/tmp/tmpcrea6kjm/lib/program.js:8173:29)",
-              "KernelHost.processRequest (/tmp/tmpcrea6kjm/lib/program.js:9757:36)",
-              "KernelHost.run (/tmp/tmpcrea6kjm/lib/program.js:9720:22)",
-              "Immediate._onImmediate (/tmp/tmpcrea6kjm/lib/program.js:9721:46)",
-              "processImmediate (node:internal/timers:464:21)"
-            ]
-          }
-        ],
-        "/smokler/UserTable/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "UserTableBD4BF69E",
-            "trace": [
-              "new Table (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/aws-dynamodb/lib/table.js:459:22)",
-              "/tmp/tmpcrea6kjm/lib/program.js:8432:58",
-              "Kernel._wrapSandboxCode (/tmp/tmpcrea6kjm/lib/program.js:8860:24)",
-              "Kernel._create (/tmp/tmpcrea6kjm/lib/program.js:8432:34)",
-              "Kernel.create (/tmp/tmpcrea6kjm/lib/program.js:8173:29)",
-              "KernelHost.processRequest (/tmp/tmpcrea6kjm/lib/program.js:9757:36)",
-              "KernelHost.run (/tmp/tmpcrea6kjm/lib/program.js:9720:22)",
-              "Immediate._onImmediate (/tmp/tmpcrea6kjm/lib/program.js:9721:46)",
-              "processImmediate (node:internal/timers:464:21)"
-            ]
-          }
-        ],
-        "/smokler/UserTableName": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "UserTableName",
-            "trace": [
-              "/tmp/tmpcrea6kjm/lib/program.js:8432:58",
-              "Kernel._wrapSandboxCode (/tmp/tmpcrea6kjm/lib/program.js:8860:24)",
-              "Kernel._create (/tmp/tmpcrea6kjm/lib/program.js:8432:34)",
-              "Kernel.create (/tmp/tmpcrea6kjm/lib/program.js:8173:29)",
-              "KernelHost.processRequest (/tmp/tmpcrea6kjm/lib/program.js:9757:36)",
-              "KernelHost.run (/tmp/tmpcrea6kjm/lib/program.js:9720:22)",
-              "Immediate._onImmediate (/tmp/tmpcrea6kjm/lib/program.js:9721:46)",
+              "ConstructNode.addMetadata (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/core/lib/construct-compat.js:416:62)",
+              "LegacyStackSynthesizer.doAddFileAsset (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:180:29)",
+              "LegacyStackSynthesizer.addFileAsset (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:86:25)",
+              "LegacyStackSynthesizer.addFileAsset (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:90:43)",
+              "new Asset (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:42:44)",
+              "/tmp/tmpvjyx211o/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/tmp/tmpvjyx211o/lib/program.js:8860:24)",
+              "Kernel._create (/tmp/tmpvjyx211o/lib/program.js:8432:34)",
+              "Kernel.create (/tmp/tmpvjyx211o/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/tmp/tmpvjyx211o/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpvjyx211o/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpvjyx211o/lib/program.js:9721:46)",
               "processImmediate (node:internal/timers:464:21)"
             ]
           }
@@ -82,14 +49,14 @@
             "type": "aws:cdk:logicalId",
             "data": "userpool8E71A846",
             "trace": [
-              "new UserPool (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/aws-cognito/lib/user-pool.js:250:26)",
-              "/tmp/tmpcrea6kjm/lib/program.js:8432:58",
-              "Kernel._wrapSandboxCode (/tmp/tmpcrea6kjm/lib/program.js:8860:24)",
-              "Kernel._create (/tmp/tmpcrea6kjm/lib/program.js:8432:34)",
-              "Kernel.create (/tmp/tmpcrea6kjm/lib/program.js:8173:29)",
-              "KernelHost.processRequest (/tmp/tmpcrea6kjm/lib/program.js:9757:36)",
-              "KernelHost.run (/tmp/tmpcrea6kjm/lib/program.js:9720:22)",
-              "Immediate._onImmediate (/tmp/tmpcrea6kjm/lib/program.js:9721:46)",
+              "new UserPool (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/aws-cognito/lib/user-pool.js:250:26)",
+              "/tmp/tmpvjyx211o/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/tmp/tmpvjyx211o/lib/program.js:8860:24)",
+              "Kernel._create (/tmp/tmpvjyx211o/lib/program.js:8432:34)",
+              "Kernel.create (/tmp/tmpvjyx211o/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/tmp/tmpvjyx211o/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpvjyx211o/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpvjyx211o/lib/program.js:9721:46)",
               "processImmediate (node:internal/timers:464:21)"
             ]
           }
@@ -99,14 +66,14 @@
             "type": "aws:cdk:logicalId",
             "data": "userpoolappclient37756254",
             "trace": [
-              "new UserPoolClient (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/aws-cognito/lib/user-pool-client.js:167:26)",
-              "/tmp/tmpcrea6kjm/lib/program.js:8432:58",
-              "Kernel._wrapSandboxCode (/tmp/tmpcrea6kjm/lib/program.js:8860:24)",
-              "Kernel._create (/tmp/tmpcrea6kjm/lib/program.js:8432:34)",
-              "Kernel.create (/tmp/tmpcrea6kjm/lib/program.js:8173:29)",
-              "KernelHost.processRequest (/tmp/tmpcrea6kjm/lib/program.js:9757:36)",
-              "KernelHost.run (/tmp/tmpcrea6kjm/lib/program.js:9720:22)",
-              "Immediate._onImmediate (/tmp/tmpcrea6kjm/lib/program.js:9721:46)",
+              "new UserPoolClient (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/aws-cognito/lib/user-pool-client.js:167:26)",
+              "/tmp/tmpvjyx211o/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/tmp/tmpvjyx211o/lib/program.js:8860:24)",
+              "Kernel._create (/tmp/tmpvjyx211o/lib/program.js:8432:34)",
+              "Kernel.create (/tmp/tmpvjyx211o/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/tmp/tmpvjyx211o/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpvjyx211o/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpvjyx211o/lib/program.js:9721:46)",
               "processImmediate (node:internal/timers:464:21)"
             ]
           }
@@ -116,13 +83,13 @@
             "type": "aws:cdk:logicalId",
             "data": "identitypool",
             "trace": [
-              "/tmp/tmpcrea6kjm/lib/program.js:8432:58",
-              "Kernel._wrapSandboxCode (/tmp/tmpcrea6kjm/lib/program.js:8860:24)",
-              "Kernel._create (/tmp/tmpcrea6kjm/lib/program.js:8432:34)",
-              "Kernel.create (/tmp/tmpcrea6kjm/lib/program.js:8173:29)",
-              "KernelHost.processRequest (/tmp/tmpcrea6kjm/lib/program.js:9757:36)",
-              "KernelHost.run (/tmp/tmpcrea6kjm/lib/program.js:9720:22)",
-              "Immediate._onImmediate (/tmp/tmpcrea6kjm/lib/program.js:9721:46)",
+              "/tmp/tmpvjyx211o/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/tmp/tmpvjyx211o/lib/program.js:8860:24)",
+              "Kernel._create (/tmp/tmpvjyx211o/lib/program.js:8432:34)",
+              "Kernel.create (/tmp/tmpvjyx211o/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/tmp/tmpvjyx211o/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpvjyx211o/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpvjyx211o/lib/program.js:9721:46)",
               "processImmediate (node:internal/timers:464:21)"
             ]
           }
@@ -132,14 +99,14 @@
             "type": "aws:cdk:logicalId",
             "data": "cognitouserpooldomainCFC4C18A",
             "trace": [
-              "new UserPoolDomain (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/aws-cognito/lib/user-pool-domain.js:33:26)",
-              "/tmp/tmpcrea6kjm/lib/program.js:8432:58",
-              "Kernel._wrapSandboxCode (/tmp/tmpcrea6kjm/lib/program.js:8860:24)",
-              "Kernel._create (/tmp/tmpcrea6kjm/lib/program.js:8432:34)",
-              "Kernel.create (/tmp/tmpcrea6kjm/lib/program.js:8173:29)",
-              "KernelHost.processRequest (/tmp/tmpcrea6kjm/lib/program.js:9757:36)",
-              "KernelHost.run (/tmp/tmpcrea6kjm/lib/program.js:9720:22)",
-              "Immediate._onImmediate (/tmp/tmpcrea6kjm/lib/program.js:9721:46)",
+              "new UserPoolDomain (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/aws-cognito/lib/user-pool-domain.js:33:26)",
+              "/tmp/tmpvjyx211o/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/tmp/tmpvjyx211o/lib/program.js:8860:24)",
+              "Kernel._create (/tmp/tmpvjyx211o/lib/program.js:8432:34)",
+              "Kernel.create (/tmp/tmpvjyx211o/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/tmp/tmpvjyx211o/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpvjyx211o/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpvjyx211o/lib/program.js:9721:46)",
               "processImmediate (node:internal/timers:464:21)"
             ]
           }
@@ -149,13 +116,13 @@
             "type": "aws:cdk:logicalId",
             "data": "ChaliceAppA920E0AD",
             "trace": [
-              "/tmp/tmpcrea6kjm/lib/program.js:8432:58",
-              "Kernel._wrapSandboxCode (/tmp/tmpcrea6kjm/lib/program.js:8860:24)",
-              "Kernel._create (/tmp/tmpcrea6kjm/lib/program.js:8432:34)",
-              "Kernel.create (/tmp/tmpcrea6kjm/lib/program.js:8173:29)",
-              "KernelHost.processRequest (/tmp/tmpcrea6kjm/lib/program.js:9757:36)",
-              "KernelHost.run (/tmp/tmpcrea6kjm/lib/program.js:9720:22)",
-              "Immediate._onImmediate (/tmp/tmpcrea6kjm/lib/program.js:9721:46)",
+              "/tmp/tmpvjyx211o/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/tmp/tmpvjyx211o/lib/program.js:8860:24)",
+              "Kernel._create (/tmp/tmpvjyx211o/lib/program.js:8432:34)",
+              "Kernel.create (/tmp/tmpvjyx211o/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/tmp/tmpvjyx211o/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpvjyx211o/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpvjyx211o/lib/program.js:9721:46)",
               "processImmediate (node:internal/timers:464:21)"
             ]
           }
@@ -165,16 +132,16 @@
             "type": "aws:cdk:logicalId",
             "data": "DefaultRole",
             "trace": [
-              "Function._fromCloudFormation (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/aws-iam/lib/iam.generated.js:1012:21)",
-              "CfnInclude.getOrCreateResource (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/cloudformation-include/lib/cfn-include.js:562:48)",
-              "new CfnInclude (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/cloudformation-include/lib/cfn-include.js:70:18)",
-              "/tmp/tmpcrea6kjm/lib/program.js:8432:58",
-              "Kernel._wrapSandboxCode (/tmp/tmpcrea6kjm/lib/program.js:8860:24)",
-              "Kernel._create (/tmp/tmpcrea6kjm/lib/program.js:8432:34)",
-              "Kernel.create (/tmp/tmpcrea6kjm/lib/program.js:8173:29)",
-              "KernelHost.processRequest (/tmp/tmpcrea6kjm/lib/program.js:9757:36)",
-              "KernelHost.run (/tmp/tmpcrea6kjm/lib/program.js:9720:22)",
-              "Immediate._onImmediate (/tmp/tmpcrea6kjm/lib/program.js:9721:46)",
+              "Function._fromCloudFormation (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/aws-iam/lib/iam.generated.js:1012:21)",
+              "CfnInclude.getOrCreateResource (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/cloudformation-include/lib/cfn-include.js:562:48)",
+              "new CfnInclude (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/cloudformation-include/lib/cfn-include.js:70:18)",
+              "/tmp/tmpvjyx211o/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/tmp/tmpvjyx211o/lib/program.js:8860:24)",
+              "Kernel._create (/tmp/tmpvjyx211o/lib/program.js:8432:34)",
+              "Kernel.create (/tmp/tmpvjyx211o/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/tmp/tmpvjyx211o/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpvjyx211o/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpvjyx211o/lib/program.js:9721:46)",
               "processImmediate (node:internal/timers:464:21)"
             ]
           }
@@ -184,31 +151,31 @@
             "type": "aws:cdk:logicalId",
             "data": "APIHandler",
             "trace": [
-              "Function._fromCloudFormation (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/aws-sam/lib/sam.generated.js:984:21)",
-              "CfnInclude.getOrCreateResource (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/cloudformation-include/lib/cfn-include.js:562:48)",
-              "Object.findResource (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/cloudformation-include/lib/cfn-include.js:532:29)",
-              "go (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/core/lib/cfn-parse.js:632:49)",
-              "go (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/core/lib/cfn-parse.js:618:52)",
-              "go (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/core/lib/cfn-parse.js:618:52)",
-              "CfnParser.parseFnSubString (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/core/lib/cfn-parse.js:573:32)",
-              "CfnParser.parseIfCfnIntrinsic (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/core/lib/cfn-parse.js:538:29)",
-              "CfnParser.parseValue (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/core/lib/cfn-parse.js:382:39)",
-              "CfnParser.parseValue (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/core/lib/cfn-parse.js:388:33)",
-              "CfnParser.parseValue (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/core/lib/cfn-parse.js:388:33)",
-              "CfnParser.parseValue (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/core/lib/cfn-parse.js:388:33)",
-              "CfnParser.parseValue (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/core/lib/cfn-parse.js:388:33)",
-              "CfnParser.parseValue (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/core/lib/cfn-parse.js:388:33)",
-              "CfnParser.parseValue (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/core/lib/cfn-parse.js:388:33)",
-              "Function._fromCloudFormation (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/aws-sam/lib/sam.generated.js:174:51)",
-              "CfnInclude.getOrCreateResource (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/cloudformation-include/lib/cfn-include.js:562:48)",
-              "new CfnInclude (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/cloudformation-include/lib/cfn-include.js:70:18)",
-              "/tmp/tmpcrea6kjm/lib/program.js:8432:58",
-              "Kernel._wrapSandboxCode (/tmp/tmpcrea6kjm/lib/program.js:8860:24)",
-              "Kernel._create (/tmp/tmpcrea6kjm/lib/program.js:8432:34)",
-              "Kernel.create (/tmp/tmpcrea6kjm/lib/program.js:8173:29)",
-              "KernelHost.processRequest (/tmp/tmpcrea6kjm/lib/program.js:9757:36)",
-              "KernelHost.run (/tmp/tmpcrea6kjm/lib/program.js:9720:22)",
-              "Immediate._onImmediate (/tmp/tmpcrea6kjm/lib/program.js:9721:46)",
+              "Function._fromCloudFormation (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/aws-sam/lib/sam.generated.js:984:21)",
+              "CfnInclude.getOrCreateResource (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/cloudformation-include/lib/cfn-include.js:562:48)",
+              "Object.findResource (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/cloudformation-include/lib/cfn-include.js:532:29)",
+              "go (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/core/lib/cfn-parse.js:632:49)",
+              "go (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/core/lib/cfn-parse.js:618:52)",
+              "go (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/core/lib/cfn-parse.js:618:52)",
+              "CfnParser.parseFnSubString (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/core/lib/cfn-parse.js:573:32)",
+              "CfnParser.parseIfCfnIntrinsic (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/core/lib/cfn-parse.js:538:29)",
+              "CfnParser.parseValue (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/core/lib/cfn-parse.js:382:39)",
+              "CfnParser.parseValue (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/core/lib/cfn-parse.js:388:33)",
+              "CfnParser.parseValue (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/core/lib/cfn-parse.js:388:33)",
+              "CfnParser.parseValue (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/core/lib/cfn-parse.js:388:33)",
+              "CfnParser.parseValue (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/core/lib/cfn-parse.js:388:33)",
+              "CfnParser.parseValue (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/core/lib/cfn-parse.js:388:33)",
+              "CfnParser.parseValue (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/core/lib/cfn-parse.js:388:33)",
+              "Function._fromCloudFormation (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/aws-sam/lib/sam.generated.js:174:51)",
+              "CfnInclude.getOrCreateResource (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/cloudformation-include/lib/cfn-include.js:562:48)",
+              "new CfnInclude (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/cloudformation-include/lib/cfn-include.js:70:18)",
+              "/tmp/tmpvjyx211o/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/tmp/tmpvjyx211o/lib/program.js:8860:24)",
+              "Kernel._create (/tmp/tmpvjyx211o/lib/program.js:8432:34)",
+              "Kernel.create (/tmp/tmpvjyx211o/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/tmp/tmpvjyx211o/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpvjyx211o/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpvjyx211o/lib/program.js:9721:46)",
               "processImmediate (node:internal/timers:464:21)"
             ]
           }
@@ -218,16 +185,16 @@
             "type": "aws:cdk:logicalId",
             "data": "RestAPI",
             "trace": [
-              "Function._fromCloudFormation (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/aws-sam/lib/sam.generated.js:176:21)",
-              "CfnInclude.getOrCreateResource (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/cloudformation-include/lib/cfn-include.js:562:48)",
-              "new CfnInclude (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/cloudformation-include/lib/cfn-include.js:70:18)",
-              "/tmp/tmpcrea6kjm/lib/program.js:8432:58",
-              "Kernel._wrapSandboxCode (/tmp/tmpcrea6kjm/lib/program.js:8860:24)",
-              "Kernel._create (/tmp/tmpcrea6kjm/lib/program.js:8432:34)",
-              "Kernel.create (/tmp/tmpcrea6kjm/lib/program.js:8173:29)",
-              "KernelHost.processRequest (/tmp/tmpcrea6kjm/lib/program.js:9757:36)",
-              "KernelHost.run (/tmp/tmpcrea6kjm/lib/program.js:9720:22)",
-              "Immediate._onImmediate (/tmp/tmpcrea6kjm/lib/program.js:9721:46)",
+              "Function._fromCloudFormation (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/aws-sam/lib/sam.generated.js:176:21)",
+              "CfnInclude.getOrCreateResource (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/cloudformation-include/lib/cfn-include.js:562:48)",
+              "new CfnInclude (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/cloudformation-include/lib/cfn-include.js:70:18)",
+              "/tmp/tmpvjyx211o/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/tmp/tmpvjyx211o/lib/program.js:8860:24)",
+              "Kernel._create (/tmp/tmpvjyx211o/lib/program.js:8432:34)",
+              "Kernel.create (/tmp/tmpvjyx211o/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/tmp/tmpvjyx211o/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpvjyx211o/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpvjyx211o/lib/program.js:9721:46)",
               "processImmediate (node:internal/timers:464:21)"
             ]
           }
@@ -237,16 +204,16 @@
             "type": "aws:cdk:logicalId",
             "data": "APIHandlerInvokePermission",
             "trace": [
-              "Function._fromCloudFormation (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/aws-lambda/lib/lambda.generated.js:2346:21)",
-              "CfnInclude.getOrCreateResource (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/cloudformation-include/lib/cfn-include.js:562:48)",
-              "new CfnInclude (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/cloudformation-include/lib/cfn-include.js:70:18)",
-              "/tmp/tmpcrea6kjm/lib/program.js:8432:58",
-              "Kernel._wrapSandboxCode (/tmp/tmpcrea6kjm/lib/program.js:8860:24)",
-              "Kernel._create (/tmp/tmpcrea6kjm/lib/program.js:8432:34)",
-              "Kernel.create (/tmp/tmpcrea6kjm/lib/program.js:8173:29)",
-              "KernelHost.processRequest (/tmp/tmpcrea6kjm/lib/program.js:9757:36)",
-              "KernelHost.run (/tmp/tmpcrea6kjm/lib/program.js:9720:22)",
-              "Immediate._onImmediate (/tmp/tmpcrea6kjm/lib/program.js:9721:46)",
+              "Function._fromCloudFormation (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/aws-lambda/lib/lambda.generated.js:2346:21)",
+              "CfnInclude.getOrCreateResource (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/cloudformation-include/lib/cfn-include.js:562:48)",
+              "new CfnInclude (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/cloudformation-include/lib/cfn-include.js:70:18)",
+              "/tmp/tmpvjyx211o/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/tmp/tmpvjyx211o/lib/program.js:8860:24)",
+              "Kernel._create (/tmp/tmpvjyx211o/lib/program.js:8432:34)",
+              "Kernel.create (/tmp/tmpvjyx211o/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/tmp/tmpvjyx211o/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpvjyx211o/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpvjyx211o/lib/program.js:9721:46)",
               "processImmediate (node:internal/timers:464:21)"
             ]
           }
@@ -256,15 +223,15 @@
             "type": "aws:cdk:logicalId",
             "data": "RestAPIId",
             "trace": [
-              "CfnInclude.createOutput (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/cloudformation-include/lib/cfn-include.js:454:27)",
-              "new CfnInclude (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/cloudformation-include/lib/cfn-include.js:85:18)",
-              "/tmp/tmpcrea6kjm/lib/program.js:8432:58",
-              "Kernel._wrapSandboxCode (/tmp/tmpcrea6kjm/lib/program.js:8860:24)",
-              "Kernel._create (/tmp/tmpcrea6kjm/lib/program.js:8432:34)",
-              "Kernel.create (/tmp/tmpcrea6kjm/lib/program.js:8173:29)",
-              "KernelHost.processRequest (/tmp/tmpcrea6kjm/lib/program.js:9757:36)",
-              "KernelHost.run (/tmp/tmpcrea6kjm/lib/program.js:9720:22)",
-              "Immediate._onImmediate (/tmp/tmpcrea6kjm/lib/program.js:9721:46)",
+              "CfnInclude.createOutput (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/cloudformation-include/lib/cfn-include.js:454:27)",
+              "new CfnInclude (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/cloudformation-include/lib/cfn-include.js:85:18)",
+              "/tmp/tmpvjyx211o/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/tmp/tmpvjyx211o/lib/program.js:8860:24)",
+              "Kernel._create (/tmp/tmpvjyx211o/lib/program.js:8432:34)",
+              "Kernel.create (/tmp/tmpvjyx211o/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/tmp/tmpvjyx211o/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpvjyx211o/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpvjyx211o/lib/program.js:9721:46)",
               "processImmediate (node:internal/timers:464:21)"
             ]
           }
@@ -274,15 +241,15 @@
             "type": "aws:cdk:logicalId",
             "data": "APIHandlerName",
             "trace": [
-              "CfnInclude.createOutput (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/cloudformation-include/lib/cfn-include.js:454:27)",
-              "new CfnInclude (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/cloudformation-include/lib/cfn-include.js:85:18)",
-              "/tmp/tmpcrea6kjm/lib/program.js:8432:58",
-              "Kernel._wrapSandboxCode (/tmp/tmpcrea6kjm/lib/program.js:8860:24)",
-              "Kernel._create (/tmp/tmpcrea6kjm/lib/program.js:8432:34)",
-              "Kernel.create (/tmp/tmpcrea6kjm/lib/program.js:8173:29)",
-              "KernelHost.processRequest (/tmp/tmpcrea6kjm/lib/program.js:9757:36)",
-              "KernelHost.run (/tmp/tmpcrea6kjm/lib/program.js:9720:22)",
-              "Immediate._onImmediate (/tmp/tmpcrea6kjm/lib/program.js:9721:46)",
+              "CfnInclude.createOutput (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/cloudformation-include/lib/cfn-include.js:454:27)",
+              "new CfnInclude (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/cloudformation-include/lib/cfn-include.js:85:18)",
+              "/tmp/tmpvjyx211o/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/tmp/tmpvjyx211o/lib/program.js:8860:24)",
+              "Kernel._create (/tmp/tmpvjyx211o/lib/program.js:8432:34)",
+              "Kernel.create (/tmp/tmpvjyx211o/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/tmp/tmpvjyx211o/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpvjyx211o/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpvjyx211o/lib/program.js:9721:46)",
               "processImmediate (node:internal/timers:464:21)"
             ]
           }
@@ -292,15 +259,15 @@
             "type": "aws:cdk:logicalId",
             "data": "APIHandlerArn",
             "trace": [
-              "CfnInclude.createOutput (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/cloudformation-include/lib/cfn-include.js:454:27)",
-              "new CfnInclude (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/cloudformation-include/lib/cfn-include.js:85:18)",
-              "/tmp/tmpcrea6kjm/lib/program.js:8432:58",
-              "Kernel._wrapSandboxCode (/tmp/tmpcrea6kjm/lib/program.js:8860:24)",
-              "Kernel._create (/tmp/tmpcrea6kjm/lib/program.js:8432:34)",
-              "Kernel.create (/tmp/tmpcrea6kjm/lib/program.js:8173:29)",
-              "KernelHost.processRequest (/tmp/tmpcrea6kjm/lib/program.js:9757:36)",
-              "KernelHost.run (/tmp/tmpcrea6kjm/lib/program.js:9720:22)",
-              "Immediate._onImmediate (/tmp/tmpcrea6kjm/lib/program.js:9721:46)",
+              "CfnInclude.createOutput (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/cloudformation-include/lib/cfn-include.js:454:27)",
+              "new CfnInclude (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/cloudformation-include/lib/cfn-include.js:85:18)",
+              "/tmp/tmpvjyx211o/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/tmp/tmpvjyx211o/lib/program.js:8860:24)",
+              "Kernel._create (/tmp/tmpvjyx211o/lib/program.js:8432:34)",
+              "Kernel.create (/tmp/tmpvjyx211o/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/tmp/tmpvjyx211o/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpvjyx211o/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpvjyx211o/lib/program.js:9721:46)",
               "processImmediate (node:internal/timers:464:21)"
             ]
           }
@@ -310,15 +277,15 @@
             "type": "aws:cdk:logicalId",
             "data": "EndpointURL",
             "trace": [
-              "CfnInclude.createOutput (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/cloudformation-include/lib/cfn-include.js:454:27)",
-              "new CfnInclude (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/cloudformation-include/lib/cfn-include.js:85:18)",
-              "/tmp/tmpcrea6kjm/lib/program.js:8432:58",
-              "Kernel._wrapSandboxCode (/tmp/tmpcrea6kjm/lib/program.js:8860:24)",
-              "Kernel._create (/tmp/tmpcrea6kjm/lib/program.js:8432:34)",
-              "Kernel.create (/tmp/tmpcrea6kjm/lib/program.js:8173:29)",
-              "KernelHost.processRequest (/tmp/tmpcrea6kjm/lib/program.js:9757:36)",
-              "KernelHost.run (/tmp/tmpcrea6kjm/lib/program.js:9720:22)",
-              "Immediate._onImmediate (/tmp/tmpcrea6kjm/lib/program.js:9721:46)",
+              "CfnInclude.createOutput (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/cloudformation-include/lib/cfn-include.js:454:27)",
+              "new CfnInclude (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/cloudformation-include/lib/cfn-include.js:85:18)",
+              "/tmp/tmpvjyx211o/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/tmp/tmpvjyx211o/lib/program.js:8860:24)",
+              "Kernel._create (/tmp/tmpvjyx211o/lib/program.js:8432:34)",
+              "Kernel.create (/tmp/tmpvjyx211o/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/tmp/tmpvjyx211o/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpvjyx211o/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpvjyx211o/lib/program.js:9721:46)",
               "processImmediate (node:internal/timers:464:21)"
             ]
           }
@@ -328,82 +295,132 @@
             "type": "aws:cdk:logicalId",
             "data": "ChaliceAppDefaultRolePolicyCAAAC186",
             "trace": [
-              "new Policy (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/aws-iam/lib/policy.js:58:26)",
-              "Import.addToPrincipalPolicy (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/aws-iam/lib/role.js:152:42)",
-              "Function.addToPrincipal (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/aws-iam/lib/grant.js:93:65)",
-              "Table.combinedGrant (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/aws-dynamodb/lib/table.js:386:35)",
-              "Table.grantReadWriteData (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/aws-dynamodb/lib/table.js:174:21)",
-              "/tmp/tmpcrea6kjm/lib/program.js:8248:134",
-              "Kernel._wrapSandboxCode (/tmp/tmpcrea6kjm/lib/program.js:8860:24)",
-              "/tmp/tmpcrea6kjm/lib/program.js:8248:107",
-              "Kernel._ensureSync (/tmp/tmpcrea6kjm/lib/program.js:8841:28)",
-              "Kernel.invoke (/tmp/tmpcrea6kjm/lib/program.js:8248:34)",
-              "KernelHost.processRequest (/tmp/tmpcrea6kjm/lib/program.js:9757:36)",
-              "KernelHost.run (/tmp/tmpcrea6kjm/lib/program.js:9720:22)",
-              "Immediate._onImmediate (/tmp/tmpcrea6kjm/lib/program.js:9721:46)",
+              "new Policy (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/aws-iam/lib/policy.js:58:26)",
+              "Import.addToPrincipalPolicy (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/aws-iam/lib/role.js:152:42)",
+              "Function.addToPrincipal (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/aws-iam/lib/grant.js:93:65)",
+              "Table.combinedGrant (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/aws-dynamodb/lib/table.js:386:35)",
+              "Table.grantReadWriteData (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/aws-dynamodb/lib/table.js:174:21)",
+              "/tmp/tmpvjyx211o/lib/program.js:8248:134",
+              "Kernel._wrapSandboxCode (/tmp/tmpvjyx211o/lib/program.js:8860:24)",
+              "/tmp/tmpvjyx211o/lib/program.js:8248:107",
+              "Kernel._ensureSync (/tmp/tmpvjyx211o/lib/program.js:8841:28)",
+              "Kernel.invoke (/tmp/tmpvjyx211o/lib/program.js:8248:34)",
+              "KernelHost.processRequest (/tmp/tmpvjyx211o/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpvjyx211o/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpvjyx211o/lib/program.js:9721:46)",
               "processImmediate (node:internal/timers:464:21)"
             ]
           }
         ],
-        "/smokler/AssetParameters/71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0/S3Bucket": [
+        "/smokler/AssetParameters/f20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064/S3Bucket": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParameters71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0S3BucketAFC5BB1A",
+            "data": "AssetParametersf20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064S3BucketB3571BDA",
             "trace": [
-              "new FileAssetParameters (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:12:36)",
-              "LegacyStackSynthesizer.doAddFileAsset (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:167:22)",
-              "LegacyStackSynthesizer.addFileAsset (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:86:25)",
-              "LegacyStackSynthesizer.addFileAsset (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:90:43)",
-              "new Asset (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:42:44)",
-              "/tmp/tmpcrea6kjm/lib/program.js:8432:58",
-              "Kernel._wrapSandboxCode (/tmp/tmpcrea6kjm/lib/program.js:8860:24)",
-              "Kernel._create (/tmp/tmpcrea6kjm/lib/program.js:8432:34)",
-              "Kernel.create (/tmp/tmpcrea6kjm/lib/program.js:8173:29)",
-              "KernelHost.processRequest (/tmp/tmpcrea6kjm/lib/program.js:9757:36)",
-              "KernelHost.run (/tmp/tmpcrea6kjm/lib/program.js:9720:22)",
-              "Immediate._onImmediate (/tmp/tmpcrea6kjm/lib/program.js:9721:46)",
+              "new FileAssetParameters (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:12:36)",
+              "LegacyStackSynthesizer.doAddFileAsset (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:167:22)",
+              "LegacyStackSynthesizer.addFileAsset (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:86:25)",
+              "LegacyStackSynthesizer.addFileAsset (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:90:43)",
+              "new Asset (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:42:44)",
+              "/tmp/tmpvjyx211o/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/tmp/tmpvjyx211o/lib/program.js:8860:24)",
+              "Kernel._create (/tmp/tmpvjyx211o/lib/program.js:8432:34)",
+              "Kernel.create (/tmp/tmpvjyx211o/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/tmp/tmpvjyx211o/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpvjyx211o/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpvjyx211o/lib/program.js:9721:46)",
               "processImmediate (node:internal/timers:464:21)"
             ]
           }
         ],
-        "/smokler/AssetParameters/71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0/S3VersionKey": [
+        "/smokler/AssetParameters/f20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064/S3VersionKey": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParameters71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0S3VersionKeyD802BFA6",
+            "data": "AssetParametersf20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064S3VersionKey2F5068BF",
             "trace": [
-              "new FileAssetParameters (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:16:35)",
-              "LegacyStackSynthesizer.doAddFileAsset (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:167:22)",
-              "LegacyStackSynthesizer.addFileAsset (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:86:25)",
-              "LegacyStackSynthesizer.addFileAsset (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:90:43)",
-              "new Asset (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:42:44)",
-              "/tmp/tmpcrea6kjm/lib/program.js:8432:58",
-              "Kernel._wrapSandboxCode (/tmp/tmpcrea6kjm/lib/program.js:8860:24)",
-              "Kernel._create (/tmp/tmpcrea6kjm/lib/program.js:8432:34)",
-              "Kernel.create (/tmp/tmpcrea6kjm/lib/program.js:8173:29)",
-              "KernelHost.processRequest (/tmp/tmpcrea6kjm/lib/program.js:9757:36)",
-              "KernelHost.run (/tmp/tmpcrea6kjm/lib/program.js:9720:22)",
-              "Immediate._onImmediate (/tmp/tmpcrea6kjm/lib/program.js:9721:46)",
+              "new FileAssetParameters (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:16:35)",
+              "LegacyStackSynthesizer.doAddFileAsset (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:167:22)",
+              "LegacyStackSynthesizer.addFileAsset (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:86:25)",
+              "LegacyStackSynthesizer.addFileAsset (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:90:43)",
+              "new Asset (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:42:44)",
+              "/tmp/tmpvjyx211o/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/tmp/tmpvjyx211o/lib/program.js:8860:24)",
+              "Kernel._create (/tmp/tmpvjyx211o/lib/program.js:8432:34)",
+              "Kernel.create (/tmp/tmpvjyx211o/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/tmp/tmpvjyx211o/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpvjyx211o/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpvjyx211o/lib/program.js:9721:46)",
               "processImmediate (node:internal/timers:464:21)"
             ]
           }
         ],
-        "/smokler/AssetParameters/71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0/ArtifactHash": [
+        "/smokler/AssetParameters/f20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064/ArtifactHash": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParameters71f4563e37407504e070abc227d165f9c395ebe9c5e3ce70146c0a4a9f88cab0ArtifactHash70FE2814",
+            "data": "AssetParametersf20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064ArtifactHashD0016EB0",
             "trace": [
-              "new FileAssetParameters (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:20:38)",
-              "LegacyStackSynthesizer.doAddFileAsset (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:167:22)",
-              "LegacyStackSynthesizer.addFileAsset (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:86:25)",
-              "LegacyStackSynthesizer.addFileAsset (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:90:43)",
-              "new Asset (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:42:44)",
-              "/tmp/tmpcrea6kjm/lib/program.js:8432:58",
-              "Kernel._wrapSandboxCode (/tmp/tmpcrea6kjm/lib/program.js:8860:24)",
-              "Kernel._create (/tmp/tmpcrea6kjm/lib/program.js:8432:34)",
-              "Kernel.create (/tmp/tmpcrea6kjm/lib/program.js:8173:29)",
-              "KernelHost.processRequest (/tmp/tmpcrea6kjm/lib/program.js:9757:36)",
-              "KernelHost.run (/tmp/tmpcrea6kjm/lib/program.js:9720:22)",
-              "Immediate._onImmediate (/tmp/tmpcrea6kjm/lib/program.js:9721:46)",
+              "new FileAssetParameters (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:20:38)",
+              "LegacyStackSynthesizer.doAddFileAsset (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:167:22)",
+              "LegacyStackSynthesizer.addFileAsset (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:86:25)",
+              "LegacyStackSynthesizer.addFileAsset (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:90:43)",
+              "new Asset (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:42:44)",
+              "/tmp/tmpvjyx211o/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/tmp/tmpvjyx211o/lib/program.js:8860:24)",
+              "Kernel._create (/tmp/tmpvjyx211o/lib/program.js:8432:34)",
+              "Kernel.create (/tmp/tmpvjyx211o/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/tmp/tmpvjyx211o/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpvjyx211o/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpvjyx211o/lib/program.js:9721:46)",
+              "processImmediate (node:internal/timers:464:21)"
+            ]
+          }
+        ],
+        "/smokler/UserTable/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UserTableBD4BF69E",
+            "trace": [
+              "new Table (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/aws-dynamodb/lib/table.js:459:22)",
+              "/tmp/tmpvjyx211o/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/tmp/tmpvjyx211o/lib/program.js:8860:24)",
+              "Kernel._create (/tmp/tmpvjyx211o/lib/program.js:8432:34)",
+              "Kernel.create (/tmp/tmpvjyx211o/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/tmp/tmpvjyx211o/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpvjyx211o/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpvjyx211o/lib/program.js:9721:46)",
+              "processImmediate (node:internal/timers:464:21)"
+            ]
+          }
+        ],
+        "/smokler/UserTableName": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UserTableName",
+            "trace": [
+              "/tmp/tmpvjyx211o/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/tmp/tmpvjyx211o/lib/program.js:8860:24)",
+              "Kernel._create (/tmp/tmpvjyx211o/lib/program.js:8432:34)",
+              "Kernel.create (/tmp/tmpvjyx211o/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/tmp/tmpvjyx211o/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpvjyx211o/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpvjyx211o/lib/program.js:9721:46)",
+              "processImmediate (node:internal/timers:464:21)"
+            ]
+          }
+        ],
+        "/smokler/media/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "media54CBABFC",
+            "trace": [
+              "new Bucket (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/aws-s3/lib/bucket.js:595:26)",
+              "/tmp/tmpvjyx211o/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/tmp/tmpvjyx211o/lib/program.js:8860:24)",
+              "Kernel._create (/tmp/tmpvjyx211o/lib/program.js:8432:34)",
+              "Kernel.create (/tmp/tmpvjyx211o/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/tmp/tmpvjyx211o/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpvjyx211o/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpvjyx211o/lib/program.js:9721:46)",
               "processImmediate (node:internal/timers:464:21)"
             ]
           }
@@ -413,21 +430,21 @@
             "type": "aws:cdk:logicalId",
             "data": "CDKMetadata",
             "trace": [
-              "new MetadataResource (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/core/lib/private/metadata-resource.js:22:30)",
-              "/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/core/lib/private/synthesis.js:139:9",
-              "visit (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/core/lib/private/synthesis.js:200:9)",
-              "visit (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/core/lib/private/synthesis.js:197:9)",
-              "injectMetadataResources (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/core/lib/private/synthesis.js:128:5)",
-              "Object.synthesize (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/core/lib/private/synthesis.js:17:5)",
-              "App.synth (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/core/lib/stage.js:103:41)",
-              "/tmp/tmpcrea6kjm/lib/program.js:8248:134",
-              "Kernel._wrapSandboxCode (/tmp/tmpcrea6kjm/lib/program.js:8860:24)",
-              "/tmp/tmpcrea6kjm/lib/program.js:8248:107",
-              "Kernel._ensureSync (/tmp/tmpcrea6kjm/lib/program.js:8841:28)",
-              "Kernel.invoke (/tmp/tmpcrea6kjm/lib/program.js:8248:34)",
-              "KernelHost.processRequest (/tmp/tmpcrea6kjm/lib/program.js:9757:36)",
-              "KernelHost.run (/tmp/tmpcrea6kjm/lib/program.js:9720:22)",
-              "Immediate._onImmediate (/tmp/tmpcrea6kjm/lib/program.js:9721:46)",
+              "new MetadataResource (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/core/lib/private/metadata-resource.js:22:30)",
+              "/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/core/lib/private/synthesis.js:139:9",
+              "visit (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/core/lib/private/synthesis.js:200:9)",
+              "visit (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/core/lib/private/synthesis.js:197:9)",
+              "injectMetadataResources (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/core/lib/private/synthesis.js:128:5)",
+              "Object.synthesize (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/core/lib/private/synthesis.js:17:5)",
+              "App.synth (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/core/lib/stage.js:103:41)",
+              "/tmp/tmpvjyx211o/lib/program.js:8248:134",
+              "Kernel._wrapSandboxCode (/tmp/tmpvjyx211o/lib/program.js:8860:24)",
+              "/tmp/tmpvjyx211o/lib/program.js:8248:107",
+              "Kernel._ensureSync (/tmp/tmpvjyx211o/lib/program.js:8841:28)",
+              "Kernel.invoke (/tmp/tmpvjyx211o/lib/program.js:8248:34)",
+              "KernelHost.processRequest (/tmp/tmpvjyx211o/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpvjyx211o/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpvjyx211o/lib/program.js:9721:46)",
               "processImmediate (node:internal/timers:464:21)"
             ]
           }
@@ -437,21 +454,21 @@
             "type": "aws:cdk:logicalId",
             "data": "CDKMetadataAvailable",
             "trace": [
-              "new MetadataResource (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/core/lib/private/metadata-resource.js:30:35)",
-              "/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/core/lib/private/synthesis.js:139:9",
-              "visit (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/core/lib/private/synthesis.js:200:9)",
-              "visit (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/core/lib/private/synthesis.js:197:9)",
-              "injectMetadataResources (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/core/lib/private/synthesis.js:128:5)",
-              "Object.synthesize (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/core/lib/private/synthesis.js:17:5)",
-              "App.synth (/tmp/jsii-kernel-AI7BSK/node_modules/@aws-cdk/core/lib/stage.js:103:41)",
-              "/tmp/tmpcrea6kjm/lib/program.js:8248:134",
-              "Kernel._wrapSandboxCode (/tmp/tmpcrea6kjm/lib/program.js:8860:24)",
-              "/tmp/tmpcrea6kjm/lib/program.js:8248:107",
-              "Kernel._ensureSync (/tmp/tmpcrea6kjm/lib/program.js:8841:28)",
-              "Kernel.invoke (/tmp/tmpcrea6kjm/lib/program.js:8248:34)",
-              "KernelHost.processRequest (/tmp/tmpcrea6kjm/lib/program.js:9757:36)",
-              "KernelHost.run (/tmp/tmpcrea6kjm/lib/program.js:9720:22)",
-              "Immediate._onImmediate (/tmp/tmpcrea6kjm/lib/program.js:9721:46)",
+              "new MetadataResource (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/core/lib/private/metadata-resource.js:30:35)",
+              "/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/core/lib/private/synthesis.js:139:9",
+              "visit (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/core/lib/private/synthesis.js:200:9)",
+              "visit (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/core/lib/private/synthesis.js:197:9)",
+              "injectMetadataResources (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/core/lib/private/synthesis.js:128:5)",
+              "Object.synthesize (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/core/lib/private/synthesis.js:17:5)",
+              "App.synth (/tmp/jsii-kernel-OYAOR2/node_modules/@aws-cdk/core/lib/stage.js:103:41)",
+              "/tmp/tmpvjyx211o/lib/program.js:8248:134",
+              "Kernel._wrapSandboxCode (/tmp/tmpvjyx211o/lib/program.js:8860:24)",
+              "/tmp/tmpvjyx211o/lib/program.js:8248:107",
+              "Kernel._ensureSync (/tmp/tmpvjyx211o/lib/program.js:8841:28)",
+              "Kernel.invoke (/tmp/tmpvjyx211o/lib/program.js:8248:34)",
+              "KernelHost.processRequest (/tmp/tmpvjyx211o/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpvjyx211o/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpvjyx211o/lib/program.js:9721:46)",
               "processImmediate (node:internal/timers:464:21)"
             ]
           }

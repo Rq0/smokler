@@ -4,6 +4,7 @@ from aws_cdk import (
     aws_dynamodb as dynamodb,
     core as cdk,
     aws_cognito as cognito,
+    aws_s3 as s3,
 )
 from chalice.cdk import Chalice
 
@@ -15,25 +16,26 @@ class ChaliceApp(cdk.Stack):
     chalice: Chalice
     dynamodb_table: dynamodb.Table
     user_pool: cognito.UserPool
+    bucket: s3.Bucket
 
     def __init__(self, scope, id, **kwargs):
         super().__init__(scope, id, **kwargs)
         self.app_name = self.node.try_get_context("app_name")
         self.stage_name = self.node.try_get_context("stage")
-        self._create_ddb_table()
         self._add_cognito()
+        self._add_chalice()
+        self._create_ddb_table()
+        self._add_s3()
+
+    def _add_chalice(self):
         self.chalice = Chalice(
             self, 'ChaliceApp', source_dir=RUNTIME_SOURCE_DIR,
             stage_config={
                 'environment_variables': {
-                    'USER_TABLE_NAME': self.dynamodb_table.table_name,
                     'COGNITO_USER_POOL_ARN': self.user_pool.user_pool_arn,
                     'APP_NAME': self.app_name
                 }
             }
-        )
-        self.dynamodb_table.grant_read_write_data(
-            self.chalice.get_role('DefaultRole')
         )
 
     def _create_ddb_table(self):
@@ -44,7 +46,16 @@ class ChaliceApp(cdk.Stack):
             sort_key=dynamodb.Attribute(
                 name='SK', type=dynamodb.AttributeType.STRING
             ),
-            removal_policy=cdk.RemovalPolicy.DESTROY)
+            removal_policy=cdk.RemovalPolicy.DESTROY
+        )
+        self.dynamodb_table.grant_read_write_data(
+            self.chalice.get_role('DefaultRole')
+        )
+        self.chalice.add_environment_variable(
+            key='USER_TABLE_NAME',
+            value=self.dynamodb_table.table_name,
+            function_name='APIHandler'
+        )
         cdk.CfnOutput(
             self, 'UserTableName', value=self.dynamodb_table.table_name)
 
@@ -123,4 +134,15 @@ class ChaliceApp(cdk.Stack):
             cognito_domain=cognito.CognitoDomainOptions(
                 domain_prefix=f'{self.app_name}-{self.stage_name}-user-pool-{self.account}-{self.region}'
             ),
+        )
+
+    def _add_s3(self):
+        self.bucket = s3.Bucket(self, 'media')
+        self.bucket.grant_read_write(
+            self.chalice.get_role('DefaultRole')
+        )
+        self.chalice.add_environment_variable(
+            key='MEDIA_BUCKET_NAME',
+            value=self.bucket.bucket_name,
+            function_name='APIHandler'
         )
