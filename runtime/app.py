@@ -1,7 +1,9 @@
+import io
 import json
 from datetime import datetime
 from uuid import uuid4
 
+from PIL import Image
 from boto3.dynamodb.conditions import Key
 
 from chalicelib.dependency.cognito import IUsername
@@ -127,10 +129,16 @@ def update_notification_settings(username: IUsername):
     return {'success': True}
 
 
-@app.route('/upload/', methods=['PUT'], content_types=['application/octet-stream'], authorizer=authorizer)
-def upload_avatar():
-    with open(f'/tmp/{"filename"}', 'wb') as tmp_file:
-        tmp_file.write(app.current_request.raw_body)
-
-    dependency_register.s3.upload_file(f'/tmp/{"filename"}', dependency_register.media_bucket_name, "filename.jpg")
+@app.route('/upload', methods=['PUT'], content_types=['image/jpeg'], authorizer=authorizer)
+@inject(username=IUsername)
+def upload_avatar(username: IUsername):
+    in_mem_file = io.BytesIO()
+    with Image.open(io.BytesIO(app.current_request.raw_body)) as avatar_image:
+        avatar_image.save(in_mem_file, format=avatar_image.format, quality=60, optimize=True)
+        in_mem_file.seek(0)
+    dependency_register.s3.upload_fileobj(
+        in_mem_file,
+        dependency_register.media_bucket_name,
+        f'{username}.jpg'
+    )
     return {'success': True}

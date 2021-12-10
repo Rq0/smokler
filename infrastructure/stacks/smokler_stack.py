@@ -14,7 +14,7 @@ RUNTIME_SOURCE_DIR = os.path.join(
     os.path.dirname(os.path.dirname(__file__)), os.pardir, 'runtime')
 
 
-class ChaliceApp(cdk.Stack):
+class SmoklerStack(cdk.Stack):
     chalice: Chalice
     dynamodb_table: dynamodb.Table
     user_pool: cognito.UserPool
@@ -32,7 +32,8 @@ class ChaliceApp(cdk.Stack):
 
     def _add_chalice(self):
         self.chalice = Chalice(
-            self, 'ChaliceApp', source_dir=RUNTIME_SOURCE_DIR,
+            self, f'{self.app_name}_{self.stage_name}_chalice',
+            source_dir=RUNTIME_SOURCE_DIR,
             stage_config={
                 'environment_variables': {
                     'COGNITO_USER_POOL_ARN': self.user_pool.user_pool_arn,
@@ -43,7 +44,7 @@ class ChaliceApp(cdk.Stack):
 
     def _create_ddb_table(self):
         self.dynamodb_table = dynamodb.Table(
-            self, 'UserTable',
+            self, f'{self.app_name}_{self.stage_name}_user_table',
             partition_key=dynamodb.Attribute(
                 name='PK', type=dynamodb.AttributeType.STRING),
             sort_key=dynamodb.Attribute(
@@ -59,8 +60,6 @@ class ChaliceApp(cdk.Stack):
             value=self.dynamodb_table.table_name,
             function_name='APIHandler'
         )
-        cdk.CfnOutput(
-            self, 'UserTableName', value=self.dynamodb_table.table_name)
 
     def _add_cognito(self):
         """
@@ -69,8 +68,7 @@ class ChaliceApp(cdk.Stack):
         """
         # Create the user pool that holds our users
         self.user_pool = cognito.UserPool(
-            self, "user_pool",
-            user_pool_name=f'{self.app_name}_{self.stage_name}_user_pool',
+            self, f'{self.app_name}_{self.stage_name}_user_pool',
             removal_policy=cdk.RemovalPolicy.DESTROY,
             self_sign_up_enabled=True,
             sign_in_aliases=cognito.SignInAliases(
@@ -104,7 +102,7 @@ class ChaliceApp(cdk.Stack):
             )
         )
         self.user_pool_app_client = cognito.UserPoolClient(
-            self, "user_pool_app_client",
+            self, f"{self.app_name}_{self.stage_name}_user_pool_app_client",
             user_pool=self.user_pool,
             o_auth=cognito.OAuthSettings(
                 flows=cognito.OAuthFlows(
@@ -119,9 +117,7 @@ class ChaliceApp(cdk.Stack):
             ],
         )
         self.identity_pool = cognito.CfnIdentityPool(
-            self,
-            id="identity_pool",
-            identity_pool_name=f"{self.app_name}_{self.stage_name}_identity_pool",
+            self, f"{self.app_name}_{self.stage_name}_identity_pool",
             allow_unauthenticated_identities=True,
             cognito_identity_providers=[
                 cognito.CfnIdentityPool.CognitoIdentityProviderProperty(
@@ -132,7 +128,7 @@ class ChaliceApp(cdk.Stack):
             ],
         )
         self.domain = cognito.UserPoolDomain(
-            self, 'cognito_user_pool_domain',
+            self, f'{self.app_name}_{self.stage_name}_user_pool_domain',
             user_pool=self.user_pool,
             cognito_domain=cognito.CognitoDomainOptions(
                 domain_prefix=f'{self.app_name}-{self.stage_name}-user-pool-{self.account}-{self.region}'
@@ -140,7 +136,9 @@ class ChaliceApp(cdk.Stack):
         )
 
     def _add_s3(self):
-        self.bucket = s3.Bucket(self, 'media')
+        self.bucket = s3.Bucket(
+            self, f'{self.app_name}_{self.stage_name}_media_bucket',
+        )
         self.bucket.grant_read_write(
             self.chalice.get_role('DefaultRole')
         )
@@ -150,7 +148,7 @@ class ChaliceApp(cdk.Stack):
             function_name='APIHandler'
         )
         self.cdn = cloudfront.Distribution(
-            self, "smokler_cloudfront_distribution",
+            self, f'{self.app_name}_{self.stage_name}_cloudfront_distribution',
             default_behavior=cloudfront.BehaviorOptions(
                 origin=origins.S3Origin(self.bucket)
             )

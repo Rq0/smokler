@@ -16,13 +16,13 @@
         "id": "smokler",
         "path": "smokler",
         "children": {
-          "user_pool": {
-            "id": "user_pool",
-            "path": "smokler/user_pool",
+          "smokler_dev_user_pool": {
+            "id": "smokler_dev_user_pool",
+            "path": "smokler/smokler_dev_user_pool",
             "children": {
               "Resource": {
                 "id": "Resource",
-                "path": "smokler/user_pool/Resource",
+                "path": "smokler/smokler_dev_user_pool/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::Cognito::UserPool",
                   "aws:cdk:cloudformation:props": {
@@ -83,7 +83,6 @@
                     "usernameConfiguration": {
                       "caseSensitive": false
                     },
-                    "userPoolName": "smokler_dev_user_pool",
                     "verificationMessageTemplate": {
                       "defaultEmailOption": "CONFIRM_WITH_CODE",
                       "emailMessage": "The verification code to your new account is {####}",
@@ -103,18 +102,18 @@
               "version": "1.133.0"
             }
           },
-          "user_pool_app_client": {
-            "id": "user_pool_app_client",
-            "path": "smokler/user_pool_app_client",
+          "smokler_dev_user_pool_app_client": {
+            "id": "smokler_dev_user_pool_app_client",
+            "path": "smokler/smokler_dev_user_pool_app_client",
             "children": {
               "Resource": {
                 "id": "Resource",
-                "path": "smokler/user_pool_app_client/Resource",
+                "path": "smokler/smokler_dev_user_pool_app_client/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::Cognito::UserPoolClient",
                   "aws:cdk:cloudformation:props": {
                     "userPoolId": {
-                      "Ref": "userpool8E71A846"
+                      "Ref": "smoklerdevuserpool4834C5ED"
                     },
                     "allowedOAuthFlows": [
                       "implicit"
@@ -144,15 +143,14 @@
               "version": "1.133.0"
             }
           },
-          "identity_pool": {
-            "id": "identity_pool",
-            "path": "smokler/identity_pool",
+          "smokler_dev_identity_pool": {
+            "id": "smokler_dev_identity_pool",
+            "path": "smokler/smokler_dev_identity_pool",
             "attributes": {
               "aws:cdk:cloudformation:type": "AWS::Cognito::IdentityPool",
               "aws:cdk:cloudformation:props": {
                 "allowUnauthenticatedIdentities": true,
-                "cognitoIdentityProviders": [],
-                "identityPoolName": "smokler_dev_identity_pool"
+                "cognitoIdentityProviders": []
               }
             },
             "constructInfo": {
@@ -160,13 +158,13 @@
               "version": "1.133.0"
             }
           },
-          "cognito_user_pool_domain": {
-            "id": "cognito_user_pool_domain",
-            "path": "smokler/cognito_user_pool_domain",
+          "smokler_dev_user_pool_domain": {
+            "id": "smokler_dev_user_pool_domain",
+            "path": "smokler/smokler_dev_user_pool_domain",
             "children": {
               "Resource": {
                 "id": "Resource",
-                "path": "smokler/cognito_user_pool_domain/Resource",
+                "path": "smokler/smokler_dev_user_pool_domain/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::Cognito::UserPoolDomain",
                   "aws:cdk:cloudformation:props": {
@@ -186,7 +184,7 @@
                       ]
                     },
                     "userPoolId": {
-                      "Ref": "userpool8E71A846"
+                      "Ref": "smoklerdevuserpool4834C5ED"
                     }
                   }
                 },
@@ -201,17 +199,17 @@
               "version": "1.133.0"
             }
           },
-          "ChaliceApp": {
-            "id": "ChaliceApp",
-            "path": "smokler/ChaliceApp",
+          "smokler_dev_chalice": {
+            "id": "smokler_dev_chalice",
+            "path": "smokler/smokler_dev_chalice",
             "children": {
               "ChaliceAppCode": {
                 "id": "ChaliceAppCode",
-                "path": "smokler/ChaliceApp/ChaliceAppCode",
+                "path": "smokler/smokler_dev_chalice/ChaliceAppCode",
                 "children": {
                   "Stage": {
                     "id": "Stage",
-                    "path": "smokler/ChaliceApp/ChaliceAppCode/Stage",
+                    "path": "smokler/smokler_dev_chalice/ChaliceAppCode/Stage",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.AssetStaging",
                       "version": "1.134.0"
@@ -219,11 +217,11 @@
                   },
                   "AssetBucket": {
                     "id": "AssetBucket",
-                    "path": "smokler/ChaliceApp/ChaliceAppCode/AssetBucket",
+                    "path": "smokler/smokler_dev_chalice/ChaliceAppCode/AssetBucket",
                     "children": {
                       "Notifications": {
                         "id": "Notifications",
-                        "path": "smokler/ChaliceApp/ChaliceAppCode/AssetBucket/Notifications",
+                        "path": "smokler/smokler_dev_chalice/ChaliceAppCode/AssetBucket/Notifications",
                         "constructInfo": {
                           "fqn": "@aws-cdk/core.Construct",
                           "version": "1.134.0"
@@ -243,11 +241,11 @@
               },
               "ChaliceApp": {
                 "id": "ChaliceApp",
-                "path": "smokler/ChaliceApp/ChaliceApp",
+                "path": "smokler/smokler_dev_chalice/ChaliceApp",
                 "children": {
                   "$Mappings": {
                     "id": "$Mappings",
-                    "path": "smokler/ChaliceApp/ChaliceApp/$Mappings",
+                    "path": "smokler/smokler_dev_chalice/ChaliceApp/$Mappings",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.Construct",
                       "version": "1.134.0"
@@ -255,7 +253,7 @@
                   },
                   "$Conditions": {
                     "id": "$Conditions",
-                    "path": "smokler/ChaliceApp/ChaliceApp/$Conditions",
+                    "path": "smokler/smokler_dev_chalice/ChaliceApp/$Conditions",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.Construct",
                       "version": "1.134.0"
@@ -263,7 +261,7 @@
                   },
                   "$Rules": {
                     "id": "$Rules",
-                    "path": "smokler/ChaliceApp/ChaliceApp/$Rules",
+                    "path": "smokler/smokler_dev_chalice/ChaliceApp/$Rules",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.Construct",
                       "version": "1.134.0"
@@ -271,7 +269,7 @@
                   },
                   "DefaultRole": {
                     "id": "DefaultRole",
-                    "path": "smokler/ChaliceApp/ChaliceApp/DefaultRole",
+                    "path": "smokler/smokler_dev_chalice/ChaliceApp/DefaultRole",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::IAM::Role",
                       "aws:cdk:cloudformation:props": {
@@ -316,13 +314,13 @@
                   },
                   "APIHandler": {
                     "id": "APIHandler",
-                    "path": "smokler/ChaliceApp/ChaliceApp/APIHandler",
+                    "path": "smokler/smokler_dev_chalice/ChaliceApp/APIHandler",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::Serverless::Function",
                       "aws:cdk:cloudformation:props": {
                         "codeUri": {
                           "bucket": {
-                            "Ref": "AssetParametersf72be4e8f2a68c0ebc89c079af4399fcb20b8f2be5caf7e68b43cc8f03db9cb1S3Bucket3CA2C242"
+                            "Ref": "AssetParametersbac41235911cb056c94e4e8a954d00f62a141c38289a69e27d32839d39e5f396S3BucketA3A3A726"
                           },
                           "key": {
                             "Fn::Join": [
@@ -335,7 +333,7 @@
                                       "Fn::Split": [
                                         "||",
                                         {
-                                          "Ref": "AssetParametersf72be4e8f2a68c0ebc89c079af4399fcb20b8f2be5caf7e68b43cc8f03db9cb1S3VersionKeyFE692CA5"
+                                          "Ref": "AssetParametersbac41235911cb056c94e4e8a954d00f62a141c38289a69e27d32839d39e5f396S3VersionKey4BEF93F9"
                                         }
                                       ]
                                     }
@@ -348,7 +346,7 @@
                                       "Fn::Split": [
                                         "||",
                                         {
-                                          "Ref": "AssetParametersf72be4e8f2a68c0ebc89c079af4399fcb20b8f2be5caf7e68b43cc8f03db9cb1S3VersionKeyFE692CA5"
+                                          "Ref": "AssetParametersbac41235911cb056c94e4e8a954d00f62a141c38289a69e27d32839d39e5f396S3VersionKey4BEF93F9"
                                         }
                                       ]
                                     }
@@ -362,7 +360,7 @@
                           "variables": {
                             "COGNITO_USER_POOL_ARN": {
                               "Fn::GetAtt": [
-                                "userpool8E71A846",
+                                "smoklerdevuserpool4834C5ED",
                                 "Arn"
                               ]
                             },
@@ -392,7 +390,7 @@
                   },
                   "RestAPI": {
                     "id": "RestAPI",
-                    "path": "smokler/ChaliceApp/ChaliceApp/RestAPI",
+                    "path": "smokler/smokler_dev_chalice/ChaliceApp/RestAPI",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::Serverless::Api",
                       "aws:cdk:cloudformation:props": {
@@ -660,10 +658,10 @@
                                 ]
                               }
                             },
-                            "/upload/": {
+                            "/upload": {
                               "put": {
                                 "consumes": [
-                                  "application/octet-stream"
+                                  "image/jpeg"
                                 ],
                                 "produces": [
                                   "application/json"
@@ -733,7 +731,7 @@
                                 "providerARNs": [
                                   {
                                     "Fn::GetAtt": [
-                                      "userpool8E71A846",
+                                      "smoklerdevuserpool4834C5ED",
                                       "Arn"
                                     ]
                                   }
@@ -752,7 +750,7 @@
                   },
                   "APIHandlerInvokePermission": {
                     "id": "APIHandlerInvokePermission",
-                    "path": "smokler/ChaliceApp/ChaliceApp/APIHandlerInvokePermission",
+                    "path": "smokler/smokler_dev_chalice/ChaliceApp/APIHandlerInvokePermission",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
                       "aws:cdk:cloudformation:props": {
@@ -780,7 +778,7 @@
                   },
                   "$Hooks": {
                     "id": "$Hooks",
-                    "path": "smokler/ChaliceApp/ChaliceApp/$Hooks",
+                    "path": "smokler/smokler_dev_chalice/ChaliceApp/$Hooks",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.Construct",
                       "version": "1.134.0"
@@ -788,11 +786,11 @@
                   },
                   "$Ouputs": {
                     "id": "$Ouputs",
-                    "path": "smokler/ChaliceApp/ChaliceApp/$Ouputs",
+                    "path": "smokler/smokler_dev_chalice/ChaliceApp/$Ouputs",
                     "children": {
                       "RestAPIId": {
                         "id": "RestAPIId",
-                        "path": "smokler/ChaliceApp/ChaliceApp/$Ouputs/RestAPIId",
+                        "path": "smokler/smokler_dev_chalice/ChaliceApp/$Ouputs/RestAPIId",
                         "constructInfo": {
                           "fqn": "@aws-cdk/core.CfnOutput",
                           "version": "1.134.0"
@@ -800,7 +798,7 @@
                       },
                       "APIHandlerName": {
                         "id": "APIHandlerName",
-                        "path": "smokler/ChaliceApp/ChaliceApp/$Ouputs/APIHandlerName",
+                        "path": "smokler/smokler_dev_chalice/ChaliceApp/$Ouputs/APIHandlerName",
                         "constructInfo": {
                           "fqn": "@aws-cdk/core.CfnOutput",
                           "version": "1.134.0"
@@ -808,7 +806,7 @@
                       },
                       "APIHandlerArn": {
                         "id": "APIHandlerArn",
-                        "path": "smokler/ChaliceApp/ChaliceApp/$Ouputs/APIHandlerArn",
+                        "path": "smokler/smokler_dev_chalice/ChaliceApp/$Ouputs/APIHandlerArn",
                         "constructInfo": {
                           "fqn": "@aws-cdk/core.CfnOutput",
                           "version": "1.134.0"
@@ -816,7 +814,7 @@
                       },
                       "EndpointURL": {
                         "id": "EndpointURL",
-                        "path": "smokler/ChaliceApp/ChaliceApp/$Ouputs/EndpointURL",
+                        "path": "smokler/smokler_dev_chalice/ChaliceApp/$Ouputs/EndpointURL",
                         "constructInfo": {
                           "fqn": "@aws-cdk/core.CfnOutput",
                           "version": "1.134.0"
@@ -836,15 +834,15 @@
               },
               "DefaultRole": {
                 "id": "DefaultRole",
-                "path": "smokler/ChaliceApp/DefaultRole",
+                "path": "smokler/smokler_dev_chalice/DefaultRole",
                 "children": {
                   "Policy": {
                     "id": "Policy",
-                    "path": "smokler/ChaliceApp/DefaultRole/Policy",
+                    "path": "smokler/smokler_dev_chalice/DefaultRole/Policy",
                     "children": {
                       "Resource": {
                         "id": "Resource",
-                        "path": "smokler/ChaliceApp/DefaultRole/Policy/Resource",
+                        "path": "smokler/smokler_dev_chalice/DefaultRole/Policy/Resource",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
                           "aws:cdk:cloudformation:props": {
@@ -868,7 +866,7 @@
                                   "Resource": [
                                     {
                                       "Fn::GetAtt": [
-                                        "UserTableBD4BF69E",
+                                        "smoklerdevusertable1B6D4DA5",
                                         "Arn"
                                       ]
                                     },
@@ -890,7 +888,7 @@
                                   "Resource": [
                                     {
                                       "Fn::GetAtt": [
-                                        "media54CBABFC",
+                                        "smoklerdevmediabucketFAE02E8C",
                                         "Arn"
                                       ]
                                     },
@@ -900,7 +898,7 @@
                                         [
                                           {
                                             "Fn::GetAtt": [
-                                              "media54CBABFC",
+                                              "smoklerdevmediabucketFAE02E8C",
                                               "Arn"
                                             ]
                                           },
@@ -913,7 +911,7 @@
                               ],
                               "Version": "2012-10-17"
                             },
-                            "policyName": "ChaliceAppDefaultRolePolicyCAAAC186",
+                            "policyName": "smoklerdevchaliceDefaultRolePolicy8E930A0E",
                             "roles": [
                               {
                                 "Fn::Select": [
@@ -971,13 +969,13 @@
             "id": "AssetParameters",
             "path": "smokler/AssetParameters",
             "children": {
-              "f72be4e8f2a68c0ebc89c079af4399fcb20b8f2be5caf7e68b43cc8f03db9cb1": {
-                "id": "f72be4e8f2a68c0ebc89c079af4399fcb20b8f2be5caf7e68b43cc8f03db9cb1",
-                "path": "smokler/AssetParameters/f72be4e8f2a68c0ebc89c079af4399fcb20b8f2be5caf7e68b43cc8f03db9cb1",
+              "bac41235911cb056c94e4e8a954d00f62a141c38289a69e27d32839d39e5f396": {
+                "id": "bac41235911cb056c94e4e8a954d00f62a141c38289a69e27d32839d39e5f396",
+                "path": "smokler/AssetParameters/bac41235911cb056c94e4e8a954d00f62a141c38289a69e27d32839d39e5f396",
                 "children": {
                   "S3Bucket": {
                     "id": "S3Bucket",
-                    "path": "smokler/AssetParameters/f72be4e8f2a68c0ebc89c079af4399fcb20b8f2be5caf7e68b43cc8f03db9cb1/S3Bucket",
+                    "path": "smokler/AssetParameters/bac41235911cb056c94e4e8a954d00f62a141c38289a69e27d32839d39e5f396/S3Bucket",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.CfnParameter",
                       "version": "1.134.0"
@@ -985,7 +983,7 @@
                   },
                   "S3VersionKey": {
                     "id": "S3VersionKey",
-                    "path": "smokler/AssetParameters/f72be4e8f2a68c0ebc89c079af4399fcb20b8f2be5caf7e68b43cc8f03db9cb1/S3VersionKey",
+                    "path": "smokler/AssetParameters/bac41235911cb056c94e4e8a954d00f62a141c38289a69e27d32839d39e5f396/S3VersionKey",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.CfnParameter",
                       "version": "1.134.0"
@@ -993,7 +991,7 @@
                   },
                   "ArtifactHash": {
                     "id": "ArtifactHash",
-                    "path": "smokler/AssetParameters/f72be4e8f2a68c0ebc89c079af4399fcb20b8f2be5caf7e68b43cc8f03db9cb1/ArtifactHash",
+                    "path": "smokler/AssetParameters/bac41235911cb056c94e4e8a954d00f62a141c38289a69e27d32839d39e5f396/ArtifactHash",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.CfnParameter",
                       "version": "1.134.0"
@@ -1011,13 +1009,13 @@
               "version": "1.134.0"
             }
           },
-          "UserTable": {
-            "id": "UserTable",
-            "path": "smokler/UserTable",
+          "smokler_dev_user_table": {
+            "id": "smokler_dev_user_table",
+            "path": "smokler/smokler_dev_user_table",
             "children": {
               "Resource": {
                 "id": "Resource",
-                "path": "smokler/UserTable/Resource",
+                "path": "smokler/smokler_dev_user_table/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::DynamoDB::Table",
                   "aws:cdk:cloudformation:props": {
@@ -1054,7 +1052,7 @@
               },
               "ScalingRole": {
                 "id": "ScalingRole",
-                "path": "smokler/UserTable/ScalingRole",
+                "path": "smokler/smokler_dev_user_table/ScalingRole",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.Resource",
                   "version": "1.134.0"
@@ -1066,21 +1064,13 @@
               "version": "1.134.0"
             }
           },
-          "UserTableName": {
-            "id": "UserTableName",
-            "path": "smokler/UserTableName",
-            "constructInfo": {
-              "fqn": "@aws-cdk/core.CfnOutput",
-              "version": "1.134.0"
-            }
-          },
-          "media": {
-            "id": "media",
-            "path": "smokler/media",
+          "smokler_dev_media_bucket": {
+            "id": "smokler_dev_media_bucket",
+            "path": "smokler/smokler_dev_media_bucket",
             "children": {
               "Notifications": {
                 "id": "Notifications",
-                "path": "smokler/media/Notifications",
+                "path": "smokler/smokler_dev_media_bucket/Notifications",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.Construct",
                   "version": "1.134.0"
@@ -1088,7 +1078,7 @@
               },
               "Resource": {
                 "id": "Resource",
-                "path": "smokler/media/Resource",
+                "path": "smokler/smokler_dev_media_bucket/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::S3::Bucket",
                   "aws:cdk:cloudformation:props": {}
@@ -1100,16 +1090,16 @@
               },
               "Policy": {
                 "id": "Policy",
-                "path": "smokler/media/Policy",
+                "path": "smokler/smokler_dev_media_bucket/Policy",
                 "children": {
                   "Resource": {
                     "id": "Resource",
-                    "path": "smokler/media/Policy/Resource",
+                    "path": "smokler/smokler_dev_media_bucket/Policy/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::S3::BucketPolicy",
                       "aws:cdk:cloudformation:props": {
                         "bucket": {
-                          "Ref": "media54CBABFC"
+                          "Ref": "smoklerdevmediabucketFAE02E8C"
                         },
                         "policyDocument": {
                           "Statement": [
@@ -1119,7 +1109,7 @@
                               "Principal": {
                                 "CanonicalUser": {
                                   "Fn::GetAtt": [
-                                    "smoklercloudfrontdistributionOrigin1S3Origin13C06BCB",
+                                    "smoklerdevcloudfrontdistributionOrigin1S3Origin4D691CBF",
                                     "S3CanonicalUserId"
                                   ]
                                 }
@@ -1130,7 +1120,7 @@
                                   [
                                     {
                                       "Fn::GetAtt": [
-                                        "media54CBABFC",
+                                        "smoklerdevmediabucketFAE02E8C",
                                         "Arn"
                                       ]
                                     },
@@ -1161,26 +1151,26 @@
               "version": "1.134.0"
             }
           },
-          "smokler_cloudfront_distribution": {
-            "id": "smokler_cloudfront_distribution",
-            "path": "smokler/smokler_cloudfront_distribution",
+          "smokler_dev_cloudfront_distribution": {
+            "id": "smokler_dev_cloudfront_distribution",
+            "path": "smokler/smokler_dev_cloudfront_distribution",
             "children": {
               "Origin1": {
                 "id": "Origin1",
-                "path": "smokler/smokler_cloudfront_distribution/Origin1",
+                "path": "smokler/smokler_dev_cloudfront_distribution/Origin1",
                 "children": {
                   "S3Origin": {
                     "id": "S3Origin",
-                    "path": "smokler/smokler_cloudfront_distribution/Origin1/S3Origin",
+                    "path": "smokler/smokler_dev_cloudfront_distribution/Origin1/S3Origin",
                     "children": {
                       "Resource": {
                         "id": "Resource",
-                        "path": "smokler/smokler_cloudfront_distribution/Origin1/S3Origin/Resource",
+                        "path": "smokler/smokler_dev_cloudfront_distribution/Origin1/S3Origin/Resource",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::CloudFront::CloudFrontOriginAccessIdentity",
                           "aws:cdk:cloudformation:props": {
                             "cloudFrontOriginAccessIdentityConfig": {
-                              "comment": "Identity for smoklersmoklercloudfrontdistributionOrigin187F6C7C3"
+                              "comment": "Identity for smoklersmoklerdevcloudfrontdistributionOrigin14DB243D9"
                             }
                           }
                         },
@@ -1203,7 +1193,7 @@
               },
               "Resource": {
                 "id": "Resource",
-                "path": "smokler/smokler_cloudfront_distribution/Resource",
+                "path": "smokler/smokler_dev_cloudfront_distribution/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::CloudFront::Distribution",
                   "aws:cdk:cloudformation:props": {
@@ -1213,11 +1203,11 @@
                         {
                           "domainName": {
                             "Fn::GetAtt": [
-                              "media54CBABFC",
+                              "smoklerdevmediabucketFAE02E8C",
                               "RegionalDomainName"
                             ]
                           },
-                          "id": "smoklersmoklercloudfrontdistributionOrigin187F6C7C3",
+                          "id": "smoklersmoklerdevcloudfrontdistributionOrigin14DB243D9",
                           "s3OriginConfig": {
                             "originAccessIdentity": {
                               "Fn::Join": [
@@ -1225,7 +1215,7 @@
                                 [
                                   "origin-access-identity/cloudfront/",
                                   {
-                                    "Ref": "smoklercloudfrontdistributionOrigin1S3Origin13C06BCB"
+                                    "Ref": "smoklerdevcloudfrontdistributionOrigin1S3Origin4D691CBF"
                                   }
                                 ]
                               ]
@@ -1235,7 +1225,7 @@
                       ],
                       "defaultCacheBehavior": {
                         "pathPattern": "*",
-                        "targetOriginId": "smoklersmoklercloudfrontdistributionOrigin187F6C7C3",
+                        "targetOriginId": "smoklersmoklerdevcloudfrontdistributionOrigin14DB243D9",
                         "cachePolicyId": "658327ea-f89d-4fab-a63d-7e88639e58f6",
                         "compress": true,
                         "viewerProtocolPolicy": "allow-all"

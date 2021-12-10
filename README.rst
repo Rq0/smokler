@@ -1,12 +1,11 @@
-REST API backed by Amazon DynamoDB
-==================================
+Chalice REST API backed by Amazon DynamoDB, IAM, UserPools, S3 and CloudFront
+============================================================
+.. image:: cloudformation_template.png
 
-This template provides a REST API that's backed by an Amazon DynamoDB table.
 This application is deployed using the AWS CDK.
 
 For more information, see the `Deploying with the AWS CDK
 <https://aws.github.io/chalice/tutorials/cdk.html>`__ tutorial.
-
 
 Quickstart
 ----------
