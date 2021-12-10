@@ -9,7 +9,7 @@
         "path": "Tree",
         "constructInfo": {
           "fqn": "@aws-cdk/core.Construct",
-          "version": "1.133.0"
+          "version": "1.134.0"
         }
       },
       "smokler": {
@@ -214,7 +214,7 @@
                     "path": "smokler/ChaliceApp/ChaliceAppCode/Stage",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.AssetStaging",
-                      "version": "1.133.0"
+                      "version": "1.134.0"
                     }
                   },
                   "AssetBucket": {
@@ -226,19 +226,19 @@
                         "path": "smokler/ChaliceApp/ChaliceAppCode/AssetBucket/Notifications",
                         "constructInfo": {
                           "fqn": "@aws-cdk/core.Construct",
-                          "version": "1.133.0"
+                          "version": "1.134.0"
                         }
                       }
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-s3.BucketBase",
-                      "version": "1.133.0"
+                      "version": "1.134.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-s3-assets.Asset",
-                  "version": "1.133.0"
+                  "version": "1.134.0"
                 }
               },
               "ChaliceApp": {
@@ -250,7 +250,7 @@
                     "path": "smokler/ChaliceApp/ChaliceApp/$Mappings",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.Construct",
-                      "version": "1.133.0"
+                      "version": "1.134.0"
                     }
                   },
                   "$Conditions": {
@@ -258,7 +258,7 @@
                     "path": "smokler/ChaliceApp/ChaliceApp/$Conditions",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.Construct",
-                      "version": "1.133.0"
+                      "version": "1.134.0"
                     }
                   },
                   "$Rules": {
@@ -266,7 +266,7 @@
                     "path": "smokler/ChaliceApp/ChaliceApp/$Rules",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.Construct",
-                      "version": "1.133.0"
+                      "version": "1.134.0"
                     }
                   },
                   "DefaultRole": {
@@ -311,7 +311,7 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-iam.CfnRole",
-                      "version": "1.133.0"
+                      "version": "1.134.0"
                     }
                   },
                   "APIHandler": {
@@ -322,7 +322,7 @@
                       "aws:cdk:cloudformation:props": {
                         "codeUri": {
                           "bucket": {
-                            "Ref": "AssetParametersf20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064S3BucketB3571BDA"
+                            "Ref": "AssetParametersf72be4e8f2a68c0ebc89c079af4399fcb20b8f2be5caf7e68b43cc8f03db9cb1S3Bucket3CA2C242"
                           },
                           "key": {
                             "Fn::Join": [
@@ -335,7 +335,7 @@
                                       "Fn::Split": [
                                         "||",
                                         {
-                                          "Ref": "AssetParametersf20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064S3VersionKey2F5068BF"
+                                          "Ref": "AssetParametersf72be4e8f2a68c0ebc89c079af4399fcb20b8f2be5caf7e68b43cc8f03db9cb1S3VersionKeyFE692CA5"
                                         }
                                       ]
                                     }
@@ -348,7 +348,7 @@
                                       "Fn::Split": [
                                         "||",
                                         {
-                                          "Ref": "AssetParametersf20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064S3VersionKey2F5068BF"
+                                          "Ref": "AssetParametersf72be4e8f2a68c0ebc89c079af4399fcb20b8f2be5caf7e68b43cc8f03db9cb1S3VersionKeyFE692CA5"
                                         }
                                       ]
                                     }
@@ -660,7 +660,7 @@
                                 ]
                               }
                             },
-                            "/upload/{file_name}": {
+                            "/upload/": {
                               "put": {
                                 "consumes": [
                                   "application/octet-stream"
@@ -690,12 +690,9 @@
                                   "contentHandling": "CONVERT_TO_TEXT",
                                   "type": "aws_proxy"
                                 },
-                                "parameters": [
+                                "security": [
                                   {
-                                    "name": "file_name",
-                                    "in": "path",
-                                    "required": true,
-                                    "type": "string"
+                                    "CognitoAuthorizer": []
                                   }
                                 ]
                               }
@@ -778,7 +775,7 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-lambda.CfnPermission",
-                      "version": "1.133.0"
+                      "version": "1.134.0"
                     }
                   },
                   "$Hooks": {
@@ -786,7 +783,7 @@
                     "path": "smokler/ChaliceApp/ChaliceApp/$Hooks",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.Construct",
-                      "version": "1.133.0"
+                      "version": "1.134.0"
                     }
                   },
                   "$Ouputs": {
@@ -798,7 +795,7 @@
                         "path": "smokler/ChaliceApp/ChaliceApp/$Ouputs/RestAPIId",
                         "constructInfo": {
                           "fqn": "@aws-cdk/core.CfnOutput",
-                          "version": "1.133.0"
+                          "version": "1.134.0"
                         }
                       },
                       "APIHandlerName": {
@@ -806,7 +803,7 @@
                         "path": "smokler/ChaliceApp/ChaliceApp/$Ouputs/APIHandlerName",
                         "constructInfo": {
                           "fqn": "@aws-cdk/core.CfnOutput",
-                          "version": "1.133.0"
+                          "version": "1.134.0"
                         }
                       },
                       "APIHandlerArn": {
@@ -814,7 +811,7 @@
                         "path": "smokler/ChaliceApp/ChaliceApp/$Ouputs/APIHandlerArn",
                         "constructInfo": {
                           "fqn": "@aws-cdk/core.CfnOutput",
-                          "version": "1.133.0"
+                          "version": "1.134.0"
                         }
                       },
                       "EndpointURL": {
@@ -822,13 +819,13 @@
                         "path": "smokler/ChaliceApp/ChaliceApp/$Ouputs/EndpointURL",
                         "constructInfo": {
                           "fqn": "@aws-cdk/core.CfnOutput",
-                          "version": "1.133.0"
+                          "version": "1.134.0"
                         }
                       }
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.Construct",
-                      "version": "1.133.0"
+                      "version": "1.134.0"
                     }
                   }
                 },
@@ -949,69 +946,69 @@
                         },
                         "constructInfo": {
                           "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                          "version": "1.133.0"
+                          "version": "1.134.0"
                         }
                       }
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-iam.Policy",
-                      "version": "1.133.0"
+                      "version": "1.134.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.Resource",
-                  "version": "1.133.0"
+                  "version": "1.134.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/core.Construct",
-              "version": "1.133.0"
+              "version": "1.134.0"
             }
           },
           "AssetParameters": {
             "id": "AssetParameters",
             "path": "smokler/AssetParameters",
             "children": {
-              "f20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064": {
-                "id": "f20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064",
-                "path": "smokler/AssetParameters/f20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064",
+              "f72be4e8f2a68c0ebc89c079af4399fcb20b8f2be5caf7e68b43cc8f03db9cb1": {
+                "id": "f72be4e8f2a68c0ebc89c079af4399fcb20b8f2be5caf7e68b43cc8f03db9cb1",
+                "path": "smokler/AssetParameters/f72be4e8f2a68c0ebc89c079af4399fcb20b8f2be5caf7e68b43cc8f03db9cb1",
                 "children": {
                   "S3Bucket": {
                     "id": "S3Bucket",
-                    "path": "smokler/AssetParameters/f20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064/S3Bucket",
+                    "path": "smokler/AssetParameters/f72be4e8f2a68c0ebc89c079af4399fcb20b8f2be5caf7e68b43cc8f03db9cb1/S3Bucket",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.CfnParameter",
-                      "version": "1.133.0"
+                      "version": "1.134.0"
                     }
                   },
                   "S3VersionKey": {
                     "id": "S3VersionKey",
-                    "path": "smokler/AssetParameters/f20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064/S3VersionKey",
+                    "path": "smokler/AssetParameters/f72be4e8f2a68c0ebc89c079af4399fcb20b8f2be5caf7e68b43cc8f03db9cb1/S3VersionKey",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.CfnParameter",
-                      "version": "1.133.0"
+                      "version": "1.134.0"
                     }
                   },
                   "ArtifactHash": {
                     "id": "ArtifactHash",
-                    "path": "smokler/AssetParameters/f20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064/ArtifactHash",
+                    "path": "smokler/AssetParameters/f72be4e8f2a68c0ebc89c079af4399fcb20b8f2be5caf7e68b43cc8f03db9cb1/ArtifactHash",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.CfnParameter",
-                      "version": "1.133.0"
+                      "version": "1.134.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.Construct",
-                  "version": "1.133.0"
+                  "version": "1.134.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/core.Construct",
-              "version": "1.133.0"
+              "version": "1.134.0"
             }
           },
           "UserTable": {
@@ -1052,7 +1049,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-dynamodb.CfnTable",
-                  "version": "1.133.0"
+                  "version": "1.134.0"
                 }
               },
               "ScalingRole": {
@@ -1060,13 +1057,13 @@
                 "path": "smokler/UserTable/ScalingRole",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.Resource",
-                  "version": "1.133.0"
+                  "version": "1.134.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-dynamodb.Table",
-              "version": "1.133.0"
+              "version": "1.134.0"
             }
           },
           "UserTableName": {
@@ -1074,7 +1071,7 @@
             "path": "smokler/UserTableName",
             "constructInfo": {
               "fqn": "@aws-cdk/core.CfnOutput",
-              "version": "1.133.0"
+              "version": "1.134.0"
             }
           },
           "media": {
@@ -1086,7 +1083,7 @@
                 "path": "smokler/media/Notifications",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.Construct",
-                  "version": "1.133.0"
+                  "version": "1.134.0"
                 }
               },
               "Resource": {
@@ -1098,13 +1095,165 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-s3.CfnBucket",
-                  "version": "1.133.0"
+                  "version": "1.134.0"
+                }
+              },
+              "Policy": {
+                "id": "Policy",
+                "path": "smokler/media/Policy",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "smokler/media/Policy/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::S3::BucketPolicy",
+                      "aws:cdk:cloudformation:props": {
+                        "bucket": {
+                          "Ref": "media54CBABFC"
+                        },
+                        "policyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "s3:GetObject",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "CanonicalUser": {
+                                  "Fn::GetAtt": [
+                                    "smoklercloudfrontdistributionOrigin1S3Origin13C06BCB",
+                                    "S3CanonicalUserId"
+                                  ]
+                                }
+                              },
+                              "Resource": {
+                                "Fn::Join": [
+                                  "",
+                                  [
+                                    {
+                                      "Fn::GetAtt": [
+                                        "media54CBABFC",
+                                        "Arn"
+                                      ]
+                                    },
+                                    "/*"
+                                  ]
+                                ]
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-s3.CfnBucketPolicy",
+                      "version": "1.134.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-s3.BucketPolicy",
+                  "version": "1.134.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-s3.Bucket",
-              "version": "1.133.0"
+              "version": "1.134.0"
+            }
+          },
+          "smokler_cloudfront_distribution": {
+            "id": "smokler_cloudfront_distribution",
+            "path": "smokler/smokler_cloudfront_distribution",
+            "children": {
+              "Origin1": {
+                "id": "Origin1",
+                "path": "smokler/smokler_cloudfront_distribution/Origin1",
+                "children": {
+                  "S3Origin": {
+                    "id": "S3Origin",
+                    "path": "smokler/smokler_cloudfront_distribution/Origin1/S3Origin",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "smokler/smokler_cloudfront_distribution/Origin1/S3Origin/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::CloudFront::CloudFrontOriginAccessIdentity",
+                          "aws:cdk:cloudformation:props": {
+                            "cloudFrontOriginAccessIdentityConfig": {
+                              "comment": "Identity for smoklersmoklercloudfrontdistributionOrigin187F6C7C3"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/aws-cloudfront.CfnCloudFrontOriginAccessIdentity",
+                          "version": "1.134.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-cloudfront.OriginAccessIdentity",
+                      "version": "1.134.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.Construct",
+                  "version": "1.134.0"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "smokler/smokler_cloudfront_distribution/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::CloudFront::Distribution",
+                  "aws:cdk:cloudformation:props": {
+                    "distributionConfig": {
+                      "enabled": true,
+                      "origins": [
+                        {
+                          "domainName": {
+                            "Fn::GetAtt": [
+                              "media54CBABFC",
+                              "RegionalDomainName"
+                            ]
+                          },
+                          "id": "smoklersmoklercloudfrontdistributionOrigin187F6C7C3",
+                          "s3OriginConfig": {
+                            "originAccessIdentity": {
+                              "Fn::Join": [
+                                "",
+                                [
+                                  "origin-access-identity/cloudfront/",
+                                  {
+                                    "Ref": "smoklercloudfrontdistributionOrigin1S3Origin13C06BCB"
+                                  }
+                                ]
+                              ]
+                            }
+                          }
+                        }
+                      ],
+                      "defaultCacheBehavior": {
+                        "pathPattern": "*",
+                        "targetOriginId": "smoklersmoklercloudfrontdistributionOrigin187F6C7C3",
+                        "cachePolicyId": "658327ea-f89d-4fab-a63d-7e88639e58f6",
+                        "compress": true,
+                        "viewerProtocolPolicy": "allow-all"
+                      },
+                      "httpVersion": "http2",
+                      "ipv6Enabled": true
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-cloudfront.CfnDistribution",
+                  "version": "1.134.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-cloudfront.Distribution",
+              "version": "1.134.0"
             }
           },
           "CDKMetadata": {
@@ -1116,7 +1265,7 @@
                 "path": "smokler/CDKMetadata/Default",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.CfnResource",
-                  "version": "1.133.0"
+                  "version": "1.134.0"
                 }
               },
               "Condition": {
@@ -1124,25 +1273,25 @@
                 "path": "smokler/CDKMetadata/Condition",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.CfnCondition",
-                  "version": "1.133.0"
+                  "version": "1.134.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/core.Construct",
-              "version": "1.133.0"
+              "version": "1.134.0"
             }
           }
         },
         "constructInfo": {
           "fqn": "@aws-cdk/core.Stack",
-          "version": "1.133.0"
+          "version": "1.134.0"
         }
       }
     },
     "constructInfo": {
       "fqn": "@aws-cdk/core.App",
-      "version": "1.133.0"
+      "version": "1.134.0"
     }
   }
 }

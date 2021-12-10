@@ -181,7 +181,7 @@
       "Properties": {
         "CodeUri": {
           "Bucket": {
-            "Ref": "AssetParametersf20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064S3BucketB3571BDA"
+            "Ref": "AssetParametersf72be4e8f2a68c0ebc89c079af4399fcb20b8f2be5caf7e68b43cc8f03db9cb1S3Bucket3CA2C242"
           },
           "Key": {
             "Fn::Join": [
@@ -194,7 +194,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParametersf20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064S3VersionKey2F5068BF"
+                          "Ref": "AssetParametersf72be4e8f2a68c0ebc89c079af4399fcb20b8f2be5caf7e68b43cc8f03db9cb1S3VersionKeyFE692CA5"
                         }
                       ]
                     }
@@ -207,7 +207,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParametersf20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064S3VersionKey2F5068BF"
+                          "Ref": "AssetParametersf72be4e8f2a68c0ebc89c079af4399fcb20b8f2be5caf7e68b43cc8f03db9cb1S3VersionKeyFE692CA5"
                         }
                       ]
                     }
@@ -517,7 +517,7 @@
                 ]
               }
             },
-            "/upload/{file_name}": {
+            "/upload/": {
               "put": {
                 "consumes": [
                   "application/octet-stream"
@@ -547,12 +547,9 @@
                   "contentHandling": "CONVERT_TO_TEXT",
                   "type": "aws_proxy"
                 },
-                "parameters": [
+                "security": [
                   {
-                    "name": "file_name",
-                    "in": "path",
-                    "required": true,
-                    "type": "string"
+                    "CognitoAuthorizer": []
                   }
                 ]
               }
@@ -769,10 +766,106 @@
         "aws:cdk:path": "smokler/media/Resource"
       }
     },
+    "mediaPolicyA6C58619": {
+      "Type": "AWS::S3::BucketPolicy",
+      "Properties": {
+        "Bucket": {
+          "Ref": "media54CBABFC"
+        },
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "s3:GetObject",
+              "Effect": "Allow",
+              "Principal": {
+                "CanonicalUser": {
+                  "Fn::GetAtt": [
+                    "smoklercloudfrontdistributionOrigin1S3Origin13C06BCB",
+                    "S3CanonicalUserId"
+                  ]
+                }
+              },
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    {
+                      "Fn::GetAtt": [
+                        "media54CBABFC",
+                        "Arn"
+                      ]
+                    },
+                    "/*"
+                  ]
+                ]
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "smokler/media/Policy/Resource"
+      }
+    },
+    "smoklercloudfrontdistributionOrigin1S3Origin13C06BCB": {
+      "Type": "AWS::CloudFront::CloudFrontOriginAccessIdentity",
+      "Properties": {
+        "CloudFrontOriginAccessIdentityConfig": {
+          "Comment": "Identity for smoklersmoklercloudfrontdistributionOrigin187F6C7C3"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "smokler/smokler_cloudfront_distribution/Origin1/S3Origin/Resource"
+      }
+    },
+    "smoklercloudfrontdistribution90526DB0": {
+      "Type": "AWS::CloudFront::Distribution",
+      "Properties": {
+        "DistributionConfig": {
+          "DefaultCacheBehavior": {
+            "CachePolicyId": "658327ea-f89d-4fab-a63d-7e88639e58f6",
+            "Compress": true,
+            "TargetOriginId": "smoklersmoklercloudfrontdistributionOrigin187F6C7C3",
+            "ViewerProtocolPolicy": "allow-all"
+          },
+          "Enabled": true,
+          "HttpVersion": "http2",
+          "IPV6Enabled": true,
+          "Origins": [
+            {
+              "DomainName": {
+                "Fn::GetAtt": [
+                  "media54CBABFC",
+                  "RegionalDomainName"
+                ]
+              },
+              "Id": "smoklersmoklercloudfrontdistributionOrigin187F6C7C3",
+              "S3OriginConfig": {
+                "OriginAccessIdentity": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "origin-access-identity/cloudfront/",
+                      {
+                        "Ref": "smoklercloudfrontdistributionOrigin1S3Origin13C06BCB"
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "smokler/smokler_cloudfront_distribution/Resource"
+      }
+    },
     "CDKMetadata": {
       "Type": "AWS::CDK::Metadata",
       "Properties": {
-        "Analytics": "v2:deflate64:H4sIAAAAAAAA/1WQTW7DIBCFz5I9Jom86bKJq0pZ1UrbA2CYpJMAE8GgyrK4e8HuT7rim/eYGR5buW1buVk9qs/YaHNdT5oCyOmVlb6KjnzkkDSLXYzARTyjP4vu5F8S3xKLI0RKQUOVehWUA4ZQi3ujTDHISD6LuqVsOHtkktN7hNAT2Xrpl3+gswie760/5WAKII//Gp7IKfT3DYuSRWwbVd8f5Ryj1HLaJ30F3qsIYsHauFAWqJycagqyIHqyqMc54Uxl3rf9nLyuuaq3u2EWVrnBKFmvQnAYYzXN6JUjM8jpTQ12/pEZchbaUjInCk7VMQ16bZOB2n9YMIt+5A/y61Y+yO1mdYmITUglvAN5XM4vvCXZ+cMBAAA="
+        "Analytics": "v2:deflate64:H4sIAAAAAAAA/3VQy27CMBD8Fu6OIUoPPRaCkDgR0fYDHNvQLbYX+aEKWf732gkp4dCTx7M7M7tb01g3L3S1eGM/ruLisowcraTx3TN+IS0a523gnqydkz6TZzBn0p7MIfhr8OQoHQbLZaE6ZpmWXtrymReyiwAPaBIpKdE1FSt2jg6uxDU0bgK/SL9hTpIRFuEdjU+HCvjtQY//RIBpGksiKkkeTVNZMd0LRgsjrQbn8hxE3AzTKHoaP1ivhiEHkAhXGMTJovE0biEvD30oo5ODhbz7mnPp3F5I48EPOW0R7Irgv465TUqJ1E3zdPDhJhzPBjzS+Omk7RBVUf7hCbQKsu+89GCmyCfBFjUDMxeMTCLufrZdMHxYMOP1FdJ0ArSaFb4Cw1UQslxwP8Lc0938F5plQ19pvVp8O4DKhhyvJT2O7y/ILEGDWgIAAA=="
       },
       "Metadata": {
         "aws:cdk:path": "smokler/CDKMetadata/Default"
@@ -811,17 +904,17 @@
     }
   },
   "Parameters": {
-    "AssetParametersf20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064S3BucketB3571BDA": {
+    "AssetParametersf72be4e8f2a68c0ebc89c079af4399fcb20b8f2be5caf7e68b43cc8f03db9cb1S3Bucket3CA2C242": {
       "Type": "String",
-      "Description": "S3 bucket for asset \"f20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064\""
+      "Description": "S3 bucket for asset \"f72be4e8f2a68c0ebc89c079af4399fcb20b8f2be5caf7e68b43cc8f03db9cb1\""
     },
-    "AssetParametersf20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064S3VersionKey2F5068BF": {
+    "AssetParametersf72be4e8f2a68c0ebc89c079af4399fcb20b8f2be5caf7e68b43cc8f03db9cb1S3VersionKeyFE692CA5": {
       "Type": "String",
-      "Description": "S3 key for asset version \"f20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064\""
+      "Description": "S3 key for asset version \"f72be4e8f2a68c0ebc89c079af4399fcb20b8f2be5caf7e68b43cc8f03db9cb1\""
     },
-    "AssetParametersf20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064ArtifactHashD0016EB0": {
+    "AssetParametersf72be4e8f2a68c0ebc89c079af4399fcb20b8f2be5caf7e68b43cc8f03db9cb1ArtifactHash3B171044": {
       "Type": "String",
-      "Description": "Artifact hash for asset \"f20dd58c1f07a2dce3928e9fa3c3f6119128015bdc9894e86cd23e93cc422064\""
+      "Description": "Artifact hash for asset \"f72be4e8f2a68c0ebc89c079af4399fcb20b8f2be5caf7e68b43cc8f03db9cb1\""
     }
   },
   "Conditions": {

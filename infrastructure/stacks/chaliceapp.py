@@ -5,6 +5,8 @@ from aws_cdk import (
     core as cdk,
     aws_cognito as cognito,
     aws_s3 as s3,
+    aws_cloudfront as cloudfront,
+    aws_cloudfront_origins as origins,
 )
 from chalice.cdk import Chalice
 
@@ -17,6 +19,7 @@ class ChaliceApp(cdk.Stack):
     dynamodb_table: dynamodb.Table
     user_pool: cognito.UserPool
     bucket: s3.Bucket
+    cdn: cloudfront.Distribution
 
     def __init__(self, scope, id, **kwargs):
         super().__init__(scope, id, **kwargs)
@@ -145,4 +148,10 @@ class ChaliceApp(cdk.Stack):
             key='MEDIA_BUCKET_NAME',
             value=self.bucket.bucket_name,
             function_name='APIHandler'
+        )
+        self.cdn = cloudfront.Distribution(
+            self, "smokler_cloudfront_distribution",
+            default_behavior=cloudfront.BehaviorOptions(
+                origin=origins.S3Origin(self.bucket)
+            )
         )
