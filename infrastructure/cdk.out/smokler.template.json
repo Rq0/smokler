@@ -179,7 +179,7 @@
       "Properties": {
         "CodeUri": {
           "Bucket": {
-            "Ref": "AssetParametersbac41235911cb056c94e4e8a954d00f62a141c38289a69e27d32839d39e5f396S3BucketA3A3A726"
+            "Ref": "AssetParametersd47bc662d410c39e43173062828863a1156d23fc76df7d5248a83b6c316f16a3S3BucketF50908F8"
           },
           "Key": {
             "Fn::Join": [
@@ -192,7 +192,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParametersbac41235911cb056c94e4e8a954d00f62a141c38289a69e27d32839d39e5f396S3VersionKey4BEF93F9"
+                          "Ref": "AssetParametersd47bc662d410c39e43173062828863a1156d23fc76df7d5248a83b6c316f16a3S3VersionKey90068AC3"
                         }
                       ]
                     }
@@ -205,7 +205,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParametersbac41235911cb056c94e4e8a954d00f62a141c38289a69e27d32839d39e5f396S3VersionKey4BEF93F9"
+                          "Ref": "AssetParametersd47bc662d410c39e43173062828863a1156d23fc76df7d5248a83b6c316f16a3S3VersionKey90068AC3"
                         }
                       ]
                     }
@@ -863,7 +863,7 @@
     "CDKMetadata": {
       "Type": "AWS::CDK::Metadata",
       "Properties": {
-        "Analytics": "v2:deflate64:H4sIAAAAAAAA/3VQy27CMBD8Fu6OIUoPPRaCkDgR0fYDHNvQLbYX+aEKWf732gkp4dCTx7M7M7tb01g3L3S1eGM/ruLisowcraTx3TN+IS0a523gnqydkz6TZzBn0p7MIfhr8OQoHQbLZaE6ZpmWXtrymReyiwAPaBIpKdE1FSt2jg6uxDU0bgK/SL9hTpIRFuEdjU+HCvjtQY//RIBpGksiKkkeTVNZMd0LRgsjrQbn8hxE3AzTKHoaP1ivhiEHkAhXGMTJovE0biEvD30oo5ODhbz7mnPp3F5I48EPOW0R7Irgv465TUqJ1E3zdPDhJhzPBjzS+Omk7RBVUf7hCbQKsu+89GCmyCfBFjUDMxeMTCLufrZdMHxYMOP1FdJ0ArSaFb4Cw1UQslxwP8Lc0938F5plQ19pvVp8O4DKhhyvJT2O7y/ILEGDWgIAAA=="
+        "Analytics": "v2:deflate64:H4sIAAAAAAAA/3VRy27CMBD8Fu7GgFClHgtUSJyIaPsBjm3oFtuLvLaqKMq/15uQkh568uzMzr68kqv1k1zOXtQ3zbW5LlqN0cr2LSl9FTsMlGLWSWyIbCrkBcJF7M7hmNMtJ3GyhDlqy1SlovI22cjBVChVDCTA0AnuUjpcAiSU7QfZWCE6TvrFI9g5sCFNpQdzMAVAav4YXtErCFPDwHSC1nPF85Ps1yixbLdZX23aKrJigGy8o+Gp0IFuHvQQdwKUly2viM6KR9Io013e56B5adY2N+iEU742SnKqjR6IWDRNUB5NLdt3Vbv+XD3ohHaYzTliSLJ9hfINUOe+3jFC+YWN1pZoPER/Zjbs2fBfxrRMN3bA6BUTcwjaZWN5wMMAO1E16RPDYi2f5Wo5+yKAecylnrfyNLw/zRxtfkECAAA="
       },
       "Metadata": {
         "aws:cdk:path": "smokler/CDKMetadata/Default"
@@ -897,17 +897,17 @@
     }
   },
   "Parameters": {
-    "AssetParametersbac41235911cb056c94e4e8a954d00f62a141c38289a69e27d32839d39e5f396S3BucketA3A3A726": {
+    "AssetParametersd47bc662d410c39e43173062828863a1156d23fc76df7d5248a83b6c316f16a3S3BucketF50908F8": {
       "Type": "String",
-      "Description": "S3 bucket for asset \"bac41235911cb056c94e4e8a954d00f62a141c38289a69e27d32839d39e5f396\""
+      "Description": "S3 bucket for asset \"d47bc662d410c39e43173062828863a1156d23fc76df7d5248a83b6c316f16a3\""
     },
-    "AssetParametersbac41235911cb056c94e4e8a954d00f62a141c38289a69e27d32839d39e5f396S3VersionKey4BEF93F9": {
+    "AssetParametersd47bc662d410c39e43173062828863a1156d23fc76df7d5248a83b6c316f16a3S3VersionKey90068AC3": {
       "Type": "String",
-      "Description": "S3 key for asset version \"bac41235911cb056c94e4e8a954d00f62a141c38289a69e27d32839d39e5f396\""
+      "Description": "S3 key for asset version \"d47bc662d410c39e43173062828863a1156d23fc76df7d5248a83b6c316f16a3\""
     },
-    "AssetParametersbac41235911cb056c94e4e8a954d00f62a141c38289a69e27d32839d39e5f396ArtifactHash4B1A7180": {
+    "AssetParametersd47bc662d410c39e43173062828863a1156d23fc76df7d5248a83b6c316f16a3ArtifactHash1AA66656": {
       "Type": "String",
-      "Description": "Artifact hash for asset \"bac41235911cb056c94e4e8a954d00f62a141c38289a69e27d32839d39e5f396\""
+      "Description": "Artifact hash for asset \"d47bc662d410c39e43173062828863a1156d23fc76df7d5248a83b6c316f16a3\""
     }
   },
   "Conditions": {
