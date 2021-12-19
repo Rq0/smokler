@@ -18,6 +18,8 @@ class DependencyRegister:
     """Place to register app dependencies"""
     _instance = None
     __container = {}
+    app: Chalice
+    authorizer: CognitoUserPoolAuthorizer
 
     def __new__(cls):
         if cls._instance is None:

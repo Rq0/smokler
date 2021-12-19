@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from enum import IntEnum
 from typing import List
 
@@ -37,24 +37,22 @@ class NotificationSettings:
 
 @dataclass
 class User:
-    id: str
     username: str
-    avatar: str
-    locale: str
-    theme: Theme
-    selected_course: Course
-    friends: List[str]
-    achievements: List[str]
-    notification_settings: NotificationSettings
+    avatar: str = ''
+    locale: str = 'ru'
+    theme: Theme = Theme.light
+    selected_course: Course = Course.tracker
+    friends: List[str] = field(default_factory=list)
+    achievements: List[str] = field(default_factory=list)
+    notification_settings: NotificationSettings = None
 
     # course_settings: {}
 
     def serialize(self) -> dict:
         """this is the way to put everything back into the database"""
         return {
-            'PK': f'User#{self.id}',
+            'PK': f'User#{self.username}',
             'SK': 'Profile',
-            'username': self.username,
             'avatar': self.avatar,
             'locale': self.locale,
             'theme': self.theme.value,
@@ -68,8 +66,7 @@ class User:
     def deserialize(cls, database_user):
         """factory"""
         return cls(
-            id=database_user['PK'].split('User#')[1],
-            username=database_user.get('username', ''),
+            username=database_user['PK'].split('User#')[1],
             avatar=database_user.get('avatar', ''),
             locale=database_user.get('locale', ''),
             theme=Theme(database_user.get('theme', 0)),

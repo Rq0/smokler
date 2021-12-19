@@ -29,6 +29,14 @@
         },
         "EmailVerificationMessage": "The verification code to your new account is {####}",
         "EmailVerificationSubject": "Verify your new account",
+        "LambdaConfig": {
+          "PreSignUp": {
+            "Fn::GetAtt": [
+              "autocreateuserfunction52761E80",
+              "Arn"
+            ]
+          }
+        },
         "Policies": {
           "PasswordPolicy": {
             "MinimumLength": 8,
@@ -179,7 +187,7 @@
       "Properties": {
         "CodeUri": {
           "Bucket": {
-            "Ref": "AssetParametersd47bc662d410c39e43173062828863a1156d23fc76df7d5248a83b6c316f16a3S3BucketF50908F8"
+            "Ref": "AssetParameters270a0e0f619cd4035d4b063b0676a6fc608fbc58c95439240ed6313c2a25ac38S3BucketAF366F26"
           },
           "Key": {
             "Fn::Join": [
@@ -192,7 +200,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParametersd47bc662d410c39e43173062828863a1156d23fc76df7d5248a83b6c316f16a3S3VersionKey90068AC3"
+                          "Ref": "AssetParameters270a0e0f619cd4035d4b063b0676a6fc608fbc58c95439240ed6313c2a25ac38S3VersionKeyA7D0D85A"
                         }
                       ]
                     }
@@ -205,7 +213,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParametersd47bc662d410c39e43173062828863a1156d23fc76df7d5248a83b6c316f16a3S3VersionKey90068AC3"
+                          "Ref": "AssetParameters270a0e0f619cd4035d4b063b0676a6fc608fbc58c95439240ed6313c2a25ac38S3VersionKeyA7D0D85A"
                         }
                       ]
                     }
@@ -860,10 +868,180 @@
         "aws:cdk:path": "smokler/smokler_dev_cloudfront_distribution/Resource"
       }
     },
+    "autocreateuserfunctionServiceRoleC349745B": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+              ]
+            ]
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "smokler/auto-create-user-function/ServiceRole/Resource"
+      }
+    },
+    "autocreateuserfunctionServiceRoleDefaultPolicy23D5DFEE": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "dynamodb:BatchGetItem",
+                "dynamodb:GetRecords",
+                "dynamodb:GetShardIterator",
+                "dynamodb:Query",
+                "dynamodb:GetItem",
+                "dynamodb:Scan",
+                "dynamodb:ConditionCheckItem",
+                "dynamodb:BatchWriteItem",
+                "dynamodb:PutItem",
+                "dynamodb:UpdateItem",
+                "dynamodb:DeleteItem"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "smoklerdevusertable1B6D4DA5",
+                    "Arn"
+                  ]
+                },
+                {
+                  "Ref": "AWS::NoValue"
+                }
+              ]
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "autocreateuserfunctionServiceRoleDefaultPolicy23D5DFEE",
+        "Roles": [
+          {
+            "Ref": "autocreateuserfunctionServiceRoleC349745B"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "smokler/auto-create-user-function/ServiceRole/DefaultPolicy/Resource"
+      }
+    },
+    "autocreateuserfunction52761E80": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "AssetParametersc59a51f5d59f7592a1492c102aa93d9232f3bada26d72a33107ae0c89d8eda2dS3BucketA5DDD664"
+          },
+          "S3Key": {
+            "Fn::Join": [
+              "",
+              [
+                {
+                  "Fn::Select": [
+                    0,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParametersc59a51f5d59f7592a1492c102aa93d9232f3bada26d72a33107ae0c89d8eda2dS3VersionKeyF8D49659"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Fn::Select": [
+                    1,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParametersc59a51f5d59f7592a1492c102aa93d9232f3bada26d72a33107ae0c89d8eda2dS3VersionKeyF8D49659"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "autocreateuserfunctionServiceRoleC349745B",
+            "Arn"
+          ]
+        },
+        "Environment": {
+          "Variables": {
+            "USER_TABLE_NAME": {
+              "Ref": "smoklerdevusertable1B6D4DA5"
+            }
+          }
+        },
+        "Handler": "triggers.sign_up_trigger",
+        "Runtime": "python3.8"
+      },
+      "DependsOn": [
+        "autocreateuserfunctionServiceRoleDefaultPolicy23D5DFEE",
+        "autocreateuserfunctionServiceRoleC349745B"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "smokler/auto-create-user-function/Resource",
+        "aws:asset:path": "asset.c59a51f5d59f7592a1492c102aa93d9232f3bada26d72a33107ae0c89d8eda2d",
+        "aws:asset:is-bundled": false,
+        "aws:asset:property": "Code"
+      }
+    },
+    "autocreateuserfunctionPreSignUpCognito33256EBB": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "autocreateuserfunction52761E80",
+            "Arn"
+          ]
+        },
+        "Principal": "cognito-idp.amazonaws.com",
+        "SourceArn": {
+          "Fn::GetAtt": [
+            "smoklerdevuserpool4834C5ED",
+            "Arn"
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "smokler/auto-create-user-function/PreSignUpCognito"
+      }
+    },
     "CDKMetadata": {
       "Type": "AWS::CDK::Metadata",
       "Properties": {
-        "Analytics": "v2:deflate64:H4sIAAAAAAAA/3VRy27CMBD8Fu7GgFClHgtUSJyIaPsBjm3oFtuLvLaqKMq/15uQkh568uzMzr68kqv1k1zOXtQ3zbW5LlqN0cr2LSl9FTsMlGLWSWyIbCrkBcJF7M7hmNMtJ3GyhDlqy1SlovI22cjBVChVDCTA0AnuUjpcAiSU7QfZWCE6TvrFI9g5sCFNpQdzMAVAav4YXtErCFPDwHSC1nPF85Ps1yixbLdZX23aKrJigGy8o+Gp0IFuHvQQdwKUly2viM6KR9Io013e56B5adY2N+iEU742SnKqjR6IWDRNUB5NLdt3Vbv+XD3ohHaYzTliSLJ9hfINUOe+3jFC+YWN1pZoPER/Zjbs2fBfxrRMN3bA6BUTcwjaZWN5wMMAO1E16RPDYi2f5Wo5+yKAecylnrfyNLw/zRxtfkECAAA="
+        "Analytics": "v2:deflate64:H4sIAAAAAAAA/3VRSW7DMAx8S+6ykiAo0GOzIEBPMdL2AbLEpKy1BFpQGIb+XtGOG/fQk4bDGVIk13y9eeKrxYv4DpVU7bKXzgPv36KQLds7G6JPMrJtCBALeUV7ZfuLPaV4S5GdIbjkJRBVCy8MRPAUzBOlisKIzmZGXUqHq8XoeP8RwNfOaRL94gnsNYKN89SDeVUFYOz+GA7OCLRzw8hkFjaVoP8HPoxRYt7vkmwh7kQANkIy3tH41E6j7B70GGeGwvCeRnQa2EN0R8SWjnfNMVlJk5Nge8PMtDCNEkOuBm8wBMrOZRPOTHVWGKca3r+LRg+rHEBmUrukLt7ZyPsDlhNhkwb/yWO50FZKCGFa0nACMhzJ8J9iXiZPHZw3gogKrdRJAafdjzCzuoufzi43/JmvV4uvgFj5VOoZ4Ofx/QE/O42UXQIAAA=="
       },
       "Metadata": {
         "aws:cdk:path": "smokler/CDKMetadata/Default"
@@ -897,17 +1075,29 @@
     }
   },
   "Parameters": {
-    "AssetParametersd47bc662d410c39e43173062828863a1156d23fc76df7d5248a83b6c316f16a3S3BucketF50908F8": {
+    "AssetParameters270a0e0f619cd4035d4b063b0676a6fc608fbc58c95439240ed6313c2a25ac38S3BucketAF366F26": {
       "Type": "String",
-      "Description": "S3 bucket for asset \"d47bc662d410c39e43173062828863a1156d23fc76df7d5248a83b6c316f16a3\""
+      "Description": "S3 bucket for asset \"270a0e0f619cd4035d4b063b0676a6fc608fbc58c95439240ed6313c2a25ac38\""
     },
-    "AssetParametersd47bc662d410c39e43173062828863a1156d23fc76df7d5248a83b6c316f16a3S3VersionKey90068AC3": {
+    "AssetParameters270a0e0f619cd4035d4b063b0676a6fc608fbc58c95439240ed6313c2a25ac38S3VersionKeyA7D0D85A": {
       "Type": "String",
-      "Description": "S3 key for asset version \"d47bc662d410c39e43173062828863a1156d23fc76df7d5248a83b6c316f16a3\""
+      "Description": "S3 key for asset version \"270a0e0f619cd4035d4b063b0676a6fc608fbc58c95439240ed6313c2a25ac38\""
     },
-    "AssetParametersd47bc662d410c39e43173062828863a1156d23fc76df7d5248a83b6c316f16a3ArtifactHash1AA66656": {
+    "AssetParameters270a0e0f619cd4035d4b063b0676a6fc608fbc58c95439240ed6313c2a25ac38ArtifactHashD31FE071": {
       "Type": "String",
-      "Description": "Artifact hash for asset \"d47bc662d410c39e43173062828863a1156d23fc76df7d5248a83b6c316f16a3\""
+      "Description": "Artifact hash for asset \"270a0e0f619cd4035d4b063b0676a6fc608fbc58c95439240ed6313c2a25ac38\""
+    },
+    "AssetParametersc59a51f5d59f7592a1492c102aa93d9232f3bada26d72a33107ae0c89d8eda2dS3BucketA5DDD664": {
+      "Type": "String",
+      "Description": "S3 bucket for asset \"c59a51f5d59f7592a1492c102aa93d9232f3bada26d72a33107ae0c89d8eda2d\""
+    },
+    "AssetParametersc59a51f5d59f7592a1492c102aa93d9232f3bada26d72a33107ae0c89d8eda2dS3VersionKeyF8D49659": {
+      "Type": "String",
+      "Description": "S3 key for asset version \"c59a51f5d59f7592a1492c102aa93d9232f3bada26d72a33107ae0c89d8eda2d\""
+    },
+    "AssetParametersc59a51f5d59f7592a1492c102aa93d9232f3bada26d72a33107ae0c89d8eda2dArtifactHash11B028C9": {
+      "Type": "String",
+      "Description": "Artifact hash for asset \"c59a51f5d59f7592a1492c102aa93d9232f3bada26d72a33107ae0c89d8eda2d\""
     }
   },
   "Conditions": {

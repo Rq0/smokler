@@ -5,6 +5,7 @@ from aws_cdk import (
     core as cdk,
     aws_cognito as cognito,
     aws_s3 as s3,
+    aws_lambda as lambda_,
     aws_cloudfront as cloudfront,
     aws_cloudfront_origins as origins,
 )
@@ -13,10 +14,12 @@ from chalice.cdk import Chalice
 RUNTIME_SOURCE_DIR = os.path.join(
     os.path.dirname(os.path.dirname(__file__)), os.pardir, 'runtime')
 
+LAMBDA_SOURCE_DIR = os.path.join(RUNTIME_SOURCE_DIR, 'lambda')
+
 
 class SmoklerStack(cdk.Stack):
     chalice: Chalice
-    dynamodb_table: dynamodb.Table
+    user_table: dynamodb.Table
     user_pool: cognito.UserPool
     bucket: s3.Bucket
     cdn: cloudfront.Distribution
@@ -29,6 +32,7 @@ class SmoklerStack(cdk.Stack):
         self._add_chalice()
         self._create_ddb_table()
         self._add_s3()
+        self._add_cognito_trigger()
 
     def _add_chalice(self):
         self.chalice = Chalice(
@@ -43,7 +47,7 @@ class SmoklerStack(cdk.Stack):
         )
 
     def _create_ddb_table(self):
-        self.dynamodb_table = dynamodb.Table(
+        self.user_table = dynamodb.Table(
             self, f'{self.app_name}_{self.stage_name}_user_table',
             partition_key=dynamodb.Attribute(
                 name='PK', type=dynamodb.AttributeType.STRING),
@@ -52,12 +56,12 @@ class SmoklerStack(cdk.Stack):
             ),
             removal_policy=cdk.RemovalPolicy.DESTROY
         )
-        self.dynamodb_table.grant_read_write_data(
+        self.user_table.grant_read_write_data(
             self.chalice.get_role('DefaultRole')
         )
         self.chalice.add_environment_variable(
             key='USER_TABLE_NAME',
-            value=self.dynamodb_table.table_name,
+            value=self.user_table.table_name,
             function_name='APIHandler'
         )
 
@@ -152,4 +156,26 @@ class SmoklerStack(cdk.Stack):
             default_behavior=cloudfront.BehaviorOptions(
                 origin=origins.S3Origin(self.bucket)
             )
+        )
+
+    def _add_cognito_trigger(self):
+        auto_confirm_function = lambda_.Function(
+            self,
+            "auto-create-user-function",
+            code=lambda_.Code.from_asset(
+                path=LAMBDA_SOURCE_DIR
+            ),
+            handler="triggers.sign_up_trigger",
+            runtime=lambda_.Runtime.PYTHON_3_8,
+        )
+        auto_confirm_function.add_environment(
+            'USER_TABLE_NAME',
+            self.user_table.table_name
+        )
+        self.user_pool.add_trigger(
+            operation=cognito.UserPoolOperation.PRE_SIGN_UP,
+            fn=auto_confirm_function
+        )
+        self.user_table.grant_read_write_data(
+            auto_confirm_function.role
         )

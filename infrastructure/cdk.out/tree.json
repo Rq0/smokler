@@ -50,6 +50,14 @@
                     },
                     "emailVerificationMessage": "The verification code to your new account is {####}",
                     "emailVerificationSubject": "Verify your new account",
+                    "lambdaConfig": {
+                      "preSignUp": {
+                        "Fn::GetAtt": [
+                          "autocreateuserfunction52761E80",
+                          "Arn"
+                        ]
+                      }
+                    },
                     "policies": {
                       "passwordPolicy": {
                         "minimumLength": 8,
@@ -320,7 +328,7 @@
                       "aws:cdk:cloudformation:props": {
                         "codeUri": {
                           "bucket": {
-                            "Ref": "AssetParametersd47bc662d410c39e43173062828863a1156d23fc76df7d5248a83b6c316f16a3S3BucketF50908F8"
+                            "Ref": "AssetParameters270a0e0f619cd4035d4b063b0676a6fc608fbc58c95439240ed6313c2a25ac38S3BucketAF366F26"
                           },
                           "key": {
                             "Fn::Join": [
@@ -333,7 +341,7 @@
                                       "Fn::Split": [
                                         "||",
                                         {
-                                          "Ref": "AssetParametersd47bc662d410c39e43173062828863a1156d23fc76df7d5248a83b6c316f16a3S3VersionKey90068AC3"
+                                          "Ref": "AssetParameters270a0e0f619cd4035d4b063b0676a6fc608fbc58c95439240ed6313c2a25ac38S3VersionKeyA7D0D85A"
                                         }
                                       ]
                                     }
@@ -346,7 +354,7 @@
                                       "Fn::Split": [
                                         "||",
                                         {
-                                          "Ref": "AssetParametersd47bc662d410c39e43173062828863a1156d23fc76df7d5248a83b6c316f16a3S3VersionKey90068AC3"
+                                          "Ref": "AssetParameters270a0e0f619cd4035d4b063b0676a6fc608fbc58c95439240ed6313c2a25ac38S3VersionKeyA7D0D85A"
                                         }
                                       ]
                                     }
@@ -969,13 +977,13 @@
             "id": "AssetParameters",
             "path": "smokler/AssetParameters",
             "children": {
-              "d47bc662d410c39e43173062828863a1156d23fc76df7d5248a83b6c316f16a3": {
-                "id": "d47bc662d410c39e43173062828863a1156d23fc76df7d5248a83b6c316f16a3",
-                "path": "smokler/AssetParameters/d47bc662d410c39e43173062828863a1156d23fc76df7d5248a83b6c316f16a3",
+              "270a0e0f619cd4035d4b063b0676a6fc608fbc58c95439240ed6313c2a25ac38": {
+                "id": "270a0e0f619cd4035d4b063b0676a6fc608fbc58c95439240ed6313c2a25ac38",
+                "path": "smokler/AssetParameters/270a0e0f619cd4035d4b063b0676a6fc608fbc58c95439240ed6313c2a25ac38",
                 "children": {
                   "S3Bucket": {
                     "id": "S3Bucket",
-                    "path": "smokler/AssetParameters/d47bc662d410c39e43173062828863a1156d23fc76df7d5248a83b6c316f16a3/S3Bucket",
+                    "path": "smokler/AssetParameters/270a0e0f619cd4035d4b063b0676a6fc608fbc58c95439240ed6313c2a25ac38/S3Bucket",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.CfnParameter",
                       "version": "1.135.0"
@@ -983,7 +991,7 @@
                   },
                   "S3VersionKey": {
                     "id": "S3VersionKey",
-                    "path": "smokler/AssetParameters/d47bc662d410c39e43173062828863a1156d23fc76df7d5248a83b6c316f16a3/S3VersionKey",
+                    "path": "smokler/AssetParameters/270a0e0f619cd4035d4b063b0676a6fc608fbc58c95439240ed6313c2a25ac38/S3VersionKey",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.CfnParameter",
                       "version": "1.135.0"
@@ -991,7 +999,41 @@
                   },
                   "ArtifactHash": {
                     "id": "ArtifactHash",
-                    "path": "smokler/AssetParameters/d47bc662d410c39e43173062828863a1156d23fc76df7d5248a83b6c316f16a3/ArtifactHash",
+                    "path": "smokler/AssetParameters/270a0e0f619cd4035d4b063b0676a6fc608fbc58c95439240ed6313c2a25ac38/ArtifactHash",
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/core.CfnParameter",
+                      "version": "1.135.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.Construct",
+                  "version": "1.135.0"
+                }
+              },
+              "c59a51f5d59f7592a1492c102aa93d9232f3bada26d72a33107ae0c89d8eda2d": {
+                "id": "c59a51f5d59f7592a1492c102aa93d9232f3bada26d72a33107ae0c89d8eda2d",
+                "path": "smokler/AssetParameters/c59a51f5d59f7592a1492c102aa93d9232f3bada26d72a33107ae0c89d8eda2d",
+                "children": {
+                  "S3Bucket": {
+                    "id": "S3Bucket",
+                    "path": "smokler/AssetParameters/c59a51f5d59f7592a1492c102aa93d9232f3bada26d72a33107ae0c89d8eda2d/S3Bucket",
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/core.CfnParameter",
+                      "version": "1.135.0"
+                    }
+                  },
+                  "S3VersionKey": {
+                    "id": "S3VersionKey",
+                    "path": "smokler/AssetParameters/c59a51f5d59f7592a1492c102aa93d9232f3bada26d72a33107ae0c89d8eda2d/S3VersionKey",
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/core.CfnParameter",
+                      "version": "1.135.0"
+                    }
+                  },
+                  "ArtifactHash": {
+                    "id": "ArtifactHash",
+                    "path": "smokler/AssetParameters/c59a51f5d59f7592a1492c102aa93d9232f3bada26d72a33107ae0c89d8eda2d/ArtifactHash",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.CfnParameter",
                       "version": "1.135.0"
@@ -1243,6 +1285,255 @@
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-cloudfront.Distribution",
+              "version": "1.135.0"
+            }
+          },
+          "auto-create-user-function": {
+            "id": "auto-create-user-function",
+            "path": "smokler/auto-create-user-function",
+            "children": {
+              "ServiceRole": {
+                "id": "ServiceRole",
+                "path": "smokler/auto-create-user-function/ServiceRole",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "smokler/auto-create-user-function/ServiceRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "lambda.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "managedPolicyArns": [
+                          {
+                            "Fn::Join": [
+                              "",
+                              [
+                                "arn:",
+                                {
+                                  "Ref": "AWS::Partition"
+                                },
+                                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                              ]
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-iam.CfnRole",
+                      "version": "1.135.0"
+                    }
+                  },
+                  "DefaultPolicy": {
+                    "id": "DefaultPolicy",
+                    "path": "smokler/auto-create-user-function/ServiceRole/DefaultPolicy",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "smokler/auto-create-user-function/ServiceRole/DefaultPolicy/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                          "aws:cdk:cloudformation:props": {
+                            "policyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": [
+                                    "dynamodb:BatchGetItem",
+                                    "dynamodb:GetRecords",
+                                    "dynamodb:GetShardIterator",
+                                    "dynamodb:Query",
+                                    "dynamodb:GetItem",
+                                    "dynamodb:Scan",
+                                    "dynamodb:ConditionCheckItem",
+                                    "dynamodb:BatchWriteItem",
+                                    "dynamodb:PutItem",
+                                    "dynamodb:UpdateItem",
+                                    "dynamodb:DeleteItem"
+                                  ],
+                                  "Effect": "Allow",
+                                  "Resource": [
+                                    {
+                                      "Fn::GetAtt": [
+                                        "smoklerdevusertable1B6D4DA5",
+                                        "Arn"
+                                      ]
+                                    },
+                                    {
+                                      "Ref": "AWS::NoValue"
+                                    }
+                                  ]
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            },
+                            "policyName": "autocreateuserfunctionServiceRoleDefaultPolicy23D5DFEE",
+                            "roles": [
+                              {
+                                "Ref": "autocreateuserfunctionServiceRoleC349745B"
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/aws-iam.CfnPolicy",
+                          "version": "1.135.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-iam.Policy",
+                      "version": "1.135.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-iam.Role",
+                  "version": "1.135.0"
+                }
+              },
+              "Code": {
+                "id": "Code",
+                "path": "smokler/auto-create-user-function/Code",
+                "children": {
+                  "Stage": {
+                    "id": "Stage",
+                    "path": "smokler/auto-create-user-function/Code/Stage",
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/core.AssetStaging",
+                      "version": "1.135.0"
+                    }
+                  },
+                  "AssetBucket": {
+                    "id": "AssetBucket",
+                    "path": "smokler/auto-create-user-function/Code/AssetBucket",
+                    "children": {
+                      "Notifications": {
+                        "id": "Notifications",
+                        "path": "smokler/auto-create-user-function/Code/AssetBucket/Notifications",
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/core.Construct",
+                          "version": "1.135.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-s3.BucketBase",
+                      "version": "1.135.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-s3-assets.Asset",
+                  "version": "1.135.0"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "smokler/auto-create-user-function/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
+                  "aws:cdk:cloudformation:props": {
+                    "code": {
+                      "s3Bucket": {
+                        "Ref": "AssetParametersc59a51f5d59f7592a1492c102aa93d9232f3bada26d72a33107ae0c89d8eda2dS3BucketA5DDD664"
+                      },
+                      "s3Key": {
+                        "Fn::Join": [
+                          "",
+                          [
+                            {
+                              "Fn::Select": [
+                                0,
+                                {
+                                  "Fn::Split": [
+                                    "||",
+                                    {
+                                      "Ref": "AssetParametersc59a51f5d59f7592a1492c102aa93d9232f3bada26d72a33107ae0c89d8eda2dS3VersionKeyF8D49659"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "Fn::Select": [
+                                1,
+                                {
+                                  "Fn::Split": [
+                                    "||",
+                                    {
+                                      "Ref": "AssetParametersc59a51f5d59f7592a1492c102aa93d9232f3bada26d72a33107ae0c89d8eda2dS3VersionKeyF8D49659"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        ]
+                      }
+                    },
+                    "role": {
+                      "Fn::GetAtt": [
+                        "autocreateuserfunctionServiceRoleC349745B",
+                        "Arn"
+                      ]
+                    },
+                    "environment": {
+                      "variables": {
+                        "USER_TABLE_NAME": {
+                          "Ref": "smoklerdevusertable1B6D4DA5"
+                        }
+                      }
+                    },
+                    "handler": "triggers.sign_up_trigger",
+                    "runtime": "python3.8"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-lambda.CfnFunction",
+                  "version": "1.135.0"
+                }
+              },
+              "PreSignUpCognito": {
+                "id": "PreSignUpCognito",
+                "path": "smokler/auto-create-user-function/PreSignUpCognito",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                  "aws:cdk:cloudformation:props": {
+                    "action": "lambda:InvokeFunction",
+                    "functionName": {
+                      "Fn::GetAtt": [
+                        "autocreateuserfunction52761E80",
+                        "Arn"
+                      ]
+                    },
+                    "principal": "cognito-idp.amazonaws.com",
+                    "sourceArn": {
+                      "Fn::GetAtt": [
+                        "smoklerdevuserpool4834C5ED",
+                        "Arn"
+                      ]
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-lambda.CfnPermission",
+                  "version": "1.135.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-lambda.Function",
               "version": "1.135.0"
             }
           },
